@@ -47,7 +47,7 @@ async function encode(file, n, draw, vf, audio) {
 }
 
 // ── X teaser: cold open on the bullet deflection, then the escalation, ending on the title ──
-// [scene id, authored from, authored to]  — edit freely; lengths are in film seconds.
+// [scene id, authored from, authored to] : edit freely; lengths are in film seconds.
 const TEASER = [            // [scene id on the timeline, authored from, authored to]
   ['minimal', 1.2, 2.2],     // cold open on the strongest single moment
   ['minimal', 0.0, 1.2],
@@ -150,7 +150,7 @@ function thumbnail() {
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, 1280, 720);
   ctx.drawImage(big, ...THUMB.crop, 0, 0, 1280, 720);
-  // title on a paper strip — keep it off the characters
+  // title on a paper strip: keep it off the characters
   ctx.save();
   ctx.translate(400, 96);
   ctx.rotate(-0.025);

@@ -1,6 +1,6 @@
 // Environment kit: reusable notebook-world pieces every scene can build from.
 // World space here is canvas-style: x right, y DOWN, floor at y = 0 (so "up" is NEGATIVE y).
-// Everything is drawn with ink.js primitives — only #000 and #fff.
+// Everything is drawn with ink.js primitives: only #000 and #fff.
 
 import { line, sketchPoly, hatch, makeCracks, trim, stroke, pathLine, BLACK, WHITE } from './ink.js';
 import { rng, clamp, prog, EASE, TAU, lerp } from './util.js';
@@ -79,7 +79,7 @@ export function cube(ctx, x, y, s, seed, w = 1.5) {
   hatch(ctx, f, { angle: 48, gap: 11, w: w * 0.6, seed: seed + 4, skip: 0.2 });
 }
 
-/** Oblique box (w × h front face, depth d) with hatched side — buildings, crates, pillars, blocks. */
+/** Oblique box (w × h front face, depth d) with hatched side: buildings, crates, pillars, blocks. */
 export function box(ctx, x, y, w, h, o = {}) {
   const { d = 30, seed = 1, lw = 2.2, gap = 6, front = 12, frontAngle = 48, cross = true, fill = WHITE } = o;
   const f = [[x, y], [x + w, y], [x + w, y - h], [x, y - h]];

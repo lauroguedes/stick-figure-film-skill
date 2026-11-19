@@ -1,5 +1,5 @@
 // Pen-and-ink drawing primitives: wobbly lines, sketchy polygons, hatching.
-// The whole film is drawn with these — only #000 and #fff are ever used.
+// The whole film is drawn with these: only #000 and #fff are ever used.
 
 import { rng, TAU, DEG } from './util.js';
 
@@ -189,7 +189,7 @@ export function blob(ctx, x, y, rx, ry, o = {}) {
   }
 }
 
-/** Trim a polyline to its first `f` (0..1) of arc length — used for "draw-on" reveals. */
+/** Trim a polyline to its first `f` (0..1) of arc length: used for "draw-on" reveals. */
 export function trim(pts, f) {
   if (f >= 1) return pts;
   if (f <= 0) return [];

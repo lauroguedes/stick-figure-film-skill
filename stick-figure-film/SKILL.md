@@ -1,6 +1,6 @@
 ---
 name: stick-figure-film
-description: Make a complete 2D animated short film where every frame is drawn in code — minimalist stick-figure (or other simple line-art) characters, hand-drawn ink/hatching look, choreographed action, cinematic camera, synced sound effects and music, rendered to MP4 with Node canvas and ffmpeg, no video-generation model. Use this skill whenever the user wants an animated short, fight scene, action sequence, music-less cartoon, "stick figure" or "stickman" animation, notebook/doodle/ink-style animation, a procedural or code-drawn video, a storyboard brought to life, or asks to extend, re-cut, polish, add a scene to, or make social clips from a film made this way — even if they only describe the story and never mention code.
+description: Make a complete 2D animated short film where every frame is drawn in code: minimalist stick-figure (or other simple line-art) characters, hand-drawn ink/hatching look, choreographed action, cinematic camera, synced sound effects and music, rendered to MP4 with Node canvas and ffmpeg, no video-generation model. Use this skill whenever the user wants an animated short, fight scene, action sequence, music-less cartoon, "stick figure" or "stickman" animation, notebook/doodle/ink-style animation, a procedural or code-drawn video, a storyboard brought to life, or asks to extend, re-cut, polish, add a scene to, or make social clips from a film made this way, even if they only describe the story and never mention code.
 ---
 
 # Stick-figure film
@@ -13,14 +13,14 @@ got it there, including what went wrong on the way.
 The engine is a starting point, not a cage. It ships two stick figures (B optional), twelve
 weapon types, an ink/hatching look and a notebook world, and its vocabulary is a fighter's
 (`S.fighters`, `S.hit`, "weapons") because that is what it was built for. It handles non-fight
-stories too — a chase, a prop, a fall, a comic beat; the trial film of a stick figure chasing a
+stories too: a chase, a prop, a fall, a comic beat. The trial film of a stick figure chasing a
 paper plane used the same rig, `flight()`, world-pinned hands and env hooks. Other looks change
 `ink.js` and the scene hooks.
 
 **The look follows the brief, not this skill.** The engine's art rules (pure black and white,
 hatching only, faceless figures, no text) were the brief of the film it came from. They are good
-defaults when the user asks for ink or notebook style. When the brief says otherwise — colour,
-a smiling face for a children's piece, a hand-written "YAY!" — follow the brief and adapt the
+defaults when the user asks for ink or notebook style. When the brief says otherwise (colour,
+a smiling face for a children's piece, a hand-written "YAY!"), follow the brief and adapt the
 drawing code.
 
 ## What makes this hard (read this first)
@@ -32,7 +32,7 @@ measurements. Three consequences shape the whole method:
    every substantial edit and read the image. A 12-frame sheet takes about two seconds.
 2. **Say what you verified and how.** "Checked on contact sheets at 0.25 s; not watched in
    motion, not heard" is the honest status of nearly everything you deliver. Timing feel, music
-   and mix are the user's to judge — tell them so each time you hand over a render.
+   and mix are the user's to judge; tell them so each time you hand over a render.
 3. **Get a human look early.** Deliver a short prototype before building the film, and expect
    notes that could not be predicted from stills (the first big one on the original film was
    that a simulated 3D camera move "didn't turn out well").
@@ -61,7 +61,7 @@ and running `npm install` (Node 20+ and `ffmpeg` are required; the only dependen
 
 - `src/scenes/minimal.js` (≈70 lines, on the timeline): one character, a prop picked up off the
   page, a jump, a camera move, sound cues and a friendly score. Start new scenes from this.
-- `src/scenes/ref_poc.js` (≈650 lines, `--scene ref`): a complete 15-second two-character fight —
+- `src/scenes/ref_poc.js` (≈650 lines, `--scene ref`): a complete 15-second two-character fight:
   impact frames, slow motion, a breakable wall, a weapon pulled out of the set, page damage.
   Too long to read in one go; read the parts you need (search for `S.weapon`, `S.camera`,
   `makeBrickWall`, `S.slowmo`).
@@ -77,7 +77,7 @@ and where you departed from the brief. Wait for approval before making the film.
 Once approved, write `STORY.md`: one table row per scene (file, film time, duration, location,
 what each character holds at the start and at the end, how the scene arrives), then a beat
 outline per scene. The start/end states are the contract that lets scenes be made independently
-and still join. Escalation must be *motivated* — a weapon breaks, is lost or is outmatched, and
+and still join. Escalation must be *motivated*: a weapon breaks, is lost or is outmatched, and
 the character takes something bigger from the world. `references/production.md` has the template.
 
 Keep an eye on total length against the brief's maximum from the start; every later addition
@@ -87,7 +87,7 @@ Keep an eye on total length against the brief's maximum from the start; every la
 
 Each scene is one file that owns its choreography, camera, effects, cues and set. That makes
 scenes independent, so build them in parallel: one subagent per scene, each owning exactly one
-file. Brief them with the template in `references/production.md` — it carries the ownership
+file. Brief them with the template in `references/production.md`; it carries the ownership
 rules, the review habits and the report format that made the reports trustworthy (beats with
 times, last-frame positions, impact frames, **the three weakest moments**, engine friction,
 lint summary).
@@ -106,12 +106,12 @@ Things that matter when delegating:
 
 Scenes emit cues (`S.hit`, `S.land`, `S.step`, `S.whoosh`, `S.shot`, raw `S.cue`), so picture and
 sound cannot drift. `tools/audio.mjs` turns the assembled cue sheet into the soundtrack with a
-built-in synthesizer — no assets, no network, exact length, loudness-normalised. That is the
+built-in synthesizer: no assets, no network, exact length, loudness-normalised. That is the
 default and it always works.
 
 **Choose each scene's music** with `createScene({ score: '…' })`: `duel`, `chase`, `clockwork`,
 `heavy`, `climax`, `aftermath` (the fight scores), `playful` (friendly, for anything gentle) or
-`none` (effects only). A scene without one gets the fight score `duel` and a warning — wrong for
+`none` (effects only). A scene without one gets the fight score `duel` and a warning, which is wrong for
 a children's piece. Write your own score function when none fits (`references/sound.md`).
 
 Generated audio (ElevenLabs effects and score via `tools/soundlib.mjs`) is optional and spends
@@ -132,7 +132,7 @@ node tools/render.mjs                    # out/film.mp4 (1920×1080, 30 fps, H.2
 
 After rendering, verify the file rather than assuming: `ffprobe` for duration and frame count,
 frames pulled from the MP4 at the cuts and the ending, loudness and true peak from
-`ffmpeg -i out/film.mp4 -af ebur128=peak=true -f null -` (measure the MP4, not the WAV — the AAC
+`ffmpeg -i out/film.mp4 -af ebur128=peak=true -f null -` (measure the MP4, not the WAV: the AAC
 encode adds about a decibel of peak). If the brief demands a strict palette, count off-palette
 pixels on raw frames.
 
@@ -154,13 +154,13 @@ weapon aimed at a person on the thumbnail.
 
 These are the corrections that mattered. Each one cost a round to learn.
 
-**Readability beats everything** (most of these are about two characters; the same idea —
-one clear silhouette per thing that matters — applies to a character and a prop).
+**Readability beats everything** (most of these are about two characters; the same idea,
+one clear silhouette per thing that matters, applies to a character and a prop).
 - Keep the two characters 150–260 units apart while they trade blows; step in to strike and
   back out. Merged silhouettes were the most common defect in every scene.
 - Strikes land at full limb extension with the torsos apart; the one who is hit needs a
   reaction key on the same frame, usually with travel.
-- Grapples, holds and binds need daylight between the bodies — hold the other figure at arm's
+- Grapples, holds and binds need daylight between the bodies: hold the other figure at arm's
   length rather than hugging.
 - Don't stage an exchange where props or rubble sit behind the legs.
 
@@ -169,13 +169,13 @@ A throw that takes 0.3 s reads as a glitch; give it a catch, a held wind-up, a w
 release. Heavy weapons need 0.3–0.45 s of visible wind-up and drag their wielder afterwards.
 
 **Camera: closer and moving.** The note that changed the film most: the user wanted tight
-close-ups with a moving camera — push-ins, roll, slides, whip pans between the characters —
+close-ups with a moving camera (push-ins, roll, slides, whip pans between the characters),
 not wide static shots where the figures are small. Let oversized props run out of frame.
 Use a wide only briefly to establish scale.
 
 **Don't fake a third dimension.** A simulated "orbit" (foreshortening the plane and sliding
 parallax layers) was built on request and rejected on first viewing. For a "Matrix" moment use
-`S.bulletTime` — the action nearly freezes while the camera cuts in with moving close-ups.
+`S.bulletTime`: the action nearly freezes while the camera cuts in with moving close-ups.
 
 **Variety.** Five clashes with the same crossed-overhead composition read as one clash five
 times. Vary the line of attack, the height and who is airborne.
@@ -186,7 +186,7 @@ detail carries story (a hand moving, a reload, a broken object), give it a close
 **State changes need cover.** An instant swap (a weapon changing look, a mirror flip) pops.
 Hide it inside an impact frame, a flash or a camera cut.
 
-**Non-fight scenes.** A chase needs the camera to hold both the chaser and what is chased —
+**Non-fight scenes.** A chase needs the camera to hold both the chaser and what is chased;
 keep it short and cut closer rather than holding a wide shot where both are tiny. A fall or
 trip reads through anticipation (the foot catching), the fall itself and a held beat on the
 ground. A prop that carries the story needs its own close-up.
@@ -201,12 +201,12 @@ music. Fix durations before generating audio; afterwards, polish inside the exis
 
 ## Reference files
 
-- `references/engine.md` — the authoring API: poses, jumps, weapons and firearms, camera,
+- `references/engine.md`: the authoring API: poses, jumps, weapons and firearms, camera,
   bullet-time close-ups, contacts and sound cues, environment hooks and kit, art rules, scene
   contract, tools. Read it before writing or editing any scene.
-- `references/production.md` — story-bible template, the scene brief and polish brief for
+- `references/production.md`: story-bible template, the scene brief and polish brief for
   subagents, the review checklist, the delivery report format.
-- `references/sound.md` — cue types, the synthesizer, per-scene music, the ElevenLabs
+- `references/sound.md`: cue types, the synthesizer, per-scene music, the ElevenLabs
   procedure and its budget rules, the "full stop" trick for an ending.
-- `assets/template/` — the project scaffold: engine (`src/engine/`), tools (`tools/`), the
+- `assets/template/`: the project scaffold: engine (`src/engine/`), tools (`tools/`), the
   minimal and the full example scenes, a weapon gallery scene, preview player.

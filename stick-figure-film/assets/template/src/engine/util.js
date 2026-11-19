@@ -30,7 +30,7 @@ export const EASE = {
   hold: (t) => (t < 1 ? 0 : 1),
 };
 
-/** mulberry32 — tiny seeded PRNG, returns () => [0,1) */
+/** mulberry32: tiny seeded PRNG, returns () => [0,1) */
 export function rng(seed) {
   let a = (seed * 2654435761) >>> 0;
   return () => {

@@ -1,4 +1,4 @@
-// SCENE 3 — "Geometry Zone" (22 s). Long blades and a spear on a ruler that is a see-saw.
+// SCENE 3: "Geometry Zone" (22 s). Long blades and a spear on a ruler that is a see-saw.
 //
 // Stage: an abstract maths space. The floor is a long RULER (rest x 300…2000) balanced on the
 // apex of a big set square at x = 1150, so it tilts toward whoever stands further out, and it can
@@ -217,14 +217,14 @@ const pinA = (t) => [PIN_A[0], R(PIN_A[0], t, 21)];
 const PIN_B = [1020, -86];  // B's hand on the pinned spear (probed at 18.68)
 
 // ═════════════════════════════════════════════════════════════════════════════
-// FIGHTER A — The Technician
+// FIGHTER A: The Technician
 // ═════════════════════════════════════════════════════════════════════════════
 const T_SNAP = 5.76;     // his shortsword breaks
 const T_GRAB = 6.9;      // he closes his hand on the line he has just drawn: the longsword
 const T_LINE = 6.72;     // his finger touches the ruler's edge
 
 const A_KEYS = [
-  // 0:00 — drops in from the page above, shortsword trailing
+  // 0:00: drops in from the page above, shortsword trailing
   { t: 0, x: 918, y: 640, face: 1, hip: [0, 86], lean: 10, hF: [30, 44], hB: [-30, 30], fF: [14, 0], fB: [-14, 10] },
   ...air(0, 0.7, [918, 640], 930, 1800, [
     [0.3, { hip: [0, 86], lean: 8, hF: [34, 46], hB: [-36, 34], fF: [16, 6], fB: [-16, 14] }],
@@ -243,14 +243,14 @@ const A_KEYS = [
   { t: 1.98, x: 1016, hip: [-8, 86], lean: -4, hF: [30, 40], hB: [10, -20], fF: [32, 0], fB: [-30, 0] },
   { t: 2.06, hip: [-10, 80], lean: -8, hF: [34, 56], hB: [8, -24], fF: [32, 0], fB: [-30, 0], e: 'snap' },
   { t: 2.12, same: true },
-  // riposte: low thrust — beaten down
+  // riposte: low thrust: beaten down
   { t: 2.22, x: 1046, hip: [16, 76], lean: 30, hF: [74, -22], hB: [-24, -20], fF: [54, 0], fB: [-50, 0], e: 'snap' },
   { t: 2.3, hip: [14, 74], lean: 30, hF: [70, -36], hB: [-24, -22], fF: [54, 0], fB: [-50, 0] },
   { t: 2.4, x: 1050, hip: [-2, 84], lean: 10, hF: [40, -12], hB: [6, -26], fF: [34, 0], fB: [-30, 0] },
   // ducks the backhand
   { t: 2.5, x: 1056, hip: [4, 46], lean: 42, bend: 10, tilt: -20, hF: [20, -34], hB: [-10, -46], fF: [36, 0], fB: [-34, 0], e: 'out' },
   { t: 2.57, hip: [0, 48], lean: 36, bend: 10, tilt: -24, hF: [8, -44], hB: [-14, -40], fF: [36, 0], fB: [-34, 0] },
-  // rising cut — B leans out of it
+  // rising cut: B leans out of it
   { t: 2.66, x: 1080, hip: [12, 88], lean: 14, hF: [56, 34], hB: [-24, -24], fF: [40, 0], fB: [-34, 0], e: 'snap' },
   { t: 2.74, hip: [8, 90], lean: 8, hF: [44, 46], hB: [-20, -20], fF: [40, 0], fB: [-34, 0] },
   // kicked in the ribs
@@ -292,7 +292,7 @@ const A_KEYS = [
   // hops the sweep
   { t: 5.48, x: 1132, y: R(1132, 5.48, 58), hip: [0, 66], lean: 18, hF: [30, 14], hB: [-30, 22], fF: [22, 24], fB: [-14, 30] },
   { t: 5.58, x: 1140, hip: [0, 58], lean: 30, hF: [30, -20], hB: [-16, -36], fF: [34, 0], fB: [-34, 0] },
-  // lunges inside the point — the blade is a hand too short
+  // lunges inside the point: the blade is a hand too short
   { t: 5.66, x: 1262, p: 'thrust', e: 'snap' },
   // sees the shaft coming: sword up as a bar… it breaks
   { t: 5.72, hip: [6, 80], lean: 12, hF: [40, 42], hB: [20, 30], fF: [44, 0], fB: [-44, 0] },
@@ -321,7 +321,7 @@ const A_KEYS = [
   // …and comes down on the spear
   { t: 7.2, x: 1204, hip: [14, 70], lean: 26, hF: [58, -42], hB: [40, -50], fF: [54, 0], fB: [-40, 0], slide: true, e: 'snap', er: 'out' },
   { t: 7.28, same: true },
-  // 0:07 — LONGSWORD vs SPEAR. Drives up out of the slide: rising cut — caught on the shaft
+  // 0:07 (LONGSWORD vs SPEAR. Drives up out of the slide: rising cut) caught on the shaft
   { t: 7.36, x: 1250, hip: [4, 66], lean: 24, hF: [40, -44], hB: [20, -40], fF: [50, 0], fB: [-36, 0] },
   { t: 7.44, x: 1300, hip: [14, 86], lean: 16, hF: [60, 22], hB: [40, 10], fF: [48, 0], fB: [-40, 0], e: 'snap' },
   { t: 7.5, same: true },
@@ -335,7 +335,7 @@ const A_KEYS = [
   { t: 8.02, x: 1232, hip: [-8, 84], lean: 4, hF: [40, -34], hB: [24, -40], fF: [32, 0], fB: [-32, 0] },
   { t: 8.1, x: 1228, hip: [-10, 86], lean: -6, hF: [44, -28], hB: [30, -40], fF: [32, 0], fB: [-32, 0], e: 'snap' },
   { t: 8.16, same: true },
-  // …and steps inside: cut at the shoulder — bind
+  // …and steps inside: cut at the shoulder: bind
   { t: 8.24, x: 1300, hip: [14, 84], lean: 22, hF: [56, 28], hB: [40, 14], fF: [48, 0], fB: [-40, 0], e: 'snap' },
   { t: 8.36, x: 1306, hip: [18, 82], lean: 26, hF: [58, 24], hB: [42, 10], fF: [48, 0], fB: [-40, 0] },
   // the butt of the spear in his gut
@@ -393,7 +393,7 @@ const A_KEYS = [
   // springs back from the plunging spear
   { t: 11.94, x: 1326, hip: [-6, 80], lean: 0, hF: [36, 10], hB: [22, 0], fF: [30, 0], fB: [-30, 0], hop: 16 },
   { t: 12.06, x: 1336, p: 'guard2', hip: [-6, 86], lean: 2 },
-  // bends backwards under the lunge — the point goes on into a floating cube
+  // bends backwards under the lunge: the point goes on into a floating cube
   { t: T_IMP, x: 1320, hip: [14, 64], lean: -66, tilt: 24, hF: [-20, -20], hB: [-34, -10], fF: [30, 0], fB: [-30, 0], e: 'snap' },
   { t: 12.26, same: true },
   { t: 12.4, x: 1326, hip: [0, 84], lean: 4, hF: [50, 36], hB: [36, 24], fF: [32, 0], fB: [-30, 0], e: 'snap' },
@@ -421,7 +421,7 @@ const A_KEYS = [
   { t: 14.44, x: 1336, face: 1, hip: [0, 82], lean: 8, hF: [14, 20], hB: [0, 10], fF: [22, 0], fB: [-22, 0] },
   { t: 14.54, x: 1300, face: -1, hip: [12, 74], lean: 30, hF: [60, 44], hB: [46, 34], fF: [46, 0], fB: [-40, 0], e: 'snap' },
   { t: 14.6, same: true },
-  // thrust — it falls short and is slapped down
+  // thrust: it falls short and is slapped down
   { t: 14.7, x: 1350, hip: [-10, 84], lean: 0, hF: [10, -6], hB: [-4, -16], fF: [32, 0], fB: [-32, 0] },
   { t: 14.8, x: 1320, p: 'thrust', hF: [76, -10], hB: [60, -16], e: 'snap' },
   { t: 14.87, hip: [16, 74], lean: 34, hF: [72, -30], hB: [56, -36], fF: [56, 0], fB: [-56, 0] },
@@ -432,22 +432,22 @@ const A_KEYS = [
   { t: 15.46, x: 1520, p: 'threePoint', hF: [14, -70], hB: [-36, 24], slide: true, e: 'out' },
   { t: 15.7, x: 1524, hip: [0, 70], lean: 24, tilt: -10, hF: [30, -20], hB: [16, -30], fF: [32, 0], fB: [-34, 0] },
   { t: 15.9, x: 1524, p: 'guard2', hip: [-6, 84], lean: 6 },
-  // 0:16 — B is doing something to the ruler. The jolt, then he runs to stop him
+  // 0:16: B is doing something to the ruler. The jolt, then he runs to stop him
   { t: 16.04, x: 1520, p: 'guard2', hip: [-2, 84], lean: 10 },
   { t: T_STAB, x: 1516, hip: [-10, 70], lean: -4, hF: [36, 10], hB: [22, 0], fF: [34, 0], fB: [-34, 0], e: 'snap' },
   { t: 16.22, x: 1500, hip: [4, 76], lean: 22, hF: [34, -10], hB: [20, -20], fF: [34, 0], fB: [-36, 0] },
   { t: 16.3, x: 1440, p: 'run1', hF: [30, -6], hB: [16, -16] },
   { t: 16.38, x: 1370, p: 'run2', hF: [20, 10], hB: [6, 0] },
   { t: 16.46, x: 1318, p: 'run1', hF: [0, 56], hB: [-14, 46] },
-  // the heave jolts the ruler; he rides it into a two-handed cut at B's head —
+  // the heave jolts the ruler; he rides it into a two-handed cut at B's head:
   { t: 16.54, x: 1284, hip: [4, 88], lean: 8, hF: [-2, 70], hB: [-16, 60], fF: [40, 0], fB: [-36, 0] },
-  // — and B's free hand closes round his wrist, the blade a hand above his skull
+  //: and B's free hand closes round his wrist, the blade a hand above his skull
   { t: 16.62, x: 1256, hip: [14, 78], lean: 26, hFw: GRAB(16.62), hB: [46, 26], fF: [46, 0], fB: [-38, 0], e: 'snap' },
   { t: 16.7, x: 1256, hip: [16, 76], lean: 28, hFw: GRAB(16.7), hB: [46, 26], fF: [46, 0], fB: [-38, 0] },
   { t: 16.8, x: 1254, hip: [20, 72], lean: 32, hFw: GRAB(16.8), hB: [46, 26], fF: [46, 0], fB: [-38, 0] },
   // B throws the arm off
   { t: 16.87, x: 1268, hip: [-8, 86], lean: -12, tilt: -10, hF: [16, 68], hB: [2, 58], fF: [34, 0], fB: [-30, 0], e: 'out' },
-  // — and the ruler SPLITS. His half hinges away under him
+  //: and the ruler SPLITS. His half hinges away under him
   { t: 16.98, x: 1272, hip: [-10, 60], lean: -16, tilt: -10, hF: [44, 30], hB: [-40, 30], fF: [34, 0], fB: [-34, 0], e: 'snap' },
   { t: 17.1, x: 1268, hip: [4, 50], lean: 34, hF: [30, -40], hB: [-10, -50], fF: [36, 0], fB: [-36, 0] },
   // scrambles up the dropping half and leaps the gap, sword high
@@ -473,7 +473,7 @@ const A_KEYS = [
   { t: 18.62, x: 1152, hip: [-4, 84], lean: 0, hF: [30, 20], hB: [16, 10], fF: [40, 40], fB: [-24, 0] },
   { t: 18.68, x: 1150, hip: [8, 74], lean: 14, hF: [30, 10], hB: [16, 0], fFw: pinA(18.68), fB: [-24, 0], e: 'snap' },
   { t: 18.74, hip: [8, 74], lean: 14, hF: [30, 10], hB: [16, 0], fFw: pinA(18.74), fB: [-24, 0] },
-  // both hands on the hilt, up… he looks at B — then at the ruler between them
+  // both hands on the hilt, up… he looks at B: then at the ruler between them
   { t: 18.92, hip: [4, 80], lean: 6, hF: [20, 50], hB: [6, 40], fFw: pinA(18.92), fB: [-24, 0] },
   { t: 19.12, hip: [-2, 88], lean: -6, hF: [-4, 70], hB: [-18, 60], fFw: pinA(19.12), fB: [-24, 0] },
   { t: 19.38, hip: [-6, 92], lean: -12, tilt: 22, hF: [-10, 72], hB: [-24, 62], fFw: pinA(19.38), fB: [-24, 0] },
@@ -497,7 +497,7 @@ const A_KEYS = [
   // …and the whole body opens into the cut
   { t: T_CLASH, x: 946, y: -390, hip: [0, 84], lean: 22, spin: 62, hF: [72, -6], hB: [58, -14], fF: [-91, 42], fB: [-47, 21], e: 'snap', er: 'lin' },
   { t: 21.38, x: 946, y: -412, hip: [0, 84], lean: 22, spin: 62, hF: [72, -8], hB: [58, -16], fF: [-91, 42], fB: [-47, 21], e: 'lin', er: 'lin' },
-  // thrown apart — and already stooping after him, the sword cocked back for the next cut
+  // thrown apart: and already stooping after him, the sword cocked back for the next cut
   { t: 21.6, x: 965, y: -464, hip: [0, 84], lean: -8, spin: 14, hF: [10, 66], hB: [-4, 56], fF: [56, 27], fB: [-58, 13], e: 'out', er: 'lin' },
   { t: 21.8, x: 975, y: -526, hip: [0, 84], lean: 6, spin: 20, hF: [-8, 70], hB: [-22, 60], fF: [84, 46], fB: [-69, 30], e: 'lin', er: 'lin' },
   { t: 22.0, x: 982, y: -590, hip: [0, 84], lean: 12, spin: 24, hF: [-18, 70], hB: [-32, 60], fF: [93, 56], fB: [-71, 32], e: 'lin', er: 'lin' },
@@ -505,7 +505,7 @@ const A_KEYS = [
 ];
 
 // ═════════════════════════════════════════════════════════════════════════════
-// FIGHTER B — The Powerhouse
+// FIGHTER B: The Powerhouse
 // ═════════════════════════════════════════════════════════════════════════════
 const B_KEYS = [
   { t: 0, x: 1440, y: 800, face: -1, hip: [0, 84], lean: 18, hF: [26, 54], hB: [-30, 40], fF: [20, 8], fB: [-24, 20] },
@@ -621,7 +621,7 @@ const B_KEYS = [
   { t: 8.78, x: 1530, hip: [-22, 76], lean: -4, hF: [0, -30], hB: [-30, -24], fF: [52, 0], fB: [-52, 0] },
   { t: 8.92, x: 1450, hip: [26, 62], lean: 44, hF: [70, -44], hB: [10, -40], fF: [66, 0], fB: [-60, 0], e: 'snap' },
   { t: 8.98, same: true },
-  // the point is buried; A is on the shaft — B heaves at it, looks up
+  // the point is buried; A is on the shaft: B heaves at it, looks up
   { t: 9.06, hip: [22, 64], lean: 42, tilt: -24, hFw: [1296, -50], hB: [10, -40], fF: [66, 0], fB: [-60, 0] },
   { t: 9.14, hip: [24, 62], lean: 44, tilt: -34, hFw: [1296, -50], hB: [10, -40], fF: [66, 0], fB: [-60, 0] },
   // stamped flat
@@ -633,7 +633,7 @@ const B_KEYS = [
   { t: 9.7, x: 1330, face: 1, hip: [-10, 84], lean: -6, hF: [-10, 50], hB: [-30, 30], fF: [44, 0], fB: [-44, 0] },
   { t: 9.8, x: 1346, hip: [16, 70], lean: 34, hF: [58, 28], hB: [20, 10], fF: [56, 0], fB: [-52, 0], e: 'snap' },
   { t: 9.86, same: true },
-  // jumps the leg-cut — a great leap back onto the floating set square
+  // jumps the leg-cut: a great leap back onto the floating set square
   { t: 9.94, hip: [0, 52], lean: 30, hF: [30, -10], hB: [0, -30], fF: [50, 0], fB: [-50, 0] },
   { t: 9.99, hip: [-6, 88], lean: -10, hF: [20, 30], hB: [-10, 20], fF: [40, 0], fB: [-40, 0], e: 'in' },
   ...air(9.99, 10.48, 1346, [700, T1Y(10.48)], 6200, [
@@ -660,7 +660,7 @@ const B_KEYS = [
     [11.8, { hip: [0, 78], lean: 30, hF: [30, 50], hB: [6, 44], fF: [40, 10], fB: [-20, 20] }],
   ], { hip: [16, 46], lean: 54, bend: 10, hF: [60, 0], hB: [20, -10], fF: [56, 0], fB: [-56, 0], e: 'in' }),
   { t: 11.98, same: true },
-  // wrenches it out and lunges — A bends under it, the point runs a floating cube through
+  // wrenches it out and lunges: A bends under it, the point runs a floating cube through
   { t: 12.08, x: 1020, hip: [-14, 74], lean: 6, hF: [10, -20], hB: [-20, -30], fF: [50, 0], fB: [-50, 0] },
   { t: T_IMP, x: 1100, hip: [24, 72], lean: 34, hF: [72, -16], hB: [10, -30], fF: [62, 0], fB: [-58, 0], e: 'snap' },
   { t: 12.26, same: true },
@@ -678,7 +678,7 @@ const B_KEYS = [
   { t: 13.36, x: 1250, hip: [14, 86], lean: 8, hF: [54, 40], hB: [30, 10], fF: [56, 0], fB: [-52, 0], e: 'snap' },
   { t: 13.48, x: 1246, hip: [-10, 86], lean: -10, hF: [0, 66], hB: [-20, 50], fF: [50, 0], fB: [-50, 0] },
   { t: 13.64, x: 1242, hip: [-18, 84], lean: -16, hF: [-10, 64], hB: [-30, 46], fF: [50, 0], fB: [-50, 0] },
-  // second slam — A's cut takes the cube off in mid-air
+  // second slam: A's cut takes the cube off in mid-air
   { t: T_SLICE, x: 1240, hip: [16, 72], lean: 30, hF: [58, 10], hB: [30, -10], fF: [58, 0], fB: [-54, 0], e: 'in3' },
   { t: 13.94, same: true },
   { t: 14.02, hip: [22, 60], lean: 46, hF: [58, -36], hB: [30, -40], fF: [58, 0], fB: [-54, 0], e: 'out' },
@@ -701,7 +701,7 @@ const B_KEYS = [
   { t: 15.36, x: 1136, p: 'bStance', hip: [0, 82], lean: 12, hF: [30, -24], hB: [-10, -38] },
   { t: 15.5, x: 1110, p: 'bStance', hip: [0, 84], lean: 14, tilt: 30, hF: [30, -24], hB: [-10, -38] },
   { t: 15.9, same: true },
-  // 0:16 — hoists the spear, point down, both hands…
+  // 0:16: hoists the spear, point down, both hands…
   { t: 16.02, x: 1112, hip: [-8, 94], lean: -8, hF: [10, 64], hB: [-10, 52], fF: [40, 0], fB: [-40, 0], e: 'out' },
   // …and drives it clean through the ruler
   { t: T_STAB, x: 1116, hip: [6, 64], lean: 24, bend: 8, hFw: shaftHand(295, T_STAB), hB: [-20, -20], fF: [50, 0], fB: [-50, 0], e: 'in3' },
@@ -710,7 +710,7 @@ const B_KEYS = [
   { t: 16.36, x: 1110, hip: [-4, 78], lean: 6, hFw: shaftHand(293, 16.36), hB: [-20, 0], fF: [50, 0], fB: [-50, 0] },
   { t: 16.5, x: 1104, hip: [-16, 58], lean: -6, hFw: shaftHand(306, 16.5), hB: [-20, 0], fF: [54, 0], fB: [-46, 0], e: 'snap' },
   { t: 16.56, x: 1104, hip: [-16, 60], lean: -4, tilt: -16, hFw: shaftHand(306, 16.56), hB: [10, 20], fF: [54, 0], fB: [-46, 0] },
-  // catches A's sword wrist in his free fist — and keeps levering with the other hand
+  // catches A's sword wrist in his free fist: and keeps levering with the other hand
   { t: 16.62, x: 1104, hip: [-12, 62], lean: -2, tilt: -24, hFw: shaftHand(304, 16.62), hBw: GRAB(16.62), fF: [54, 0], fB: [-46, 0], e: 'snap' },
   { t: 16.7, x: 1104, hip: [-10, 66], lean: 0, tilt: -26, hFw: shaftHand(301, 16.7), hBw: GRAB(16.7), fF: [54, 0], fB: [-46, 0] },
   { t: 16.8, x: 1102, hip: [-14, 60], lean: -4, tilt: -26, hFw: shaftHand(303, 16.8), hBw: GRAB(16.8), fF: [54, 0], fB: [-46, 0] },
@@ -719,7 +719,7 @@ const B_KEYS = [
   // hangs everything he has on it
   { t: T_SPLIT, x: 1090, hip: [-22, 44], lean: -14, hFw: shaftHand(326, T_SPLIT - 0.01), hB: [10, -30], fF: [60, 0], fB: [-40, 0], e: 'in3' },
   { t: 16.98, same: true },
-  // the ruler gives — he stumbles back down his half with the spear
+  // the ruler gives: he stumbles back down his half with the spear
   { t: 17.1, x: 1040, hip: [-16, 70], lean: -14, tilt: -10, hF: [30, 30], hB: [-20, 20], fF: [40, 0], fB: [-44, 0], e: 'out' },
   { t: 17.26, x: 960, hip: [-8, 74], lean: 4, hF: [34, 0], hB: [-10, -20], fF: [46, 0], fB: [-46, 0] },
   { t: 17.44, x: 892, p: 'bStance', hip: [-4, 80], lean: 8, tilt: -20, hF: [36, -20], hB: [-10, -36] },
@@ -738,10 +738,10 @@ const B_KEYS = [
   // low sweep at the ankles
   { t: 18.42, x: 876, hip: [12, 60], lean: 34, hF: [60, -50], hB: [10, -40], fF: [56, 0], fB: [-52, 0], e: 'snap' },
   { t: 18.52, hip: [0, 74], lean: 20, hF: [30, -30], hB: [-10, -36], fF: [54, 0], fB: [-52, 0] },
-  // low thrust — stamped flat and pinned
+  // low thrust: stamped flat and pinned
   { t: 18.62, x: 880, hip: [22, 66], lean: 38, hF: [68, -50], hB: [10, -40], fF: [60, 0], fB: [-56, 0], e: 'snap' },
   { t: 18.68, hip: [22, 64], lean: 40, hF: [64, -62], hB: [10, -44], fF: [60, 0], fB: [-56, 0] },
-  // heaves at it — it will not come. Looks up
+  // heaves at it: it will not come. Looks up
   { t: 18.86, hip: [8, 72], lean: 28, tilt: -20, hFw: PIN_B, hB: [10, -44], fF: [60, 0], fB: [-56, 0] },
   { t: 19.0, hip: [26, 60], lean: 44, tilt: -30, hFw: PIN_B, hB: [10, -44], fF: [60, 0], fB: [-56, 0] },
   { t: 19.16, hip: [8, 72], lean: 26, tilt: -36, hFw: PIN_B, hB: [10, -44], fF: [60, 0], fB: [-56, 0] },
@@ -783,7 +783,7 @@ S.fighters({ A: ground(A_KEYS, 0.95), B: ground(B_KEYS, 1.1) });
 // ═════════════════════════════════════════════════════════════════════════════
 // WEAPONS
 // ═════════════════════════════════════════════════════════════════════════════
-// A's shortsword — snapped by the spear shaft at T_SNAP (it becomes a stub: type 'knife')
+// A's shortsword: snapped by the spear shaft at T_SNAP (it becomes a stub: type 'knife')
 S.weapon('swA', wk([
   { t: 0, type: 'shortsword', by: 'A', ang: 112 },
   { t: 0.3, by: 'A', ang: 124 }, { t: 0.56, by: 'A', ang: 100 }, { t: 0.7, by: 'A', ang: 24, e: 'in' },
@@ -809,7 +809,7 @@ S.weapon('swA', wk([
   { t: 6.62, at: [1010, H0 - 520], ang: 80, gone: true },
 ]));
 
-// B's shortsword — struck from his hand at 3.36, spins off and sticks in a floating cube
+// B's shortsword: struck from his hand at 3.36, spins off and sticks in a floating cube
 const SW_REST = [C1.x - 35, -C1.y + 45];
 S.weapon('swB', wk([
   { t: 0, type: 'shortsword', by: 'B', ang: 78 },
@@ -1114,7 +1114,7 @@ S.whoosh({ t: 7.04, x: 1150, size: 'l', dur: 0.16 });
 S.whoosh({ t: 7.1, x: 1450, size: 'm' });
 S.hit({ t: 7.2, x: 1354, h: R(1354, 7.2, 82), sound: 'clang', weight: 1, size: 1.7, impact: true, shock: true });
 
-// 0:07 longsword vs spear — phrase 1
+// 0:07 longsword vs spear: phrase 1
 S.whoosh({ t: 7.32, x: 1280, size: 'm' });
 S.hit({ t: 7.44, x: 1512, h: R(1512, 7.44, 228), sound: 'clang', weight: 0.8, size: 1 });
 S.whoosh({ t: 7.54, x: 1420, size: 'm' });
@@ -1139,7 +1139,7 @@ S.whoosh({ t: 9.15, x: 1300, size: 'm' });
 S.hit({ t: 9.21, x: 1340, h: R(1340, 9.21, 116), sound: 'hit', weight: 0.95, size: 1.5, shock: true });
 S.whoosh({ t: 9.3, x: 1450, size: 'l', dur: 0.28 });
 S.land({ t: 9.6, x: 1570, h: R(1570, 9.6), weight: 0.4 });
-// phrase 2 — up onto the floating shapes
+// phrase 2: up onto the floating shapes
 S.whoosh({ t: 9.7, x: 1400, size: 'l', heavy: true, dur: 0.14 });
 S.hit({ t: 9.8, x: 1500, h: R(1500, 9.8, 200), sound: 'clang', weight: 0.85, size: 1.1 });
 S.whoosh({ t: 9.96, x: 1450, size: 'm' });
@@ -1168,7 +1168,7 @@ S.hit({ t: 11.92, x: 1286, h: R(1286, 11.92, 4), sound: 'slam', weight: 0.6, siz
 S.whoosh({ t: 12.1, x: 1200, size: 'l', dur: 0.12 });
 S.hit({ t: T_IMP, x: 1420, h: R(1420, T_IMP, 126), sound: 'clack', weight: 0.8, size: 1.1 });
 S.cue({ t: T_IMP, type: 'slice', weight: 0.7, x: 1420 });
-// phrase 3 — the cube-mace
+// phrase 3: the cube-mace
 S.whoosh({ t: 12.34, x: 1330, size: 'm' });
 S.cue({ t: 12.3, type: 'pop', x: 1400 });
 S.whoosh({ t: 12.44, x: 1100, size: 'l', heavy: true, dur: 0.3 });
@@ -1185,7 +1185,7 @@ S.whoosh({ t: 13.78, x: 1560, size: 'm' });
 S.hit({ t: T_SLICE, x: 1520, h: R(1520, T_SLICE, 228), sound: 'clang', weight: 1, size: 1.7, impact: true });
 S.cue({ t: T_SLICE, type: 'slice', weight: 1, x: 1500 });
 S.cue({ t: 14.02, type: 'clack', weight: 0.5, x: 1380 });
-// phrase 4 — A presses
+// phrase 4: A presses
 S.whoosh({ t: 14.06, x: 1450, size: 'm' });
 S.hit({ t: 14.14, x: 1232, h: R(1232, 14.14, 84), sound: 'clang', weight: 0.7, size: 0.9 });
 S.whoosh({ t: 14.26, x: 1380, size: 'm' });
@@ -1202,7 +1202,7 @@ S.whoosh({ t: 15.06, x: 1400, size: 'm', dur: 0.24 });
 S.land({ t: 15.3, x: 1490, h: H0, weight: 0.45 });
 S.cue({ t: 15.32, type: 'skid', dur: 0.16, x: 1500 });
 S.step({ t: 15.36, x: 1136, h: H0, weight: 0.6 });
-// 0:16 — the ruler is broken
+// 0:16: the ruler is broken
 S.whoosh({ t: 15.96, x: 1120, size: 'l', heavy: true, dur: 0.14 });
 S.hit({ t: T_STAB, x: XS, h: R(XS, T_STAB, 2), sound: 'slam', weight: 1, size: 1.6, ring: true, ringH: R(XS, T_STAB), sparks: true });
 S.cue({ t: T_STAB + 0.02, type: 'crack', dur: 0.3, x: XS });
@@ -1286,7 +1286,7 @@ function endProfile(kind, x) {
   return out;
 }
 const dentCracks = crackSet(741, 1340, YF + 2, [{ a: 84 }, { a: 118, len: 0.8 }, { a: 48, len: 0.8 }, { a: 150, len: 0.5, w: 0.7 }, { a: 20, len: 0.5, w: 0.7 }], { len: 58, step: 9, w: 2.3, branch: 0.3 });
-const NOTCH_U = 1002;      // where B's shortsword bit (rest x) — probed
+const NOTCH_U = 1002;      // where B's shortsword bit (rest x): probed
 const DENT_U = 1400;
 const spearCracks = crackSet(733, XS, YF + 4, [{ a: 96, len: 0.5 }, { a: 62, len: 0.42 }, { a: 128, len: 0.45 }, { a: 20, len: 0.6, w: 0.7 }, { a: 164, len: 0.6, w: 0.7 }], { len: 110, step: 12, w: 2.6, branch: 0.3 });
 
@@ -1582,7 +1582,7 @@ S.env({
       if (-p.oy > 2400) continue;
       drawRulerPiece(ctx, p, t, px);
     }
-    // the line A's finger draws along the edge — it becomes the longsword
+    // the line A's finger draws along the edge: it becomes the longsword
     if (t >= T_LINE - 0.02 && t < T_GRAB && RT) {
       const p = pieces(t)[0];
       const hg = RT.state(T_GRAB).A.hF, pg = pieces(T_GRAB)[0];

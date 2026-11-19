@@ -1,5 +1,5 @@
 // Where do two weapons cross? Prints the intersection of the two blade segments (or the closest
-// approach when they miss) at the given AUTHORED scene times — use it to place S.hit on a clash.
+// approach when they miss) at the given AUTHORED scene times: use it to place S.hit on a clash.
 //   node tools/cross.mjs --scene s1 --a foil --b cleaver --times 1.12,1.42
 import { arg, source } from './_common.mjs';
 const src = await source();
@@ -15,5 +15,5 @@ for (const t of String(arg('times', '0')).split(',').map(Number)) {
   const u = (w[0] * d2[1] - w[1] * d2[0]) / den, v = (w[0] * d1[1] - w[1] * d1[0]) / den;
   const p = [A.tail[0] + d1[0] * u, A.tail[1] + d1[1] * u];
   const ok = u >= 0 && u <= 1 && v >= 0 && v <= 1;
-  console.log(`t=${t}  ${ok ? 'CROSS' : 'miss '} at ${f(p)}  — ${(u * 100).toFixed(0)}% along ${A.id} (${f(A.tail)}→${f(A.tip)}), ${(v * 100).toFixed(0)}% along ${B.id} (${f(B.tail)}→${f(B.tip)})  A.hip ${f(s.A.hip)} B.hip ${f(s.B.hip)}`);
+  console.log(`t=${t}  ${ok ? 'CROSS' : 'miss '} at ${f(p)} : ${(u * 100).toFixed(0)}% along ${A.id} (${f(A.tail)}→${f(A.tip)}), ${(v * 100).toFixed(0)}% along ${B.id} (${f(B.tail)}→${f(B.tip)})  A.hip ${f(s.A.hip)} B.hip ${f(s.B.hip)}`);
 }

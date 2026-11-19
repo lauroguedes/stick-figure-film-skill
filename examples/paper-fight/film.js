@@ -1,4 +1,4 @@
-// PAPER FIGHT — the film timeline. renderFrame(ctx, T) draws the frame for film time T (s).
+// PAPER FIGHT: the film timeline. renderFrame(ctx, T) draws the frame for film time T (s).
 // Pure function of T: any frame can be rendered on its own, in Node or in a browser canvas.
 
 import { WIDTH, HEIGHT } from './engine/scene.js';
@@ -16,7 +16,7 @@ import { makeCredits } from './credits.js';
 export { WIDTH, HEIGHT };
 export const FPS = 30;
 
-// in: how the scene arrives — 'cut' or 'pageturn' (the previous page flips away over `dur` seconds)
+// in: how the scene arrives: 'cut' or 'pageturn' (the previous page flips away over `dur` seconds)
 const ORDER = [
   { scene: s1, in: 'cut' },
   { scene: s2, in: 'pageturn', dur: 0.5 },

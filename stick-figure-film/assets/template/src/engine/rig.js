@@ -14,7 +14,7 @@
 // around the shoulder (polar), planted feet stay planted, steps get an automatic lift, and
 // limbs are solved with 2-bone IK every frame. Follow-through (head drag, spine flex) is
 // derived from finite differences of the pose function, so the whole thing stays a pure
-// function of time — any frame can be rendered on its own.
+// function of time: any frame can be rendered on its own.
 
 import { DEG, TAU, clamp, lerp, lerpAngle, EASE, segIndex } from './util.js';
 import { stroke, trim, BLACK, WHITE } from './ink.js';

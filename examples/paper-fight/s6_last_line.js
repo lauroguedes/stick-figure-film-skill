@@ -1,4 +1,4 @@
-// SCENE 6 — "The Last Line" (20 s, unarmed → one rifle). The ending.
+// SCENE 6: "The Last Line" (20 s, unarmed → one rifle). The ending.
 //
 // The same notebook page as the film's opening (layout mirrored from ref_poc.js: set square,
 // protractor, cubes, formulas, foreground shapes, the pencil planted at x=1262), scarred by the
@@ -6,26 +6,26 @@
 // ripped, ink from the storm is spattered across it. And, by the set square, somebody once
 // doodled a rifle. It is there from the first frame.
 //
-// PART 1 — the fight (0–9 s), told in close-ups and cuts
+// PART 1: the fight (0–9 s), told in close-ups and cuts
 //   0.0–0.5   the white-out is scratched away, stroke by stroke
 //   0.0–3.4   spent. A's head comes up, B's fists close, the stomp, the two heads in profile.
-//   3.4–4.3   B's same flying overhand. A steps inside, takes the arm, turns — B goes right over
+//   3.4–4.3   B's same flying overhand. A steps inside, takes the arm, turns: B goes right over
 //             the top of him and craters the page (catch 3.77, slam + impact frame 4.12).
 //   4.3–6.0   A gives ground; B gets his hands under him and stands. One last time.
 //   6.0–7.0   the haymaker; A slides under it (the opening's slide), comes up behind him and
-//             unwinds the spinning kick — slow-motion contact 6.46–7.00.
+//             unwinds the spinning kick: slow-motion contact 6.46–7.00.
 //   7.0–8.1   full speed (impact frame 7.00): B is launched the length of the stage, lands on his
 //             back, skids, and is stopped by the wall stump (impact frame 7.62). He stays down.
-// PART 2 — the new ending (8.2–20 s)
+// PART 2: the new ending (8.2–20 s)
 //   9.0–11.0  B on the ground: a fist twitches on his chest, a hand drags down the brickwork, the
-//             head lifts, he pushes up on one arm — and it gives out. Alive; finished.
+//             head lifts, he pushes up on one arm: and it gives out. Alive; finished.
 //   11.0–12.8 A looks away from him. Sees the doodle. Walks to it (hand on it 12.46) and peels it
 //             off the page (12.76): its dashed outline stays behind.
 //   12.8–16.1 the rifle is real. He walks back: slow, heavy, deliberate. B hears him, tries once
 //             more to rise, cannot, turns his head.
 //   16.1–18.6 the bolt (16.35). The rifle comes up to the shoulder and down onto B (17.05). B lifts
 //             one hand. Slow push along the barrel.
-//   18.6      he fires — and the picture is already black. The shot is never seen.
+//   18.6      he fires: and the picture is already black. The shot is never seen.
 //
 // Stage: A starts at x=820 facing right, B at x=1140 facing left (the opening marks). The wall
 // stump starts at x=1620. The pencil is a free weapon and is never touched.
@@ -46,7 +46,7 @@ const T_STOMP = 2.5;
 const T_LAUNCH = 3.56;       // B leaves the ground
 const T_CATCH = 3.77;        // A's hands close on B's punching arm
 const T_SLAM = 4.12;         // B hits the page (impact frame)
-const T_KICK = 6.46;         // foot meets head — slow motion starts
+const T_KICK = 6.46;         // foot meets head: slow motion starts
 const T_REL = 7.0;           // …and ends: full speed (impact frame)
 const T_LAND = 7.42;         // B comes down on his back
 const T_CRASH = 7.62;        // …and the wall stump stops him (impact frame)
@@ -89,7 +89,7 @@ const RIFLE0 = [566, 222];   // the doodle: centre of the rifle drawn on the pag
 const RGRIP = [601.2, 222];  // its grip (g = 0.3 from the butt)
 const A_END = 1335;          // where A stops, over B
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 const stA = { fF: [34, 0], fB: [-40, 0] };                 // his feet through the throw
 const gA = { fF: [30, 0], fBw: PIVOT };                    // …after the kick
 const wA = { p: 'carry' };
@@ -104,7 +104,7 @@ const A_KEYS = [
   // (close-up) the head comes up
   { t: 1.28, hip: [2, 83], lean: 23, bend: 14, tilt: 28, hF: [20, -55], hB: [-4, -62], fF: [29, 0], fB: [-42, 0] },
   { t: 1.62, x: 812, hip: [0, 95], lean: 5, bend: 3, tilt: -8, hF: [18, -46], hB: [0, -56], fF: [25, 0], fB: [-38, 0], e: 'out' },
-  // the hands find the old guard — lower and heavier than the first time
+  // the hands find the old guard: lower and heavier than the first time
   { t: 1.92, x: 820, p: 'aStance', hip: [-4, 82], lean: 12, bend: 7, hF: [34, -10], hB: [14, -22], fF: [34, 0] },
   { t: 2.1, p: 'aStance', hip: [-4, 78], lean: 13, bend: 7, hF: [36, -6], hB: [15, -18], fF: [34, 0], e: 'in' },
   { t: 2.36, p: 'aStance', hip: [-4, 84], lean: 11, bend: 6, hF: [38, -2], hB: [16, -14], fF: [34, 0] },
@@ -118,7 +118,7 @@ const A_KEYS = [
   { t: 3.67, x: 868, hip: [6, 68], lean: 20, bend: 6, hF: [34, 18], hB: [24, 8], fF: [36, 0], fB: [-78, 0], e: 'in' },
   // turns his back in under the arm and takes it in both hands
   { t: T_CATCH, x: 905, face: -1, hip: [-4, 70], lean: 10, bend: 6, hFw: G[0], hBw: off(G[0], 20, 9), ...stA },
-  // loads him, straightens his legs under him, bows — and B's own speed takes him over the top
+  // loads him, straightens his legs under him, bows: and B's own speed takes him over the top
   { t: 3.81, hip: [-5, 68], lean: 20, bend: 8, tilt: -3, hFw: G[1], hBw: off(G[1], 17, 12), ...stA, e: 'lin', er: 'lin' },
   { t: 3.85, hip: [-6, 70], lean: 36, bend: 9, tilt: -6, hFw: G[2], hBw: off(G[2], 15, 13), ...stA, e: 'lin', er: 'lin' },
   { t: 3.9, hip: [-10, 84], lean: 60, bend: 10, tilt: -10, hFw: G[3], hBw: off(G[3], 13, 13), ...stA, e: 'lin', er: 'lin' },
@@ -127,7 +127,7 @@ const A_KEYS = [
   { t: 4.06, hip: [-8, 70], lean: 87, bend: 15, tilt: -19, hFw: G[6], hBw: off(G[6], 10, 12), ...stA, e: 'lin', er: 'lin' },
   { t: T_SLAM, hip: [-4, 60], lean: 88, bend: 16, tilt: -24, hFw: G[7], hBw: off(G[7], 11, 9), ...stA, e: 'lin', er: 'lin' },
   { t: 4.27, same: true },
-  // lets go, straightens — and the effort nearly drops him. He gives ground.
+  // lets go, straightens: and the effort nearly drops him. He gives ground.
   { t: 4.46, hip: [-8, 82], lean: 38, bend: 12, tilt: 6, hF: [26, -52], hB: [6, -60], ...stA },
   { t: 4.66, x: 940, hip: [-6, 90], lean: 2, bend: 5, tilt: -4, hF: [30, -26], hB: [-14, -46], fF: [71, 0], fB: [-63, 0] },
   { t: 4.84, x: 975, hip: [-8, 90], lean: -5, bend: 2, tilt: -6, hF: [34, -18], hB: [-22, -40], fF: [26, 0], fB: [-26, 0] },
@@ -136,7 +136,7 @@ const A_KEYS = [
   { t: 5.5, p: 'aStance', hip: [-4, 82], lean: 12, bend: 7, hF: [34, -10], hB: [14, -22], fF: [29, 0], fB: [-42, 0] },
   { t: 5.76, p: 'aStance', hip: [-4, 86], lean: 9, bend: 5, hF: [38, -2], hB: [16, -14], fF: [29, 0], fB: [-42, 0] },
   { t: 5.9, p: 'aStance', hip: [-9, 84], lean: 2, hF: [34, 4], hB: [18, -8], fF: [29, 0], fB: [-42, 0] },
-  // under the leaping haymaker — the slide that opened the fight. He is already down when the fist arrives.
+  // under the leaping haymaker: the slide that opened the fight. He is already down when the fist arrives.
   { t: 5.98, x: 1020, hip: [2, 56], lean: 38, bend: 10, hF: [28, -12], hB: [10, -22], fF: [44, 0], fB: [-34, 0], e: 'in' },
   { t: 6.06, x: 950, hip: [-10, 32], lean: 72, tilt: -40, hF: [52, 4], hB: [-34, -6], fF: [64, 0], fB: [-36, 0], kB: -1, slide: true, e: 'lin', er: 'lin' },
   { t: 6.14, x: 862, hip: [-8, 33], lean: 68, tilt: -36, hF: [46, -2], hB: [-32, -8], fF: [62, 0], fB: [-34, 0], kB: -1, slide: true, e: 'lin', er: 'lin' },
@@ -209,7 +209,7 @@ const A_KEYS = [
   { t: 20.0, same: true },
 ];
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const bSt = { fF: [46, 0], fB: [-46, 0] };
 const kF = { fF: [23, 0], fB: [-27, 0] };                 // his feet when the kick finds him
 const pushUp = { hFw: [828, 2], hBw: [808, 2], eF: 1, eB: 1 };
@@ -230,7 +230,7 @@ const B_KEYS = [
   { t: 2.0, hip: [-4, 91], lean: 13, bend: 6, tilt: -2, hF: [14, -64], hB: [-13, -65], ...bSt },
   { t: 2.07, hip: [-4, 91], lean: 13, bend: 6, tilt: -2, hF: [17, -60], hB: [-15, -61], ...bSt, e: 'snap' },
   { t: 2.2, hip: [-4, 92], lean: 12, bend: 6, tilt: -4, hF: [14, -64], hB: [-13, -65], ...bSt },
-  // (close-up) the knee comes up — not as high as it once did — and stomps into the wide stance
+  // (close-up) the knee comes up (not as high as it once did) and stomps into the wide stance
   { t: 2.36, hip: [-8, 98], lean: -4, hF: [14, -42], hB: [-14, -44], fF: [24, 30], fB: [-12, 0] },
   { t: 2.44, hip: [-10, 98], lean: -8, hF: [22, -24], hB: [-22, -24], fF: [34, 44], fB: [-14, 0], e: 'out' },
   { t: T_STOMP, p: 'bStance', hip: [0, 64], lean: 26, hF: [34, -48], hB: [-6, -52], e: 'in3' },
@@ -288,7 +288,7 @@ const B_KEYS = [
     [7.18, { hip: [0, 70], lean: -52, tilt: -20, bend: -8, hF: [46, 34], hB: [36, 44], fF: [56, 30], fB: [30, 10] }],
     [7.3, { hip: [0, 50], lean: -74, tilt: -10, hF: [50, 30], hB: [30, 40], fF: [70, 34], fB: [50, 16] }],
   ], { p: 'down', hF: [50, 30], hB: [-30, 34], fF: [84, 26], fB: [70, 10] }),
-  // skids on his back — the stump stops him
+  // skids on his back: the stump stops him
   { t: T_CRASH, x: 1512, hip: [0, 12], lean: -68, tilt: 32, bend: 10, hF: [30, 44], hB: [-8, 52], fF: [58, 50], fB: [40, 28], eF: 1, eB: 1, slide: true, e: 'lin', er: 'lin' },
   { t: 7.72, same: true },
   // slides down flat
@@ -308,11 +308,11 @@ const B_KEYS = [
   { t: 10.22, ...R, hFw: [1548, -4], e: 'io' },
   // the head lifts…
   { t: 10.4, ...R, hFw: [1548, -4], lean: -72, tilt: 42, e: 'out' },
-  // …he pushes: the shoulders come right off the page, a leg bends under him —
+  // …he pushes: the shoulders come right off the page, a leg bends under him:
   { t: 10.64, ...R, hip: [0, 10], hFw: [1548, -3], hB: [8, 12], fB: [62, 3], lean: -44, bend: 8, tilt: 18, slide: true, e: 'out' },
   { t: 10.7, ...R, hip: [0, 10], hFw: [1548, -3], hB: [12, 8], fB: [62, 3], lean: -47, bend: 9, tilt: 12 },
   { t: 10.76, ...R, hip: [0, 10], hFw: [1548, -3], hB: [9, 11], fB: [62, 3], lean: -44, bend: 8, tilt: 14 },
-  // — and the arm gives out
+  //: and the arm gives out
   { t: 10.9, ...R2, fB: [80, 3], slide: true, e: 'in' },
   { t: 10.98, ...R2, fB: [80, 3] },
   { t: 14.56, ...R2, fB: [80, 3] },
@@ -322,7 +322,7 @@ const B_KEYS = [
   { t: 15.04, ...R2, fB: [80, 3], e: 'in' },
   // he hears the steps: the head comes up
   { t: 15.24, ...R2, fB: [80, 3], lean: -76, tilt: 36, e: 'out' },
-  // tries once more — the hand drags under him, he gets half-way
+  // tries once more: the hand drags under him, he gets half-way
   { t: 15.42, ...R2, hFw: [1548, -4], fB: [80, 3], lean: -75, tilt: 32 },
   { t: 15.66, ...R2, hip: [0, 10], hFw: [1548, -3], hB: [2, 14], fB: [66, 3], lean: -58, bend: 8, tilt: 20, slide: true, e: 'out' },
   { t: 15.76, ...R2, hip: [0, 10], hFw: [1548, -3], hB: [4, 12], fB: [66, 3], lean: -61, bend: 8, tilt: 15 },
@@ -340,7 +340,7 @@ const B_KEYS = [
 
 S.fighters({ A: A_KEYS, B: B_KEYS });
 
-// the pencil planted in the page — exactly where it was at the start. Nobody touches it.
+// the pencil planted in the page: exactly where it was at the start. Nobody touches it.
 S.weapon('pencil', [
   { t: 0, type: 'pencil', at: [1247.5, 104], ang: 98 },
   { t: 20, at: [1247.5, 104], ang: 98 },
@@ -349,7 +349,7 @@ S.weapon('pencil', [
 // the rifle: a doodle on the page from the first frame, then real
 const AIM = 331;
 S.weapon('rifle', [
-  // `flip` is set by hand: mirrored (stock hanging down) while it points left, and switched once —
+  // `flip` is set by hand: mirrored (stock hanging down) while it points left, and switched once:
   // mid-turn, at 12.99, while the camera is on the outline and the rifle is below the frame
   { t: 0, type: 'rifle', at: RIFLE0, ang: 180, flip: true },
   { t: T_GRAB, by: 'A', ang: 180, g: 0.3, two: 0 },
@@ -397,7 +397,7 @@ shot(2.78, 3.42, { ...M, y: -164, z: 3.7, r: -3 }, { ...M, y: -167, z: 4.15, r: 
 shot(3.42, 3.6, { x: 1200, y: -26, z: 5.4, r: 9 }, { x: 1194, y: -30, z: 5.8, r: 11 }, 'out');
 // 7 · low and wide for the charge, slamming in on the catch
 shot(3.6, 3.78, { ...M, x: 10, y: -118, z: 2.3, r: -5 }, { ...M, y: -164, z: 2.45, r: -3 }, 'in');
-// 8 · over he goes — and the camera comes down with him
+// 8 · over he goes: and the camera comes down with him
 shot(3.78, 4.5, { x: 932, y: -186, z: 2.2, r: -3 }, { x: 796, y: -70, z: 2.7, r: 8 }, 'out', [
   { t: 3.95, x: 886, y: -204, z: 2.2, r: 1, e: 'lin' },
   { t: 4.08, x: 850, y: -172, z: 2.2, r: 4, e: 'lin' },
@@ -557,7 +557,7 @@ const crashBricks = makeDebris([
 ], 4400);
 
 // rubble at rest: in the breach, beyond the far end, two strays far left. The floor in front
-// of the stump is left clear — that is where the film ends.
+// of the stump is left clear: that is where the film ends.
 const rubble = (() => {
   const r = rng(4242);
   const list = [];
@@ -694,8 +694,8 @@ function drawTornEdges(ctx) {
   }
 }
 
-// the rifle doodle's surroundings: a doodled target it was "aimed" at, and — once A has peeled the
-// rifle off the page — the dashed ghost it leaves behind, with a curl of lifted paper.
+// the rifle doodle's surroundings: a doodled target it was "aimed" at, and: once A has peeled the
+// rifle off the page: the dashed ghost it leaves behind, with a curl of lifted paper.
 // (The rifle itself is the free weapon 'rifle'; these outlines mirror weapons.js DRAW.rifle.)
 const RIFLE_PARTS = [
   [[0, 2], [40, -5], [46, 7], [30, 10], [6, 24], [-2, 20]],
@@ -792,7 +792,7 @@ S.env({
   over(ctx, t, { st }) {
     crashBricks.draw(ctx, t, true);
     // The aim. The engine draws a held weapon over its holder, which hides the arm that supports
-    // the rifle; for the last shots that arm is re-inked in front of it (same line, same halo — the
+    // the rifle; for the last shots that arm is re-inked in front of it (same line, same halo: the
     // figure itself is unchanged), with the grip dot the engine puts on a gripping hand.
     if (t >= T_AIM && t < T_SHOT) {
       const J = st.A, w = FIGHTER_A.line * J.s;

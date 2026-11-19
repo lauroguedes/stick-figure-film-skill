@@ -9,7 +9,7 @@
 //   node tools/audio.mjs --selftest    → render a synthetic, dense cue sheet that uses every cue type
 //                                        (written to the system temp dir unless --out is given)
 //   node tools/audio.mjs --audition[=clang,slam]   → every cue type (or the named ones) alone, in a
-//                                        row, no music — for tweaking recipes (also to the temp dir)
+//                                        row, no music: for tweaking recipes (also to the temp dir)
 //
 // Two sound engines. The default ("eleven") plays the generated library in assets/audio/ (made by
 // tools/soundlib.mjs: ElevenLabs sound effects per cue type and a score per scene) and falls back
@@ -31,7 +31,7 @@
 //
 // To tweak a sound: edit its recipe in section 3, or just its level in LEVEL_DB.
 // To tweak the music of a scene: edit its score function / STYLE entry in section 4.
-// Cue times live in the scene files and are locked to the picture — never compensate for them here.
+// Cue times live in the scene files and are locked to the picture: never compensate for them here.
 
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -57,7 +57,7 @@ const CEILING_DB = -2.0;        // true-peak ceiling of the limiter. −2, not �
 const CLIP_MAX = 1.14;          // master soft clipper tops out this far above the ceiling; the limiter takes the rest
 const FADE_IN = 0.005;          // s
 const FADE_OUT = 0.040;         // s
-const MUSIC_END_FADE = 0.4;     // s — the music bus fades out over the film's last 0.4 s
+const MUSIC_END_FADE = 0.4;     // s: the music bus fades out over the film's last 0.4 s
 
 const ARGS = Object.fromEntries(process.argv.slice(2).map((a) => {
   const [k, v] = a.replace(/^--/, '').split('=');
@@ -149,7 +149,7 @@ function modes(n, list) {
 }
 
 // ── filters ──────────────────────────────────────────────────────────────────
-// 2-pole state-variable filter (TPT form — stays stable while the cutoff is swept).
+// 2-pole state-variable filter (TPT form: stays stable while the cutoff is swept).
 // fc: Hz or (t, x, i) => Hz.   mode: 0 low-pass, 1 band-pass (unity peak gain), 2 high-pass.
 function svf(x, mode, fc, q = 0.7071) {
   const n = x.length, y = new x.constructor(n), k = 1 / q;
@@ -241,7 +241,7 @@ function layer(n, ...parts) {
 // ── small building blocks shared by several recipes ──────────────────────────
 // Low sine thump with a downward pitch envelope.
 const thump = (n, f0, f1, pitchTau, ampTau) => shape(osc(n, drop(f0, f1, pitchTau)), decay(ampTau));
-// Very short bright noise tick — the sample-accurate "front edge" of an impact.
+// Very short bright noise tick: the sample-accurate "front edge" of an impact.
 const click = (n, rng, hpHz = 2500, tau = 0.0012) => shape(hp(white(n, rng), hpHz), decay(tau));
 // Irregular micro-burst envelope: Poisson events (rate per second, number or (t, x) => n),
 // each an instant attack with a random fast exponential decay. Makes crackle / tearing / grit.
@@ -342,7 +342,7 @@ function addMono(dst, buf, t, gain) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 3. SFX recipes — one function per cue type:  (cue, rng, out) => void
+// 3. SFX recipes: one function per cue type:  (cue, rng, out) => void
 //
 // `out.mono(buf, opts)` / `out.stereo(L, R, opts)` drop a voice at the cue time. opts:
 //   gain  linear, on top of LEVEL_DB[type] and the cue's own `gain`
@@ -358,7 +358,7 @@ const LEVEL_DB = {
   riser: -5, slowdown: -9, heartbeat: -18, megaimpact: 1, cuthit: 0,
   draw: -9, slice: -10, heavyswing: -5, clang: -4, slam: -1.5, snap: -6, shatter: -5, inksplash: -7,
   rumble: -16, wind: -21, thunder: -3, pageturn: -8,       // rumble and wind are beds: keep them low
-  // firearms — library only, there is no synth recipe for these
+  // firearms: library only, there is no synth recipe for these
   gunshot: -1, ricochet: -9, bulletimpact: -5, bulletwhiz: -10, shell: -14, dryfire: -10, reload: -10,
   rifleshot: 0, riflecock: -3, rustle: -13, whistle: -15, chime: -10,                             // the rifle shot is the film's full stop: see STOP_TYPES
 };
@@ -534,7 +534,7 @@ function tear(c, rng, out) {
   out.mono(norm(shape(y, (t, x) => 0.25 + 0.75 * dens(x))));
 }
 
-// Ink fractures: dry splintering clicks — sparse, accelerating, then thinning, spreading outward.
+// Ink fractures: dry splintering clicks: sparse, accelerating, then thinning, spreading outward.
 function crack(c, rng, out) {
   const dur = c.dur ?? 0.5, count = Math.max(8, Math.round(70 * dur));
   for (let k = 0; k < count; k++) {
@@ -589,7 +589,7 @@ function riser(c, rng, out) {
 
 // "Time stretches": a tape-stop (pitch and brightness bending down) then a low airy rumble that
 // holds for the duration and opens up just before time snaps back.
-const SLOWDOWN_RUMBLE_DB = -22;   // rumble level relative to the tape-stop — keep the hole quiet
+const SLOWDOWN_RUMBLE_DB = -22;   // rumble level relative to the tape-stop: keep the hole quiet
 function slowdown(c, rng, out) {
   const dur = c.dur ?? 1.2;
   const n1 = sec(Math.min(0.4, dur));
@@ -797,7 +797,7 @@ function shatter(c, rng, out) {
   }
 }
 
-// Ink: a wet, low splat and slosh — noise through a resonance that sweeps downward, a soft
+// Ink: a wet, low splat and slosh: noise through a resonance that sweeps downward, a soft
 // low-passed front, a few droplets. Nothing bright.
 function inksplash(c, rng, out) {
   const w = c.weight ?? 0.6, len = 0.22 + 0.22 * w, n = sec(len + 0.12);
@@ -908,7 +908,7 @@ function rifleshot(c, rng, out) {
   normStereo(L, R);
   out.stereo(fade(L, 0, 0.4), fade(R, 0, 0.4));
 }
-// Rifle bolt (synth fallback): two mechanical clacks — pulled back, then pushed forward and locked.
+// Rifle bolt (synth fallback): two mechanical clacks: pulled back, then pushed forward and locked.
 function riflecock(c, rng, out) {
   const n = sec(0.9), y = new Float64Array(n), k = sec(0.26);
   for (const [at, g, f] of [[0, 0.8, rr(rng, 2300, 2700)], [0.42, 1, rr(rng, 1800, 2200)]]) {
@@ -962,8 +962,8 @@ const RECIPES = {
   rifleshot, riflecock,
 };
 
-// The film's full stop. A cue of one of these types silences everything else — music, every other
-// effect, every ringing tail — from its own instant to the end of its scene. Only the cue itself
+// The film's full stop. A cue of one of these types silences everything else: music, every other
+// effect, every ringing tail: from its own instant to the end of its scene. Only the cue itself
 // (on its own bus, uncompressed, without the scene trim) is heard. Not applied in --audition.
 const STOP_TYPES = new Set(['rifleshot']);
 function fullStops() {
@@ -983,7 +983,7 @@ function applyStops(bus, stops) {
 }
 
 // Per-scene character for the SFX bus (by scene id): a level trim, and extra hall on anything
-// that already has a reverb send (i.e. impacts) — the heavy-weapon scene gets more weight and space.
+// that already has a reverb send (i.e. impacts): the heavy-weapon scene gets more weight and space.
 const SFX_SCENE = {
   s2: { db: -1 },
   s4: { db: 0, hall: 0.14 },
@@ -1041,9 +1041,9 @@ function renderSfx(library = null) {
     use.synth++;
     recipe(cue, rng, out);
   });
-  for (const [type, count] of use.fallback) console.warn(`audio: no generated sound for cue type "${type}" (${count} cue${count > 1 ? 's' : ''}) — using the synth`);
-  for (const [type, count] of unknown) console.warn(`audio: no ${library ? 'generated sound and no ' : ''}recipe for cue type "${type}" (${count} cue${count > 1 ? 's' : ''}) — skipped`);
-  if (outside) console.warn(`audio: ${outside} cue${outside > 1 ? 's' : ''} outside 0…${DURATION} s — skipped`);
+  for (const [type, count] of use.fallback) console.warn(`audio: no generated sound for cue type "${type}" (${count} cue${count > 1 ? 's' : ''}): using the synth`);
+  for (const [type, count] of unknown) console.warn(`audio: no ${library ? 'generated sound and no ' : ''}recipe for cue type "${type}" (${count} cue${count > 1 ? 's' : ''}): skipped`);
+  if (outside) console.warn(`audio: ${outside} cue${outside > 1 ? 's' : ''} outside 0…${DURATION} s: skipped`);
   for (const [sendBuf, cfg] of [[room, ROOM], [hall, HALL]]) {
     const wet = reverb(sendBuf, cfg);
     for (let i = 0; i < N; i++) { bus.L[i] += wet.L[i]; bus.R[i] += wet.R[i]; }
@@ -1052,12 +1052,12 @@ function renderSfx(library = null) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 3b. Sample playback — cues played from the generated library (tools/soundlib.mjs)
+// 3b. Sample playback: cues played from the generated library (tools/soundlib.mjs)
 //
 // SAMPLE says how each cue type is laid on its cue. Types without an entry, or without files
 // on disk, fall back to the procedural recipe of section 3.
 //   mode 'shot'   one-shot. align 'peak' → the attack of the loudest transient lands on the cue
-//                 time (anything before it in the file — a swish, room noise — is cut);
+//                 time (anything before it in the file (a swish, room noise) is cut);
 //                 align 'first' → the first sound in the file lands on the cue time.
 //   mode 'swing'  pass-by. The loudest moment lands `at`·dur after the cue; the file is cropped
 //                 around it to suit the cue's dur.
@@ -1163,7 +1163,7 @@ function prepared(variant) {
       }
       info = { L, R, n, pk, first, attack, end, swing, rms20: Math.sqrt(best20 / w20), gain: Math.min(1 / pk, 0.3 / Math.sqrt(best50 / w50)) };
     }
-  } else if (n > 64) console.warn(`audio: library file ${variant.id} is ${variant.sr} Hz, expected ${SR} — ignored`);
+  } else if (n > 64) console.warn(`audio: library file ${variant.id} is ${variant.sr} Hz, expected ${SR}: ignored`);
   sampleInfo.set(variant, info);
   return info;
 }
@@ -1251,11 +1251,11 @@ function playFromLibrary(cue, rng, out, variants, cfg) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 4. Music — original, procedural, in D minor. One score function per scene.
+// 4. Music: original, procedural, in D minor. One score function per scene.
 //
 // The film's recurring figure (MOTIF) is D F G A | F E D C. It is the bass line of scene 1
 // (interleaved with a pedal D), the clockwork ostinato of scene 3, the long top line over the
-// choir in scene 5, and — slowed to almost nothing — the last three notes (F E D) of scene 6.
+// choir in scene 5, and (slowed to almost nothing) the last three notes (F E D) of scene 6.
 //
 // Every scene gets its own tempo grid, aligned to the scene start and stretched a few percent so
 // that the scene is a whole number of bars: page turns always land on a bar line.
@@ -1308,7 +1308,7 @@ STYLE.none = { bpm: 100, gainDb: 0, score: () => {}, sub: 0, accent: [], fill: n
 //   clockwork  precise driving 16ths, metallic ticks                   heavy      half-time, huge low drums
 //   climax     fastest and densest, dark pad                           aftermath  sparse low hits, a resolving tone
 //   playful    friendly D-major marimba / pizzicato / woodblock loop   plane      a playful score fitted to 'mark' cues (example)
-//   none       effects only — no music
+//   none       effects only: no music
 const STYLE_NAMES = { duel: 's1', chase: 's2', clockwork: 's3', heavy: 's4', climax: 's5', aftermath: 's6' };
 const warnedStyle = new Set();
 const styleOf = (scene) => {
@@ -1317,7 +1317,7 @@ const styleOf = (scene) => {
   if (st) return st;
   if (!warnedStyle.has(scene.id)) {
     warnedStyle.add(scene.id);
-    console.warn(`audio: scene "${scene.id}" ${name ? `asks for unknown score "${name}"` : 'has no score set'} — using "duel" (a fight score). Set createScene({ score: … }); see references/sound.md`);
+    console.warn(`audio: scene "${scene.id}" ${name ? `asks for unknown score "${name}"` : 'has no score set'}: using "duel" (a fight score). Set createScene({ score: … }); see references/sound.md`);
   }
   return STYLE.s1;
 };
@@ -1435,7 +1435,7 @@ function growl(f, dur) {
     return scale(sat(shape(y, adsr(0.02, 0.3, 0.75, 0.12, dur - 0.12)), 3), 0.7);
   });
 }
-// "Braam": a stack of low saws whose filter opens and closes — the big brass-like swell of scene 4.
+// "Braam": a stack of low saws whose filter opens and closes: the big brass-like swell of scene 4.
 function braam(dur) {
   return cached(`braam|${dur.toFixed(3)}`, () => {
     const n = sec(dur), env = (t) => Math.min(1, t / 0.12) * Math.exp(-Math.max(0, t - 0.12) / (dur * 0.33));
@@ -1519,7 +1519,7 @@ function musicControls() {
   const byMode = { suspend: sus, aftermath: aft, surge };
   for (const h of MUSIC_HINTS) {
     const arr = byMode[h.mode];
-    if (!arr) { console.warn(`audio: unknown music hint mode "${h.mode}" at ${h.from}s — ignored`); continue; }
+    if (!arr) { console.warn(`audio: unknown music hint mode "${h.mode}" at ${h.from}s: ignored`); continue; }
     arr.fill(1, clamp(Math.round(h.from * SR / CTRL), 0, M), clamp(Math.round(h.to * SR / CTRL), 0, M));
   }
   const smooth = (arr, tau) => {
@@ -1541,7 +1541,7 @@ function musicControls() {
   smooth(lvl, 0.05); smooth(cut, 0.05); smooth(sub, 0.3);
   return { sus, aft, surge, lvl, cut, sub };
 }
-// Groove gate at sample rate: shut during 'suspend' (closes in 35 ms) and 'aftermath' (15 ms — "stops dead").
+// Groove gate at sample rate: shut during 'suspend' (closes in 35 ms) and 'aftermath' (15 ms: "stops dead").
 function grooveGate() {
   const g = new Float32Array(N).fill(1);
   for (const h of MUSIC_HINTS) {
@@ -1639,7 +1639,7 @@ function sceneContext(scene, index, bus, hallSend, ctl) {
   return ctx;
 }
 
-// Scene 1 — "The First Clash": tension drone and a few lonely hits for the first seconds, then
+// Scene 1: "The First Clash": tension drone and a few lonely hits for the first seconds, then
 // the 3-3-2 taiko groove. The motif is the bass line: D d F d G d A d | F d E d D d C d
 // (lower-case = pedal D), in eighths at first, then in sixteenths with octave jumps.
 function scoreFirstClash(ctx) {
@@ -1662,7 +1662,7 @@ function scoreFirstClash(ctx) {
   });
 }
 
-// Scene 2 — "Pencil City": faster and lighter. High toms, woodblocks and sticks in a syncopated
+// Scene 2: "Pencil City": faster and lighter. High toms, woodblocks and sticks in a syncopated
 // pattern, a plucky bass an octave up, and a log-drum line that walks through the motif.
 function scorePencilCity(ctx) {
   const g = ctx.grid(ctx.start, ctx.end, ctx.style.bpm);
@@ -1685,7 +1685,7 @@ function scorePencilCity(ctx) {
   });
 }
 
-// Scene 3 — "Geometry Zone": clockwork. Four-on-the-floor, tight backbeat, metallic sixteenths,
+// Scene 3: "Geometry Zone": clockwork. Four-on-the-floor, tight backbeat, metallic sixteenths,
 // tick-tock, a ratchet every fourth bar. The ostinato is the motif in eighths against a high
 // pedal D; a second voice joins in canon (two beats later, an octave up, on the other side).
 function scoreGeometry(ctx) {
@@ -1708,7 +1708,7 @@ function scoreGeometry(ctx) {
   });
 }
 
-// Scene 4 — "Torn Paper Battlefield": half-time and enormous. One huge drum per bar with space
+// Scene 4: "Torn Paper Battlefield": half-time and enormous. One huge drum per bar with space
 // around it, low toms answering, a growling bass holding one long note per bar, a braam every
 // other bar and a high minor-second tension note swelling into every fourth bar.
 function scoreTornPaper(ctx) {
@@ -1734,9 +1734,9 @@ function scoreTornPaper(ctx) {
   });
 }
 
-// Scene 5 — "Final Ink Arena": everything. Taiko 3-3-2 over four-on-the-floor, backbeat, sixteenth
+// Scene 5: "Final Ink Arena": everything. Taiko 3-3-2 over four-on-the-floor, backbeat, sixteenth
 // layers, a driving sixteenth bass on the chord roots, a dark choir (Dm B♭ Gm A | B♭ C Dm C) and
-// the motif as the long top line — one note per bar, each a chord tone.
+// the motif as the long top line: one note per bar, each a chord tone.
 function scoreInkArena(ctx) {
   const g = ctx.grid(ctx.start, ctx.end, ctx.style.bpm);
   const chords = [[0, 'm'], [-4, 'M'], [5, 'm'], [7, 'M'], [-4, 'M'], [-2, 'M'], [0, 'm'], [-2, 'M']];
@@ -1759,8 +1759,8 @@ function scoreInkArena(ctx) {
   });
 }
 
-// Scene 6 — "The Last Line": almost nothing. The drone ebbs away, three lonely hits, and the end
-// of the motif — F, E, then a long soft D that resolves it — before complete silence.
+// Scene 6: "The Last Line": almost nothing. The drone ebbs away, three lonely hits, and the end
+// of the motif (F, E, then a long soft D that resolves it) before complete silence.
 function scoreLastLine(ctx) {
   const d = ctx.end - ctx.start, at = (x) => ctx.start + x * d;
   [[0.1, 0.5], [0.36, 0.4], [0.6, 0.3]].forEach(([x, v]) => ctx.drum('deep', at(x), v, 0, 0.5));
@@ -1770,7 +1770,7 @@ function scoreLastLine(ctx) {
   tone(0.46, 0, Math.max(0.5, d * 0.54 - 0.45), MUSIC_DB.soft);
 }
 
-// ── "playful" — a generic light score for any non-fight scene ───────────────
+// ── "playful": a generic light score for any non-fight scene ───────────────
 // A D-major loop (I–IV–V–I) on marimba, pizzicato bass and woodblock, stretched to whole bars over
 // the scene, honouring suspend/aftermath hints (ctx.voice / ctx.drum are silent inside them), and
 // ending on a button chord. Use it as a starting point for your own score functions.
@@ -1795,7 +1795,7 @@ function scorePlayful(ctx) {
   ctx.voice(glock(hz(24, D5)), tEnd + 0.02, -17, 0, 0.3);
 }
 
-// ── "The Paper Plane" — a light, friendly score in D major ───────────────────
+// ── "The Paper Plane": a light, friendly score in D major ───────────────────
 // No drums of war here: a marimba tune, a soft pizzicato bass, woodblock tick-tock, a glockenspiel.
 // It is fitted to the picture through 'mark' cues emitted by the scene (throw, trip, catch, …), so
 // retiming the scene moves the music with it. The footsteps of the run fall on its sixteenths.
@@ -1823,7 +1823,7 @@ function scorePaperPlane(ctx) {
   for (const c of CUES) if (c.type === 'mark' && c.t >= ctx.start && c.t < ctx.end) at[c.name] = c.t;
   const need = ['throw', 'trip', 'peek', 'stand', 'run2', 'jump', 'catch', 'land', 'tada', 'hop', 'pose'];
   const missing = need.filter((k) => at[k] == null);
-  if (missing.length) { console.warn(`audio: scorePaperPlane needs mark cues: ${missing.join(', ')} — no music`); return; }
+  if (missing.length) { console.warn(`audio: scorePaperPlane needs mark cues: ${missing.join(', ')}: no music`); return; }
   const D4 = D3 * 2, D5 = D3 * 4;
   const mar = (t, semi, db = 0, pan = 0) => ctx.voice(marimba(hz(semi, D4)), t, -14 + db, pan, 0.06);
   const bass = (t, semi, db = 0) => ctx.voice(pizz(hz(semi, D2)), t, -11 + db, 0);
@@ -1831,26 +1831,26 @@ function scorePaperPlane(ctx) {
   const tick = (t, hi, v = 0.5) => ctx.drum(hi ? 'woodHi' : 'woodLo', t, v);
   const chord = (t, semis, db = 0) => semis.forEach((s, k) => mar(t + k * 0.012, s, db - 1, (k - 1) * 0.25));
 
-  // A — folding: eight easy eighths that end on the throw
+  // A: folding: eight easy eighths that end on the throw
   const e = 0.32, a0 = at.throw - 8 * e;
   [12, null, 7, 4, 9, null, 7, 4].forEach((s, k) => { if (s != null) mar(a0 + k * e, s, -2, k % 2 ? 0.2 : -0.2); });
   [0, 7, 0, 7].forEach((s, k) => bass(a0 + k * 2 * e, s - (s ? 12 : 0), -2));
   for (let k = 0; k < 8; k++) tick(a0 + k * e, k % 2, k % 2 ? 0.4 : 0.3);
 
-  // B — the chase: the same pulse, twice as busy, until the pencil
+  // B: the chase: the same pulse, twice as busy, until the pencil
   const s16 = e / 2, nB = Math.round((at.trip - at.throw) / s16);
   bell(at.throw, 12, 2);
   [12, 16, 19, 16, 21, 19, 16, 19].forEach((s, k) => { if (k * 2 < nB) mar(at.throw + k * e, s, 0, k % 2 ? 0.25 : -0.25); });
   [0, 7, 0, -5].forEach((s, k) => { if (k * 4 < nB) bass(at.throw + k * 2 * e, s); });
   for (let k = 0; k < nB; k++) { if (k % 2 === 0) tick(at.throw + k * s16, (k / 2) % 2, 0.45); else ctx.drum('stick', at.throw + k * s16, 0.6); }
 
-  // …silence while he lies there (the scene suspends the music) — then three careful notes back up
+  // …silence while he lies there (the scene suspends the music): then three careful notes back up
   bass(at.peek, -5, -3);
   bass((at.peek + at.stand) / 2, -3, -3);
   bass(at.stand - 0.14, -1, -2);
   bass(at.stand, 0); bell(at.stand, 0, 0);
 
-  // D — after it again, climbing into the jump
+  // D: after it again, climbing into the jump
   const nD = Math.round((at.jump - at.run2) / s16);
   [12, 16, 19, 21, 24].forEach((s, k) => { const t = at.run2 + k * e; if (t < at.jump - 0.05) mar(t, s, 0, k % 2 ? 0.25 : -0.25); });
   bass(at.run2, 0); bass(at.run2 + 2 * e, 7 - 12);
@@ -1859,7 +1859,7 @@ function scorePaperPlane(ctx) {
   const scale = [12, 14, 16, 17, 19, 21, 23], dt = (at.catch - at.jump) / scale.length;
   scale.forEach((s, k) => mar(at.jump + k * dt, s, -4 + k * 0.6, -0.3 + k * 0.1));
 
-  // E — caught, landed, ta-da
+  // E: caught, landed, ta-da
   bass(at.catch, 0, 1); chord(at.catch, [12, 16, 19, 24], 1);
   bass(at.land, -5); chord(at.land, [7, 11, 14], -1);                       // A major: the question…
   bass(at.tada, 0, 2); chord(at.tada, [12, 16, 19, 24], 2); bell(at.tada, 12, 3, -0.2); bell(at.tada + 0.02, 16, 2, 0.3);   // …D major: the answer
@@ -1915,7 +1915,7 @@ function renderMusic(only = null) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
-// 4b. Library music — the generated per-scene score (assets/audio/music/<scene id>.wav)
+// 4b. Library music: the generated per-scene score (assets/audio/music/<scene id>.wav)
 //
 // Each piece starts on its scene's first frame and rings `xfade` seconds past the end, fading
 // under the next one (short crossfade at the page turn). Pieces are brought to a common loudness,
@@ -1925,12 +1925,12 @@ const MUSIC_LIB = {
   lufs: -19.5,                                           // loudness every piece is brought to before the trims (pre-master)
   trim: { s1: 0, s2: -1, s3: -0.5, s3b: -0.5, s4: 1, s5: 1.5, s6: -3, credits: 1 },   // dB per scene id
   // Fitting single pieces to the picture (seconds). Hand-fitted to the files generated on
-  // 2026-11-18 — look at these again after regenerating a piece.
+  // 2026-11-18: look at these again after regenerating a piece.
   //   skip    start this far into the file
   //   env     [[seconds into the scene, gain], …] a level curve drawn over the piece
   //   endAt   the last sample of the file lands this long into the scene (its start is skipped to fit)
   //   button  finish with a low drum hit and a hall ring-out where the piece ends
-  // (the delay before a piece starts — MUSIC_SHAPE[id].lead — lives in tools/soundlib.mjs)
+  // (the delay before a piece starts (MUSIC_SHAPE[id].lead) lives in tools/soundlib.mjs)
   fit: {
     // quiet stand-off, the file's big moment on the knock-out (≈ 7.7 s), then dread thinning to nothing
     // by 15.6 s. The piece is its own aftermath: 'aftermath' hints inside the scene are not applied to it.
@@ -1980,7 +1980,7 @@ function renderMusicFromLibrary(library, stops = []) {
       for (let i = 0; i < send.length && from + i < N; i++) { lib.L[from + i] += 1.8 * wet.L[i]; lib.R[from + i] += 1.8 * wet.R[i]; }
     }
   });
-  for (const index of missing) console.warn(`audio: no generated music for scene "${SCENES[index].id}" — using the synth score`);
+  for (const index of missing) console.warn(`audio: no generated music for scene "${SCENES[index].id}": using the synth score`);
 
   // music hints → a gain curve and a dry / low-passed blend, at control rate
   const M = Math.ceil(N / CTRL) + 2, gdb = new Float32Array(M), mix = new Float32Array(M);
@@ -2204,10 +2204,10 @@ async function loadSheet({ optional = false } = {}) {
   try {
     return await import('../src/cues.js');
   } catch (err) {
-    if (optional) { console.warn(`audio: src/cues.js not loadable (${err.message}) — using the built-in scene layout`); return null; }
+    if (optional) { console.warn(`audio: src/cues.js not loadable (${err.message}): using the built-in scene layout`); return null; }
     const attempt = Number(process.env.STICK_FILM_AUDIO_RETRY ?? 0);
     if (attempt >= 5) throw err;
-    console.warn(`audio: could not load src/cues.js (${err.message}) — retry ${attempt + 1}/5 in 2 s`);
+    console.warn(`audio: could not load src/cues.js (${err.message}): retry ${attempt + 1}/5 in 2 s`);
     await new Promise((done) => setTimeout(done, 2000));
     const child = spawnSync(process.execPath, process.argv.slice(1), { stdio: 'inherit', env: { ...process.env, STICK_FILM_AUDIO_RETRY: String(attempt + 1) } });
     process.exit(child.status ?? 1);
@@ -2267,11 +2267,11 @@ function selfTestSheet(real) {
         [0.4, (t) => { add(t, 'boom'); add(t + 0.1, 'inksplash', { weight: 0.5 }); return t + 0.5; }], [0.58, (t) => slowmo(t, (u) => { add(u, 'slam', { weight: 1 }); add(u + 0.02, 'shatter'); })],
         [0.9, mega]] },
     { swing: () => 0, hit: () => {}, gap: [1, 1], rest: [1, 1], lead: 1e9, pieces: [] },
-    // 6 — gunfight
+    // 6: gunfight
     { swing: (t) => { if (rng() < 0.4) add(t, 'bulletwhiz'); return 0.12; },
       hit: (t) => { add(t, 'gunshot', { weight: +between(0.7, 1).toFixed(2) }); add(t + 0.04, pick(['bulletimpact', 'bulletimpact', 'ricochet']), { weight: 0.6 }); add(t + 0.3, 'shell'); },
       gap: [0.35, 0.9], rest: [0.5, 1.1], lead: 1.2, pieces: [[0.55, (t) => { add(t, 'dryfire'); add(t + 0.25, 'dryfire'); add(t + 0.7, 'reload'); return t + 3; }]] },
-    // 7 — the ending: a last exchange, the knock-out, slow steps, the bolt, the shot (the film's full stop)
+    // 7: the ending: a last exchange, the knock-out, slow steps, the bolt, the shot (the film's full stop)
     { swing: (t) => whoosh(t, pick(['m', 'l'])), hit: (t) => impact(t, 'hit', 0.7, 1), gap: [0.2, 0.45], rest: [0.4, 0.8], lead: 0.8,
       pieces: [[0.42, (t) => {
         add(t, 'hit', { weight: 1 }); add(t + 0.35, 'thud', { weight: 0.8 }); accent(t);
@@ -2327,7 +2327,7 @@ function selfTestSheet(real) {
 }
 
 // Audition sheet: every cue type (or the ones named in --audition=a,b,c) on its own, in a row,
-// with no music — for listening to and tweaking single recipes.
+// with no music: for listening to and tweaking single recipes.
 function auditionSheet(only) {
   const known = [...new Set([...Object.keys(RECIPES), ...Object.keys(SAMPLE)])];
   const types = typeof only === 'string' ? only.split(',').filter((t) => known.includes(t)) : known;
@@ -2391,10 +2391,10 @@ async function main() {
   const clock = { start: t0 }, lap = (name) => { const now = performance.now(); clock[name] = (now - (clock.last ?? t0)) / 1000; clock.last = now; };
   // engine: the generated library where it has files, the synth for the rest (or for everything)
   const engine = ARGS.engine === 'synth' ? 'synth' : 'eleven';
-  if (ARGS.engine && !['synth', 'eleven'].includes(ARGS.engine)) console.warn(`audio: unknown --engine "${ARGS.engine}" — using "eleven"`);
+  if (ARGS.engine && !['synth', 'eleven'].includes(ARGS.engine)) console.warn(`audio: unknown --engine "${ARGS.engine}": using "eleven"`);
   let library = engine === 'eleven' ? loadLibrary(SCENES.map((s) => s.id)) : null;
   if (library && !library.sfx.size && !library.music.size) {
-    console.warn('audio: no generated library in assets/audio/ — using the synth for everything (run: node tools/soundlib.mjs generate)');
+    console.warn('audio: no generated library in assets/audio/: using the synth for everything (run: node tools/soundlib.mjs generate)');
     library = null;
   }
   lap('library');
@@ -2425,7 +2425,7 @@ async function main() {
   console.log(`audio: ${outPath}`);
   console.log(`audio: ${ARGS.selftest ? 'SELF-TEST sheet, ' : ''}${CUES.length} cues, ${SCENES.length} scenes, ${MUSIC_HINTS.length} music hints, ${ACCENTS.length} accents`);
   console.log(library
-    ? `audio: engine eleven — ${sfx.use.library} cues from the library, ${sfx.use.synth} from the synth; music from the library for ${SCENES.length - music.missing.size} of ${SCENES.length} scenes`
+    ? `audio: engine eleven: ${sfx.use.library} cues from the library, ${sfx.use.synth} from the synth; music from the library for ${SCENES.length - music.missing.size} of ${SCENES.length} scenes`
     : `audio: engine synth${engine === 'eleven' ? ' (fallback: empty library)' : ''}`);
   console.log(`audio: ${N} frames, ${(N / SR).toFixed(3)} s, 48 kHz stereo 16-bit`);
   console.log(`audio: ${f(m.lufs)} LUFS integrated (est.), true peak ${f(toDb(m.truePeak))} dBTP (est.), master gain ${f(toDb(m.gain))} dB, limiter max GR ${f(m.lim.gr)} dB`);

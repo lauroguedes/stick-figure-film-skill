@@ -2,7 +2,7 @@
 // scene's `surface`), weapons popping, and characters out of frame.
 //   node tools/lint.mjs --scene s2          (one scene)      node tools/lint.mjs   (every scene on the timeline)
 //   --floor -9999   disables the floor check entirely (rarely needed: scenes with a `surface` hook are
-//                   checked against it, and a surface that returns null — off a ledge, mid-fall — is skipped)
+//                   checked against it, and a surface that returns null (off a ledge, mid-fall) is skipped)
 //   --all           print every issue (default: the first 25 of each kind, then a count)
 import { arg, source } from './_common.mjs';
 import { FPS, WIDTH, HEIGHT } from '../src/film.js';

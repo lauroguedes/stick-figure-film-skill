@@ -3,7 +3,7 @@
 Everything on screen is drawn procedurally: black ink (`#000`) on white paper (`#fff`), nothing
 else by default. A **scene** is one location with its own clock (`t = 0` at the scene start). You author a
 scene as data (pose keys, weapon keys, camera keys, events) plus a few drawing hooks for the
-environment. `src/scenes/ref_poc.js` is a complete worked example — read it alongside this guide.
+environment. `src/scenes/ref_poc.js` is a complete worked example; read it alongside this guide.
 
 ```js
 import { createScene } from '../engine/scene.js';
@@ -22,10 +22,10 @@ export default S.build();
 |---|---|
 | `node tools/sheet.mjs --scene s2 --from 3 --to 5 --n 12 --out out/review/s2/a.png` | contact sheet through the scene camera (then look at the PNG) |
 | `… --times 3.2,3.33,3.4 --cols 3 --cw 660` | exact frames, bigger cells |
-| `… --stage 1000,-180,1.8` | fixed debug camera `x,y,zoom` — judge poses without the film camera |
+| `… --stage 1000,-180,1.8` | fixed debug camera `x,y,zoom`, to judge poses without the film camera |
 | `node tools/sheet.mjs --scene s2 --at 8.6 --out out/review/s2/still.png` | one full-resolution frame |
-| `node tools/probe.mjs --scene s2 --times 3.4,3.46` | prints solved world positions of every joint and weapon tip — **use this to line up contacts instead of guessing** |
-| `node tools/cross.mjs --scene s2 --a sword --b axe --times 4.1,4.12` | where two weapons' blades cross (or how far they miss) — place `S.hit` on a clash with this |
+| `node tools/probe.mjs --scene s2 --times 3.4,3.46` | prints solved world positions of every joint and weapon tip. **Use this to line up contacts instead of guessing** |
+| `node tools/cross.mjs --scene s2 --a sword --b axe --times 4.1,4.12` | where two weapons' blades cross (or how far they miss); place `S.hit` on a clash with this |
 | `node tools/lint.mjs --scene s2` | teleporting joints, limbs under the floor or the scene's `surface`, weapons popping between holders, characters out of frame (first 25 of each kind; `--all` for every line) |
 | `node tools/render.mjs --scene s2` | `out/s2.mp4` of the scene alone (no audio) |
 | `node tools/sheet.mjs --scene _gallery --from 0.5 --to 10.5 --n 11` | every weapon type, held |
@@ -48,11 +48,11 @@ front hand, `E.st.weapons` the weapons).
 
 ## Characters
 
-`S.fighters({ A, B })` — A is the smaller, lighter character (scale 0.95, line 4.6, round
+`S.fighters({ A, B })`: A is the smaller, lighter character (scale 0.95, line 4.6, round
 hands); B the bigger, heavier one (scale 1.1, line 6.2, solid fists). **B is optional**: omit it
-for a one-character film — B then exists off-page and is never drawn, the lint ignores it, and a
+for a one-character film. B then exists off-page and is never drawn, the lint ignores it, and a
 camera `b` weight follows A. To have a second character appear later, give B keys and use
-`reveal: 0` (hidden) on the keys before it enters — `reveal` is per key, not sticky, and a hidden
+`reveal: 0` (hidden) on the keys before it enters. `reveal` is per key, not sticky, and a hidden
 figure also has no shadow, smear or speed lines.
 
 ## Poses (see `engine/rig.js`, `engine/moves.js`)
@@ -73,8 +73,8 @@ origin = their base point on the floor.
 
 - `p: 'bStance'` starts from a named pose in `POSES` (moves.js) and applies your overrides.
   Pass your own library with `createScene({ poses: {...} })`.
-- `same: true` repeats the previous pose — use it for **hit-stops** (2–3 frames) and holds.
-- Local units are multiplied by the fighter's scale (A 0.95, B 1.1) — B's reach is longer.
+- `same: true` repeats the previous pose; use it for **hit-stops** (2–3 frames) and holds.
+- Local units are multiplied by the fighter's scale (A 0.95, B 1.1), so B's reach is longer.
 - Hands travel on **arcs around the shoulder** between keys, feet stay planted if they move
   < 14 units between keys, larger moves become steps with an automatic lift
   (`slide: true` on the arriving key = drag/skid instead). `turnF / turnB: ±1` forces which way
@@ -83,11 +83,11 @@ origin = their base point on the floor.
   (grabs, catching a fist, a hand on a wall, a foot on a ledge).
 - `spin: deg` rotates the whole body about the hip (+ = forward flip). Go ≤ 160° per key.
 - `kF / kB / eF / eB: -1` flips a knee / elbow. In very low poses a knee can poke below the
-  floor — flip it (`kB: -1`) or raise the hip; the lint flags it.
+  floor: flip it (`kB: -1`) or raise the hip; the lint flags it.
 - `er` = separate ease for the body's travel (hip), `e` for the limbs.
 - `reveal: 0→1` draws the figure on with a pen (used once, at the very start of the film).
 
-**Jumps and falls** — use `flight()` (moves.js): the key before it is the take-off, then
+**Jumps and falls**: use `flight()` (moves.js): the key before it is the take-off, then
 
 ```js
 ...flight(t0, t1, [x0, y0], [x1, y1], g, [[t, poseA], [t, poseB]], landingPose),
@@ -99,18 +99,18 @@ surface keep writing `y:` on every key while they stand there (y is not sticky).
 
 **What makes it feel animated, not rotated** (the brief's hardest requirement):
 
-1. **Anticipation** — a key that goes the opposite way first (coil back before a dash, sink
+1. **Anticipation**: a key that goes the opposite way first (coil back before a dash, sink
    before a jump). Heavier action → longer anticipation (light jab 0.05 s, sword 0.12 s,
    axe/hammer 0.3–0.45 s).
-2. **Fast into contact** — `e: 'snap'` or `'in3'` on the contact key, 2–4 frames of travel.
-3. **Hit-stop** — `{ t: +0.06…0.1, same: true }` right after a big contact.
-4. **Follow-through, then recover** — overshoot past the target, settle back. Heavy weapons
+2. **Fast into contact**: `e: 'snap'` or `'in3'` on the contact key, 2–4 frames of travel.
+3. **Hit-stop**: `{ t: +0.06…0.1, same: true }` right after a big contact.
+4. **Follow-through, then recover**: overshoot past the target, settle back. Heavy weapons
    drag the body after them (`heavyEnd`), light ones snap back to guard.
-5. **Reactions sell hits** — the one who is struck needs a key at the same instant
+5. **Reactions sell hits**: the one who is struck needs a key at the same instant
    (`hitBack`, `fold`, `stagger`, or custom), usually with travel (`x` change + `slide: true`).
-6. **Whole body, every key** — move the hip and lean with every arm action; shift the feet.
+6. **Whole body, every key**: move the hip and lean with every arm action; shift the feet.
    A key that only changes one hand looks robotic.
-7. **Contrast the two fighters** — A: upright, narrow, bouncy, precise, dodges and counters,
+7. **Contrast the two fighters**: A: upright, narrow, bouncy, precise, dodges and counters,
    flips and spins. B: wide, low, hunched, heavy steps, big wind-ups, grabs and throws,
    breaks things. They must be recognisable by silhouette and movement alone.
 8. Keep them **150–260 units apart** while trading blows so silhouettes don't merge; step in
@@ -140,7 +140,7 @@ S.weapon('sword', [
   hook as a function of `t`; to frame it, put its position in an absolute camera `x`, or give the
   camera a key per beat.
 - `ang` = direction tail→tip in world degrees: 0 points right, 90 up, 180 left, 270 down.
-  It is interpolated numerically — **keep it continuous** (a full twirl adds 360; to swing the
+  It is interpolated numerically, so **keep it continuous** (a full twirl adds 360; to swing the
   short way from 350 to 10 write 370, not 10).
 - `g` = where the main hand (hF) grips, 0 = pommel/tail … 1 = tip. `two: 1` puts the back hand
   on the weapon automatically (author `hB` roughly near; the rig moves it).
@@ -165,7 +165,7 @@ S.shot({ t: 4.5, weapon: 'gun', to: [1010, 160], hit: 'spark' });         // ric
 S.shot({ t: 6.0, weapon: 'gun', to: [900, 150], slug: [6.0, 7.1], hit: 'page' }); // slow-motion: a visible slug flies for 1.1 s
 ```
 
-One call adds the muzzle flash (read from the weapon's solved tip — it cannot drift off the barrel),
+One call adds the muzzle flash (read from the weapon's solved tip, so it cannot drift off the barrel),
 tracer, ejected casing, smoke, the hit (persistent **bullet hole** showing the black desk, or sparks),
 gunshot / casing / impact sounds and a camera kick. `to` must lie along the barrel: the build warns
 when it is more than 8° off. Animate the **recoil** yourself: on the shot key the hand kicks back and
@@ -173,7 +173,7 @@ up 10–20 units and `ang` jumps 15–30° (ease `snap`), recovering over 0.15�
 shoulders rock. Holes persist for the rest of the scene (`E.holes` lists them; `S.hole({t,x,h,r})`
 adds one without a shot). A fighter is never shown wounded: bullets graze, are dodged, deflected
 (`hit: 'spark'` on the blade, with a `S.hit({sound:'clang'})`-style parry pose), or hit weapons and
-scenery — the damage is to the notebook.
+scenery. The damage is to the notebook.
 
 ## Camera (see `engine/camera.js`)
 
@@ -186,15 +186,15 @@ S.camera([
 ```
 
 Typical zooms: 0.5 whole page · 1.0–1.3 wide · 1.5–1.9 medium fight shot · 2.2–2.8 close-up.
-Make it cinematic — push-ins, whip pans (`e: 'out'` over 0.25–0.4 s), punch-ins on hits
+Make it cinematic: push-ins, whip pans (`e: 'out'` over 0.25–0.4 s), punch-ins on hits
 (`e: 'snap'`, +0.2 zoom over 2 frames), pull-outs for scale, roll 3–8° for tension, low/high
-framing via `y` — **but both fighters must stay readable**: the lint reports a fighter out of
+framing via `y`. **But both fighters must stay readable**: the lint reports a fighter out of
 frame for > 0.5 s. `S.shake(t, ampPx, dur)` adds shake (S.hit/S.land add it automatically).
 
 **Bullet-time close-ups.** `S.bulletTime({ at, span: 0.25, hold: 2, on: 'A', z: 2.9 })` freezes the
 action at scene time `at` for `hold` seconds of screen time (only `span` seconds of action pass) while
-the camera cuts in tight with moving close-up shots — a rolling push-in on `on`, then a whip to the
-other fighter — and then time snaps back. Pass `shots: [{ on, z, roll: [a, b], slide: [a, b] }, …]`
+the camera cuts in tight with moving close-up shots (a rolling push-in on `on`, then a whip to the
+other fighter), and then time snaps back. Pass `shots: [{ on, z, roll: [a, b], slide: [a, b] }, …]`
 to direct the sub-shots yourself. The scene grows by `hold − span` and everything after it shifts
 automatically (cues, music hints and the film timeline included).
 
@@ -206,7 +206,7 @@ music to drop out. You author the slow motion itself by spacing keys widely (use
 
 ## Contacts, effects and sound
 
-Use the combined helpers — one call keeps burst, sound and shake on the same frame:
+Use the combined helpers: one call keeps burst, sound and shake on the same frame:
 
 ```js
 S.hit({ t, x, h, size: 1, sound: 'hit', weight: 0.6, impact: false, ring: false, shock: false,
@@ -245,13 +245,13 @@ Each hook is `(ctx, t, E) => void`, already inside the camera transform, with
 | Hook | Layer |
 |---|---|
 | `page` | replaces the default notebook page (white sheet, ruled lines, spiral) |
-| `far2`, `far` | background layers on slower parallax (0.72 / 0.86) — skyline, doodles |
+| `far2`, `far` | background layers on slower parallax (0.72 / 0.86): skyline, doodles |
 | `stage` | the set **behind** the fighters: floor, walls, props, damage |
 | `mid` | behind the fighters but over dust |
 | `over` | **in front** of the fighters: flying debris, foreground rain |
 | `fore` | foreground silhouettes on faster parallax (1.28) |
 | `screen` | screen-space overlay (identity transform, 1920×1080) |
-| `surface: (x, t, J) => height \| null` | the floor height under x — used for contact shadows and by the lint's floor check; `null` = no floor here (a gap, a fall, off a ledge): no shadow, no floor check |
+| `surface: (x, t, J) => height \| null` | the floor height under x, used for contact shadows and by the lint's floor check; `null` = no floor here (a gap, a fall, off a ledge): no shadow, no floor check |
 | `order: (t) => 'BA' \| 'AB'` | who is drawn first (further back). Default B behind A |
 
 Kit: `drawPage`, `drawGround(ctx, x0, x1, vb, px, {y, dense})` (hatched floor/platform line),
@@ -261,7 +261,7 @@ land and stay), `crackSet` + `drawCracks`, `drawTear` (rip showing the black des
 Ink: `line`, `sketchPoly`, `hatch` (the workhorse: `{angle, gap, gapEnd, cross, w, seed}`),
 `blob`, `stroke`, `trim`, `makeCracks`.
 
-**Art rules (the defaults — the user's brief overrides them)**
+**Art rules (the defaults; the user's brief overrides them)**
 
 - Only `BLACK` and `WHITE`. No other colours, no `globalAlpha`, no gradients, no grey, no
   shadowBlur. All tone is **hatching / cross-hatching**: density = darkness, direction = form.
@@ -273,7 +273,7 @@ Ink: `line`, `sketchPoly`, `hatch` (the workhorse: `{angle, gap, gapEnd, cross, 
   scope; cull or skip what is off-screen (`E.vb`). A frame should render in < 0.15 s.
 - The notebook is part of the fight: things get broken, torn, pulled out of drawings, used.
   Destruction persists for the rest of the scene.
-- No gore. No text or titles on screen other than notebook doodles — unless the brief asks for it.
+- No gore. No text or titles on screen other than notebook doodles, unless the brief asks for it.
 
 ## Scene contract
 
@@ -282,7 +282,7 @@ Ink: `line`, `sketchPoly`, `hatch` (the workhorse: `{angle, gap, gapEnd, cross, 
   camera key at `t = 0`, last at `t ≥ duration`.
 - A scene that **arrives by page turn** has the previous page flipping away over it for the
   first 0.5 s: open with ~0.8 s of arrival/establishing, not a key hit.
-- The **last frame** of a scene followed by a page turn is frozen during that turn — end on a
+- The **last frame** of a scene followed by a page turn is frozen during that turn, so end on a
   strong, clean composition, and finish the scene's last impact ≥ 0.3 s before the end.
 - Run the lint clean (or explain what remains) and look at the whole scene on sheets at
   ≤ 0.25 s spacing before calling it done.

@@ -125,10 +125,10 @@ export function createScene(cfg) {
 
     /**
      * Fire a gun. The muzzle is read from the weapon's solved tip at time t, so the flash always
-     * sits on the barrel — aim by posing the hand and the weapon `ang`, then give the point the
+     * sits on the barrel: aim by posing the hand and the weapon `ang`, then give the point the
      * bullet reaches (probe the line of fire; `to` should lie along the barrel direction).
      *   weapon: weapon id (a 'pistol')         to: [worldX, height] where the bullet ends up
-     *   hit: 'page'  punches a persistent bullet hole through the paper (black desk shows) — default
+     *   hit: 'page'  punches a persistent bullet hole through the paper (black desk shows): default
      *        'spark' ricochet off something hard (blade, brick, ruler): sparks + ricochet sound, no hole
      *        'prop'  thud + scraps, no hole (you draw the prop's damage yourself in an env hook)
      *        'none'  flies off-page
@@ -456,7 +456,7 @@ function makeRuntime(sc) {
     id: sc.id, title: sc.title, duration: sc.duration, score: sc.score, solo: !!sc.solo,
     surface: sc.env.surface || null,
     // draw / camera / duration / cues are in SCREEN time; state(t) stays in authored (action) time so
-    // scene hooks can keep sampling it. They only differ when the scene uses bulletTime — convert
+    // scene hooks can keep sampling it. They only differ when the scene uses bulletTime: convert
     // with toAction(screenT) / toScreen(actionT).
     state, draw, camera: finalCamera, toScreen, toAction,
     cues: sc.cues, music: sc.music, impacts: sc.impacts, slowmo: sc.slowmo, holes: sc.holes,

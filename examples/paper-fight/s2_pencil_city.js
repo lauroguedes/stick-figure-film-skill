@@ -1,4 +1,4 @@
-// SCENE 2 — "Pencil City" (22 s). Improvised and light weapons on the rooftops of a city made
+// SCENE 2: "Pencil City" (22 s). Improvised and light weapons on the rooftops of a city made
 // of stationery: pencil → staff, pipe baton + pen-nib knife, then short swords; a leap across the
 // rooftop gap, a clothesline swing, a pencil tower sliced through, the fall into the alley and
 // the blow that splits the alley floor.
@@ -42,9 +42,9 @@ const S = createScene({ id: 's2', title: 'Pencil City', duration: 22, page: PAGE
 const r1 = (ks) => ks.map((k) => ({ y: H1, ...k }));
 const r2 = (ks) => ks.map((k) => ({ y: H2, ...k }));
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 const A1 = r1([
-  // 0:00 — tumbles out of the sky after the page turn, lands and skids
+  // 0:00: tumbles out of the sky after the page turn, lands and skids
   { t: 0, x: 395, y: 1240, face: 1, p: 'aTuck', spin: 40 },
   ...flight(0, 0.56, [395, 1240], [575, H1], 3000, [
     [0.18, { p: 'aTuck', spin: 170 }],
@@ -56,7 +56,7 @@ const A1 = r1([
   { t: 1.12, p: 'aStance', x: 606 },
   { t: 1.28, p: 'aStance', hip: [-4, 96], hF: [40, 2] },
   { t: 1.42, p: 'aStance', hip: [-4, 88] },
-  // B is coming — glances back at the pencil antenna and snatches it
+  // B is coming: glances back at the pencil antenna and snatches it
   { t: 1.54, p: 'aStance', hip: [-10, 90], lean: -6, tilt: -20, hF: [30, 4], hB: [-20, -10] },
   { t: 1.66, x: 596, face: -1, hip: [10, 72], lean: 26, hFw: [541, H1 + 104], hB: [-20, -36], fF: [-32, 0], fB: [30, 0], e: 'out' },
   { t: 1.76, hip: [14, 66], lean: 30, hFw: [541, H1 + 104], hB: [-24, -30], fF: [-32, 0], fB: [30, 0] },
@@ -104,7 +104,7 @@ const A1 = r1([
   { t: 5.5, x: 790, hip: [10, 84], lean: 22, hF: [60, 6], hB: [20, -10], fF: [40, 0], fB: [-38, 0], e: 'snap' },
   { t: 5.56, same: true },
   { t: 5.7, x: 784, p: 'guard2', hip: [-8, 86] },
-  // raises the staff against the overhead smash — and it snaps
+  // raises the staff against the overhead smash: and it snaps
   { t: 5.86, x: 780, p: 'parryHigh', e: 'out' },
   { t: 5.95, x: 776, p: 'parryHigh', hip: [-8, 66], e: 'in' },
   { t: 6.03, x: 768, hip: [-12, 58], lean: -10, hF: [54, 20], hB: [-34, 30], fF: [32, 0], fB: [-34, 0], slide: true, e: 'snap' },
@@ -136,7 +136,7 @@ const A1 = r1([
   { t: 8.42, p: 'guard1', x: 490 },
 ]);
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const B1 = r1([
   { t: 0, x: 660, y: 1330, face: 1, hip: [0, 70], lean: 50, hF: [50, 20], hB: [-40, 30], fF: [40, 30], fB: [-50, 30] },
   ...flight(0, 0.66, [660, 1330], [880, H1], 3000, [
@@ -176,7 +176,7 @@ const B1 = r1([
     [3.44, { p: 'flyBack' }],
   ], { hip: [-16, 40], lean: -24, hF: [-30, -50], hB: [-44, -20], fF: [50, 0], fB: [20, 0] }),
   { t: 3.62, same: true },
-  // his hands find the pipe and the pen nib behind him — tears them loose
+  // his hands find the pipe and the pen nib behind him: tears them loose
   { t: 3.74, x: 966, hip: [-14, 44], lean: -18, tilt: 16, hFw: [965, H1 + 89], hBw: [1012, H1 + 61], fF: [50, 0], fB: [16, 0] },
   { t: 3.84, same: true },
   { t: 3.96, x: 960, hip: [0, 80], lean: 14, hF: [20, 30], hB: [-40, -10], fF: [44, 0], fB: [-40, 0], e: 'snap' },
@@ -258,7 +258,7 @@ const A2 = [...r1([
   { t: 11.36, hip: [-10, 44], lean: 18, hF: [10, -30], hB: [-10, -40], fF: [36, 0], fB: [-34, 0] },
   { t: 11.44, x: 906, hip: [10, 90], lean: 16, hF: [58, 36], hB: [-24, -10], fF: [40, 0], fB: [-36, 0], e: 'snap' },
   { t: 11.5, same: true },
-  // bind — shoved back — blocks the big backhand, skids
+  // bind (shoved back) blocks the big backhand, skids
   { t: 11.62, x: 900, hip: [-10, 80], lean: -10, hF: [44, 34], hB: [20, 20], fF: [36, 0], fB: [-36, 0], e: 'in' },
   { t: 11.76, x: 850, hip: [-12, 74], lean: -4, hF: [40, 20], hB: [0, -10], fF: [34, 0], fB: [-34, 0], slide: true, e: 'out' },
   { t: 11.88, x: 846, p: 'guard1', hip: [-8, 84] },
@@ -318,7 +318,7 @@ const B2 = [...r1([
   { t: 9.2, same: true },
   { t: 9.36, x: 838, p: 'bStance', hF: [36, 4], hB: [0, -30] },
   { t: 9.6, x: 840, p: 'bStance', hip: [-6, 82], lean: 8, hF: [40, 20], hB: [0, -30] },
-  // baton up — sheared in half
+  // baton up: sheared in half
   { t: 9.8, x: 844, hip: [-8, 84], lean: 4, hF: [44, 36], hB: [-6, -30], fF: [46, 0], fB: [-46, 0] },
   { t: 9.88, x: 852, hip: [-14, 78], lean: -8, hF: [46, 30], hB: [-10, -30], fF: [46, 0], fB: [-46, 0], e: 'snap' },
   { t: 9.94, same: true },
@@ -332,7 +332,7 @@ const B2 = [...r1([
   { t: 10.58, hip: [-8, 80], lean: -2, hFw: [1031, H1 + 178], hB: [-30, -20], fF: [46, 0], fB: [-44, 0] },
   { t: 10.66, x: 1096, hip: [-10, 84], lean: -10, hF: [10, 60], hB: [-30, -10], fF: [46, 0], fB: [-44, 0], e: 'snap' },
   { t: 10.76, x: 1090, p: 'bStance', hF: [40, 10], hB: [0, -34] },
-  // overhead — low parry — head-high cut — blocks the rising cut
+  // overhead: low parry: head-high cut: blocks the rising cut
   { t: 10.82, x: 1086, hip: [-10, 86], lean: -8, hF: [0, 70], hB: [-20, -20], fF: [46, 0], fB: [-46, 0] },
   { t: 10.92, x: 1074, hip: [12, 76], lean: 32, hF: [70, 44], hB: [-20, -30], fF: [56, 0], fB: [-46, 0], e: 'snap' },
   { t: 10.98, same: true },
@@ -384,7 +384,7 @@ const B2 = [...r1([
 ];
 
 const A3 = [
-  // B goes over the edge — A springs after him, cuts down at him in mid-air, lands on the far wall
+  // B goes over the edge: A springs after him, cuts down at him in mid-air, lands on the far wall
   { t: 15.36, x: 1608, y: H2, hip: [4, 70], lean: 34, hF: [60, 20], hB: [30, 0], fF: [44, 0], fB: [-46, 0] },
   { t: 15.42, x: 1640, y: H2, hip: [10, 84], lean: 26, hF: [10, 60], hB: [-20, 30], fF: [30, 0], fB: [-44, 0], e: 'in' },
   ...flight(15.42, 16.0, [1640, H2], [2096, 190], 3600, [
@@ -426,7 +426,7 @@ const A3 = [
   { t: 18.7, x: 1800, hip: [-12, 62], lean: 10, tilt: 20, hF: [30, -30], hB: [-30, -10], fF: [34, 0], fB: [-20, 0] },
   { t: 18.92, x: 1800, hip: [-10, 70], lean: 0, tilt: -30, hF: [34, 0], hB: [-30, 0], fF: [34, 0], fB: [-20, 0] },
   { t: 19.0, x: 1800, hip: [4, 50], lean: 36, hF: [40, -30], hB: [-20, -40], fF: [34, 0], fB: [-24, 0] },
-  // springs straight up the wall behind him — the blow lands under his feet — then off the wall and over B
+  // springs straight up the wall behind him (the blow lands under his feet) then off the wall and over B
   { t: 19.06, x: 1800, hip: [6, 78], lean: 14, hF: [30, 40], hB: [-20, 30], fF: [30, 0], fB: [-30, 0], e: 'in' },
   ...flight(19.06, 19.2, [1800, 0], [1806, 232], 3000, [], { hip: [-4, 44], lean: 34, bend: 8, hF: [30, -20], hB: [-34, 6], fFw: [1764, 230], fBw: [1764, 276] }),
   { t: 19.3, x: 1808, y: 232, hip: [-8, 40], lean: 40, bend: 10, hF: [26, -26], hB: [-36, 0], fFw: [1764, 230], fBw: [1764, 276] },
@@ -436,7 +436,7 @@ const A3 = [
   ], { hip: [0, 50], lean: 30, bend: 8, hF: [36, -30], hB: [-12, -50], fF: [32, 0], fB: [-32, 0] }),
   { t: 19.8, x: 2094, face: -1, hip: [0, 84], lean: 6, hF: [36, 0], hB: [-10, -24], fF: [-32, 0], fB: [30, 0] },
   { t: 19.9, x: 2092, hip: [-4, 78], lean: 10, tilt: 24, hF: [38, -6], hB: [-10, -20], fF: [-32, 0], fB: [30, 0] },
-  // on the cracking floor: cut, parry, cut — shoved back
+  // on the cracking floor: cut, parry, cut: shoved back
   { t: 20.0, x: 2080, hip: [-6, 84], lean: -4, hF: [0, 46], hB: [-10, -20], fF: [30, 0], fB: [-30, 0] },
   { t: 20.08, x: 2076, hip: [12, 84], lean: 24, hF: [66, 14], hB: [-24, -20], fF: [44, 0], fB: [-40, 0], e: 'snap' },
   { t: 20.14, same: true },
@@ -480,7 +480,7 @@ const B3 = [
   { t: 16.56, same: true },
   { t: 16.7, x: 1836, hip: [-10, 80], lean: -4, hF: [40, 10], hB: [-10, -24], fF: [48, 0], fB: [-46, 0], e: 'snap' },
   { t: 16.76, same: true },
-  // big cut — A is gone, the tip rakes the wall
+  // big cut: A is gone, the tip rakes the wall
   { t: 16.82, x: 1846, hip: [-14, 80], lean: -10, hF: [-30, 30], hB: [30, 0], fF: [48, 0], fB: [-46, 0] },
   { t: 16.94, x: 1896, hip: [18, 76], lean: 32, hF: [84, 0], hB: [-36, -10], fF: [60, 0], fB: [-50, 0], e: 'snap' },
   { t: 17.0, same: true },
@@ -973,7 +973,7 @@ const hit = (t, x, h, size, sound, weight, o = {}) => S.hit({ t, x, h, size, sou
 const wh = (t, x, size = 'm', o = {}) => S.whoosh({ t, x, size, ...o });
 const cue = (t, type, x, o = {}) => S.cue({ t, type, x, ...o });
 
-// 0:00 — out of the sky
+// 0:00: out of the sky
 cue(0.02, 'whoosh', 500, { size: 'l', dur: 0.5 });
 cue(0.1, 'crumble', 600, { dur: 1.0, gain: 0.7 });
 S.land({ t: 0.56, x: 575, h: H1, weight: 0.5 });

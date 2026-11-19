@@ -1,4 +1,4 @@
-// SCENE 1 — "The First Clash" (20 s, unarmed). Blank notebook arena, brick wall at stage right.
+// SCENE 1: "The First Clash" (20 s, unarmed). Blank notebook arena, brick wall at stage right.
 //
 // 0 → 9.45 s is the approved proof of concept, ported verbatim from ref_poc.js (raw S.fx / S.cue /
 // S.shake lists). 9.45 → 20 s is new: A's five-hit combination, B catching a kick and slamming A
@@ -33,12 +33,12 @@ const POSES2 = {
 const S = createScene({ id: 's1', title: 'The First Clash', duration: 20, poses: POSES2 });
 
 // ═════════════════════════════════════════════════════════════════════════════
-// PART 1 — 0 → 9.45 s, ported unchanged from ref_poc.js
+// PART 1: 0 → 9.45 s, ported unchanged from ref_poc.js
 // ═════════════════════════════════════════════════════════════════════════════
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 const A_KEYS = [
-  // 0:00 — drawn onto the page, standing
+  // 0:00: drawn onto the page, standing
   { t: 0.0, p: 'stand', x: 820, face: 1, reveal: 0 },
   { t: 0.15, p: 'stand', reveal: 0 },
   { t: 0.8, p: 'stand', reveal: 1, e: 'lin' },
@@ -54,7 +54,7 @@ const A_KEYS = [
   { t: 2.54, p: 'aStance', hip: [-4, 95], hF: [40, 2] },
   { t: 2.72, p: 'aStance', hip: [-4, 88] },
   { t: 2.9, p: 'aStance', hip: [-4, 94] },
-  // 0:03 — reads the dash, slips low and slides under the punch
+  // 0:03: reads the dash, slips low and slides under the punch
   { t: 3.08, p: 'aStance', hip: [-10, 90], lean: -3, hF: [34, 6], hB: [18, -6] },
   { t: 3.2, x: 832, hip: [2, 62], lean: 34, bend: 10, hF: [30, -10], hB: [8, -22], fF: [42, 0], fB: [-30, 0], e: 'in' },
   { t: 3.34, x: 905, hip: [-10, 32], lean: 72, tilt: -40, hF: [52, 4], hB: [-34, -6], fF: [64, 0], fB: [-36, 0], kB: -1, slide: true, e: 'lin' },
@@ -99,7 +99,7 @@ const A_KEYS = [
   { t: 6.72, x: 1545, hip: [0, 80], lean: 16, hF: [30, -20], hB: [10, -30], fF: [26, 0], fB: [-30, 0] },
   { t: 6.92, x: 1548, p: 'aStance', hip: [-4, 88] },
   { t: 7.1, p: 'aStance', hip: [-8, 92], lean: -4, hF: [34, 8], hB: [18, -4] },
-  // 0:07 — slow motion: the fist comes in, he drops under it
+  // 0:07: slow motion: the fist comes in, he drops under it
   { t: 7.25, p: 'aStance', hip: [-8, 92], lean: -7, hF: [32, 10], hB: [16, -2], e: 'lin' },
   { t: 7.45, hip: [-6, 64], lean: 12, bend: 8, hF: [30, -4], hB: [14, -14], fF: [32, 0], fB: [-28, 0], e: 'lin' },
   { t: 7.7, hip: [-4, 54], lean: 20, bend: 14, tilt: -10, hF: [28, -14], hB: [12, -24], fF: [34, 0], fB: [-26, 0], e: 'lin' },
@@ -116,7 +116,7 @@ const A_KEYS = [
   ], { hip: [0, 46], lean: 32, bend: 10, hF: [22, -58], hB: [-12, -56], fF: [30, 0], fB: [-30, 0] }),
 ];
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const B_KEYS = [
   { t: 0.0, p: 'stand', x: 1140, face: -1, reveal: 0 },
   { t: 0.36, p: 'stand', reveal: 0 },
@@ -132,7 +132,7 @@ const B_KEYS = [
   // coils…
   { t: 2.86, p: 'bStance', hip: [-22, 74], lean: 2, hB: [-52, -8], hF: [30, -30] },
   { t: 3.02, p: 'bStance', hip: [-28, 68], lean: -4, hB: [-58, -2], hF: [32, -26] },
-  // 0:03 — explodes into a flying overhand
+  // 0:03: explodes into a flying overhand
   { t: 3.08, hip: [14, 74], lean: 40, hB: [-60, 6], hF: [46, -22], fF: [40, 18], fB: [-60, 0], e: 'in' },
   ...flight(3.08, 3.44, [1140, 0], [945, 0], 3000, [
     [3.2, { hip: [0, 78], lean: 56, hB: [-62, 12], hF: [52, -18], fF: [50, 30], fB: [-72, 22] }],
@@ -154,7 +154,7 @@ const B_KEYS = [
   { t: 4.7, p: 'bStance', hip: [8, 80], lean: 16, hF: [66, 40], hB: [4, -14], fF: [50, 0], fB: [-50, 0] },
   { t: 4.8, p: 'bStance', hip: [4, 80], lean: 16, hF: [36, -6], hB: [0, -16], fF: [50, 0], fB: [-50, 0] },
   { t: 4.84, p: 'bStance', hip: [-4, 80], lean: 10, tilt: -12, hF: [34, -2], hB: [-4, -14], fF: [50, 0], fB: [-50, 0], e: 'snap' },
-  // big hook — misses
+  // big hook: misses
   { t: 4.94, p: 'bStance', hip: [0, 80], lean: 14, hF: [30, -10], hB: [-44, 18], fF: [50, 0], fB: [-50, 0] },
   { t: 5.03, p: 'bStance', hip: [-6, 80], lean: 8, hF: [34, -10], hB: [-56, 22], fF: [50, 0], fB: [-50, 0] },
   { t: 5.12, p: 'bStance', hip: [8, 80], lean: 26, hF: [10, -20], hB: [82, 24], fF: [50, 0], fB: [-50, 0], e: 'snap' },
@@ -182,7 +182,7 @@ const B_KEYS = [
   { t: 6.88, x: 1345, p: 'bRun2', hop: 12, e: 'lin' },
   { t: 6.98, x: 1395, hip: [-10, 76], lean: 10, hB: [-66, 22], hF: [40, -10], fF: [60, 0], fB: [-58, 0], hop: 6, e: 'lin' },
   { t: 7.1, x: 1408, hip: [-4, 78], lean: 14, hB: [-66, 26], hF: [44, -6], fF: [52, 0], fB: [-58, 0] },
-  // 0:07 — the punch, in slow motion: a long lunge carries the fist past A's head
+  // 0:07: the punch, in slow motion: a long lunge carries the fist past A's head
   { t: 7.25, x: 1385, hip: [16, 78], lean: 30, hB: [44, 16], hF: [20, -30], fFw: [1491, 0], fB: [-60, 0], e: 'in' },
   { t: 7.45, x: 1396, hip: [18, 78], lean: 33, hB: [50, 14], hF: [10, -34], fFw: [1491, 0], fB: [-62, 0], e: 'lin' },
   { t: 7.6, x: 1404, hip: [18, 78], lean: 35, hB: [58, 14], hF: [4, -36], fFw: [1491, 0], fB: [-64, 0], e: 'lin' },
@@ -201,7 +201,7 @@ const B_KEYS = [
 ];
 
 // ═════════════════════════════════════════════════════════════════════════════
-// PART 2 — 9.45 → 20 s, new material
+// PART 2: 9.45 → 20 s, new material
 // ═════════════════════════════════════════════════════════════════════════════
 
 const off = (p, dx, dy) => [p[0] + dx, p[1] + dy];
@@ -318,7 +318,7 @@ const A_NEW = [
     [14.66, { p: 'hTuck', spin: -250 }],
     [14.77, { p: 'hLand', lean: 10, hF: [34, 26], hB: [-30, 24], fF: [14, -86], fB: [-12, -78], spin: -340 }],
   ], { p: 'hLand', spin: -360 }),
-  // flying kick — B takes it on crossed arms; A springs off them
+  // flying kick: B takes it on crossed arms; A springs off them
   { t: 14.94, x: 862, hip: [-6, 60], lean: 24, hF: [24, -40], hB: [-16, -44], fF: [30, 0], fB: [-30, 0] },
   { t: 15.0, x: 878, hip: [8, 88], lean: 20, hF: [30, 30], hB: [10, 40], fF: [24, 0], fB: [-36, 0], e: 'in' },
   ...flight(15.0, 15.2, [886, 84], [954, 132], 3000, [
@@ -328,7 +328,7 @@ const A_NEW = [
   ...flight(15.26, 15.5, [954, 132], [864, 44], 3600, [
     [15.38, { hip: [0, 0], lean: 6, hF: [34, 26], hB: [-30, 24], fF: [20, -70], fB: [-10, -84] }],
   ], { p: 'hLand' }),
-  // third time: a flying punch — it lands, and B simply plucks him out of the air and holds him
+  // third time: a flying punch: it lands, and B simply plucks him out of the air and holds him
   // off the ground at arm's length. A kicks him in the face twice; B does not let go.
   { t: 15.56, x: 868, hip: [8, 66], lean: 32, hF: [20, -30], hB: [-40, -10], fF: [30, 0], fB: [-36, 0] },
   { t: 15.62, x: 884, hip: [10, 88], lean: 26, hF: [30, 10], hB: [-50, 20], fF: [20, 0], fB: [-40, 0], e: 'in' },
@@ -371,7 +371,7 @@ const A_NEW = [
   // caught by the wrist: his own speed swings him under B's fist, and he is hoisted off the page
   byWrist(18.22, WRIST[18.22], 224, { D: 126, lean: -14, bend: 10, hB: [30, 10], fF: [40, -78], fB: [14, -94] }),
   byWrist(18.3, WRIST[18.3], 250, { D: 128, lean: -8, hB: [26, -20], fFw: (q) => off(q.B.kF, -8, 8), fB: [-4, -96], e: 'out', er: 'out' }),
-  // dangling — braces a foot on B's knee to hold himself off, claws at the fist; B looks at the wall
+  // dangling: braces a foot on B's knee to hold himself off, claws at the fist; B looks at the wall
   byWrist(18.38, WRIST[18.38], 247, { D: 128, lean: -4, hBw: (q) => off(q.B.hF, -8, -6), fFw: (q) => off(q.B.kF, -8, 8), fB: [-26, -84], e: 'io', er: 'io' }),
   byWrist(18.46, WRIST[18.46], 251, { D: 128, lean: -8, hBw: (q) => off(q.B.hF, -8, -6), fFw: (q) => off(q.B.kF, -8, 8), fB: [10, -94], e: 'io', er: 'io' }),
   // drawn back like a hammer…
@@ -407,7 +407,7 @@ const B_NEW = [
   { t: 10.14, x: 1490, hip: [-24, 76], lean: 18, bend: 24, tilt: 16, hF: [32, -44], hB: [20, -40], fF: [46, 0], fB: [-46, 0], e: 'snap' },
   { t: 10.19, same: true },
   { t: 10.3, x: 1500, hip: [-18, 72], lean: 28, bend: 20, tilt: 12, hF: [28, -42], hB: [8, -46], fF: [44, 0], fB: [-46, 0], slide: true, e: 'out' },
-  // comes back at him — and steps straight onto the low kick
+  // comes back at him: and steps straight onto the low kick
   { t: 10.38, hip: [4, 80], lean: 22, tilt: -12, hF: [54, -2], hB: [-30, -4], fF: [58, 0], fB: [-46, 0] },
   // 3 · the leg goes from under him: down on one knee, a hand on the page
   { t: 10.42, hip: [2, 66], lean: 30, tilt: 4, hF: [46, -30], hB: [-26, -28], fF: [34, 0], fB: [-46, 0], slide: true, e: 'snap' },
@@ -452,7 +452,7 @@ const B_NEW = [
   { t: 13.76, x: 1136, hip: [0, 84], lean: 22, bend: 8, hF: [30, -26], hB: [-24, -34], fF: [-39, 0], fB: [39, 0], hop: 5 },
   { t: 13.91, x: 1050, hip: [0, 84], lean: 22, bend: 8, hF: [-24, -34], hB: [30, -26], fF: [39, 0], fB: [-39, 0], hop: 5 },
   { t: 14.04, x: 1046, hip: [0, 82], lean: 18, bend: 8, hF: [34, -20], hB: [-30, -10], fF: [36, 0], fB: [-46, 0] },
-  // big hook — A is already under it and climbing
+  // big hook: A is already under it and climbing
   { t: 14.13, hip: [-10, 82], lean: 2, hB: [-58, 20], hF: [34, -10], fF: [44, 0], fB: [-46, 0] },
   { t: 14.22, hip: [8, 80], lean: 26, hB: [84, 22], hF: [10, -20], fF: [44, 0], fB: [-46, 0], e: 'snap' },
   { t: 14.27, hip: [8, 78], lean: 24, hB: [50, -30], hF: [-6, -30], fF: [44, 0], fB: [-46, 0] },
@@ -893,11 +893,11 @@ const wall = makeBrickWall({ x0: WALL_X, x1: 2300, rows: 10, seed: 300 })
   .smash(T_WALL_HIT, WALL_X, -146, 118, { dir: -1 })
   .bruise(T_WALL_HIT, WALL_X, -146, 340)
   .crack(T_WALL_HIT, WALL_X + 4, -146, [{ a: -74 }, { a: -46, len: 1.2 }, { a: -18, len: 1.3 }, { a: 8, len: 1.1 }, { a: 36, len: 1.2 }, { a: 64 }], { seed: 71 })
-  // 19.08 — A is thrown in at the old hole and tunnels through, the brickwork bursting ahead of him
+  // 19.08: A is thrown in at the old hole and tunnels through, the brickwork bursting ahead of him
   .smash(T_THROUGH, 1640, -182, 146, { dir: 1 })
   .smash(19.2, 1790, -208, 136, { dir: 1 })
   .smash(19.34, 1920, -218, 136, { dir: 1 })
-  // 19.42 — B hits it shoulder first, and the rest comes apart from left to right. A ragged
+  // 19.42: B hits it shoulder first, and the rest comes apart from left to right. A ragged
   // stump (the bottom course and a few bricks of the second) is left standing.
   .smash(T_BARREL, 1690, -150, 122, { dir: 1 })
   .collapse(T_BARREL + 0.02, (b) => !inStump(b) && b.cx < 1900, { dir: 1 })
@@ -908,7 +908,7 @@ const wall = makeBrickWall({ x0: WALL_X, x1: 2300, rows: 10, seed: 300 })
   .smash(19.76, 2290, -196, 140, { dir: 1 });
 
 // Engine work-around: makeBrickWall retargets every brick that would land inside the wall's own
-// footprint onto a 120-unit strip beside it — right for a hole, wrong when the whole wall goes
+// footprint onto a 120-unit strip beside it: right for a hole, wrong when the whole wall goes
 // (it funnels the explosion into a neat heap). The final burst gets real outward velocities and
 // a little less gravity instead, so the last frame is a cloud of brick still spreading.
 for (const p of wall._debris().pieces) {

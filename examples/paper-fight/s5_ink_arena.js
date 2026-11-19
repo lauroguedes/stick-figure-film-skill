@@ -1,4 +1,4 @@
-// SCENE 5 — FINAL INK ARENA (25 s). Massive ink-forged weapons, total destruction, white-out.
+// SCENE 5: FINAL INK ARENA (25 s). Massive ink-forged weapons, total destruction, white-out.
 //
 // Stage (world x): toppling pillar at 610 · opening stand-off 815 ↔ 1395 · ruined arch 1490–1930
 // (legs at 1532 and 1888) · tall broken pillar at 2410 · ink splash-down at 2250 · last clash 1590.
@@ -43,7 +43,7 @@ const surgeY = (t) => Math.max(0, surgeH(t) - 14);
 const surgeH = (t) => 205 * smooth(T_SPLASH + 0.05, 8.52, t) * (1 - smooth(9.5, 9.78, t));
 
 const S = createScene({ id: 's5', title: 'Final Ink Arena', duration: 25, page: false });
-let scene = null;                       // set after build — hooks may sample scene.state(t)
+let scene = null;                       // set after build: hooks may sample scene.state(t)
 
 // ═════════════════════════════════════════════════════════════════════════════
 // CHOREOGRAPHY
@@ -53,28 +53,28 @@ const SW = 1.65;   // greatsword scale once it is ink (hand → tip ≈ 445)
 const HM = 1.9;    // hammer scale (hand → head end ≈ 285 at g 0.3)
 const pt = (o, ang, s) => [o[0] + Math.cos(ang * DEG) * s, o[1] + Math.sin(ang * DEG) * s];
 
-// — the blade catch (4.44–5.08): A's hand and B's two palms are pinned to one line —
+//: the blade catch (4.44–5.08): A's hand and B's two palms are pinned to one line:
 const H1 = [1302, 142], H2 = [1311, 127], H3 = [1366, 180];
 const CATCH = (H, ang) => ({ hFw: pt(H, ang, 262), hBw: pt(H, ang, 240) });
 
 const A_KEYS = [
-  // 0:00 — locked blade-to-shaft inside the ink that swallowed them
+  // 0:00: locked blade-to-shaft inside the ink that swallowed them
   { t: 0, x: 1025, face: 1, hip: [8, 82], lean: 22, bend: 6, hF: [44, 22], hB: [30, 6], fF: [36, 0], fB: [-46, 0] },
   { t: 0.3, x: 1019, hip: [2, 80], lean: 16, bend: 8, hF: [40, 26], hB: [28, 8], fF: [36, 0], fB: [-46, 0] },
   { t: 0.6, x: 1027, hip: [12, 80], lean: 27, bend: 6, hF: [46, 20], hB: [30, 6], fF: [36, 0], fB: [-46, 0] },
-  // shove — both skid apart
+  // shove: both skid apart
   { t: 0.68, x: 1012, hip: [-10, 86], lean: -8, hF: [54, 30], hB: [30, 10], fF: [30, 0], fB: [-40, 0], e: 'snap' },
   { t: 0.86, x: 850, hip: [-14, 68], lean: 16, hF: [32, -8], hB: [10, -20], fF: [46, 0], fB: [-50, 0], slide: true, e: 'out' },
   { t: 1.02, x: 815, hip: [-8, 74], lean: 20, hF: [34, -30], hB: [10, -34], fF: [44, 0], fB: [-46, 0], slide: true, e: 'out' },
   // drives the point down into the pool; the ink climbs the blade
   { t: 1.2, hip: [-2, 78], lean: 14, bend: 6, tilt: 14, hF: [34, 34], hB: [20, 18], fF: [44, 0], fB: [-46, 0], e: 'in' },
   { t: 1.4, hip: [-2, 76], lean: 17, bend: 6, tilt: 20, hF: [34, 32], hB: [20, 16], fF: [44, 0], fB: [-46, 0] },
-  // lightning — and he rips out a sword twice his size
+  // lightning: and he rips out a sword twice his size
   { t: 1.46, hip: [-4, 78], lean: 12, tilt: 0, hF: [34, 30], hB: [20, 14], fF: [44, 0], fB: [-46, 0] },
   { t: 1.56, hip: [-10, 86], lean: 0, hF: [30, 16], hB: [12, 0], fF: [42, 0], fB: [-44, 0], e: 'in' },
   { t: 1.7, hip: [-14, 94], lean: -10, tilt: -8, hF: [12, 34], hB: [0, 20], fF: [40, 0], fB: [-42, 0], e: 'out' },
   { t: 1.88, hip: [-6, 84], lean: 8, hF: [30, 4], hB: [10, -10], fF: [40, 0], fB: [-42, 0] },
-  // sees the hammer come down — stands the sword on its pommel like a post and gets behind it
+  // sees the hammer come down: stands the sword on its pommel like a post and gets behind it
   { t: 2.06, hip: [-10, 86], lean: -4, tilt: 12, hF: [20, 30], hB: [6, 12], fF: [38, 0], fB: [-40, 0] },
   { t: 2.2, x: 838, hip: [0, 92], lean: 4, hF: [30, 40], hB: [16, 18], fF: [36, 0], fB: [-36, 0] },
   { t: 2.34, x: 850, hip: [-4, 78], lean: 12, hFw: [890, 138], hB: [30, -30], fF: [44, 0], fB: [-50, 0], e: 'in' },
@@ -86,7 +86,7 @@ const A_KEYS = [
   // tears it free; its weight swings it up and over behind him
   { t: 2.96, x: 790, hip: [-18, 80], lean: -16, hF: [0, 50], hB: [-10, 34], fF: [36, 0], fB: [-44, 0] },
   { t: 3.08, x: 786, hip: [-10, 68], lean: 6, hF: [-36, 4], hB: [-30, -14], fF: [34, 0], fB: [-40, 0] },
-  // sees the hammer coming round — throws himself down against the pillar
+  // sees the hammer coming round: throws himself down against the pillar
   { t: 3.2, x: 778, hip: [4, 56], lean: 30, tilt: -30, hF: [-34, -20], hB: [-20, -30], fF: [30, 0], fB: [-36, 0] },
   { t: 3.32, x: 770, hip: [0, 40], lean: 56, bend: 12, tilt: -26, hF: [-30, -30], hB: [10, -10], fF: [34, 0], fB: [-36, 0], kB: -1, e: 'out' },
   { t: 3.4, hip: [0, 37], lean: 60, bend: 14, tilt: -10, hF: [-30, -28], hB: [16, -2], fF: [34, 0], fB: [-36, 0], kB: -1 },
@@ -110,7 +110,7 @@ const A_KEYS = [
   // caught. He leans everything he has on it
   { t: 4.66, hip: [16, 74], lean: 33, hFw: H1, hB: [40, 0], fF: [48, 0], fB: [-50, 0] },
   { t: 4.8, hip: [20, 70], lean: 38, hFw: H1, hB: [40, 0], fF: [48, 0], fB: [-56, 0] },
-  // B wrenches the blade down past his hip — A is dragged in…
+  // B wrenches the blade down past his hip: A is dragged in…
   { t: 4.96, x: 1380, hip: [22, 62], lean: 46, tilt: -20, hFw: H2, hB: [40, 0], fF: [50, 0], fB: [-52, 0] },
   // …and rammed back off his feet
   { t: 5.08, x: 1400, y: 10, hip: [-10, 84], lean: -12, tilt: -24, hFw: H3, hB: [40, 0], fF: [30, 0], fB: [-18, 8], e: 'snap' },
@@ -127,7 +127,7 @@ const A_KEYS = [
   { t: 6.5, x: 1764, hip: [-8, 86], lean: 4, hF: [32, 10], hB: [12, -6], fF: [30, 0], fB: [-34, 0] },
   { t: 6.66, x: 1800, hip: [-16, 82], lean: -14, tilt: -10, hF: [30, 22], hB: [14, 6], fF: [30, 0], fB: [-36, 0], e: 'out' },
   { t: 6.74, hip: [-18, 78], lean: -18, tilt: -30, hF: [24, 30], hB: [10, 12], fF: [30, 0], fB: [-36, 0] },
-  // the arch is coming down on him — blade to the floor, then straight up through it
+  // the arch is coming down on him: blade to the floor, then straight up through it
   { t: 6.88, hip: [-6, 68], lean: 12, tilt: -44, hF: [40, -32], hB: [20, -36], fF: [34, 0], fB: [-36, 0] },
   { t: 7.0, hip: [-12, 58], lean: 22, tilt: -40, hF: [32, -42], hB: [14, -44], fF: [36, 0], fB: [-38, 0] },
   { t: 7.1, hip: [6, 94], lean: -6, tilt: -10, hF: [18, 72], hB: [6, 56], fF: [34, 0], fB: [-34, 0], e: 'snap' },
@@ -136,7 +136,7 @@ const A_KEYS = [
   { t: 7.28, x: 1808, hip: [-10, 88], lean: -24, hF: [-30, 58], hB: [-36, 40], fF: [30, 0], fB: [-36, 0] },
   { t: 7.4, x: 1822, hip: [-20, 74], lean: -30, hF: [-48, 18], hB: [-50, 0], fF: [26, 0], fB: [-42, 0] },
   { t: 7.5, x: 1824, hip: [-14, 70], lean: -10, hF: [-44, 2], hB: [-40, -16], fF: [28, 0], fB: [-42, 0] },
-  // sees the hammer coming up off the floor — gets the flat of the blade in the way
+  // sees the hammer coming up off the floor: gets the flat of the blade in the way
   { t: 7.62, hip: [-6, 82], lean: 2, tilt: 10, hF: [16, 14], hB: [10, -6], fF: [30, 0], fB: [-36, 0], e: 'out' },
   { t: 7.7, x: 1832, y: 14, hip: [-22, 80], lean: 38, bend: 22, hF: [34, 12], hB: [30, -6], fF: [44, 8], fB: [26, 2], e: 'snap' },
   { t: 7.76, same: true, x: 1836, y: 16 },
@@ -151,7 +151,7 @@ const A_KEYS = [
   { t: 8.7, x: surgeX(8.7), y: surgeY(8.7), hip: [-2, 64], lean: 22, hF: [-16, 24], hB: [-22, 6], fF: [42, 0], fB: [-44, 0], er: 'lin' },
   { t: 8.9, x: surgeX(8.9), y: surgeY(8.9), hip: [-10, 58], lean: 12, hF: [-18, 26], hB: [-24, 8], fF: [42, 0], fB: [-44, 0], er: 'lin' },
   { t: 9.06, x: surgeX(9.06), y: surgeY(9.06), hip: [-4, 62], lean: 16, hF: [-20, 36], hB: [-26, 18], fF: [42, 0], fB: [-44, 0], er: 'lin' },
-  // B's boulder — cut in two in mid-air
+  // B's boulder: cut in two in mid-air
   { t: 9.14, x: surgeX(9.14), y: surgeY(9.14), hip: [-12, 70], lean: -4, hF: [-22, 56], hB: [-28, 40], fF: [40, 0], fB: [-44, 0], er: 'lin' },
   { t: 9.2, x: surgeX(9.2), y: surgeY(9.2), hip: [8, 66], lean: 30, hF: [58, 30], hB: [36, 16], fF: [46, 0], fB: [-44, 0], e: 'snap', er: 'lin' },
   { t: 9.26, same: true, x: surgeX(9.26), y: surgeY(9.26), er: 'lin' },
@@ -178,7 +178,7 @@ const A_KEYS = [
   { t: 10.95, x: 2040, hip: [12, 78], lean: 28, hF: [54, 26], hB: [34, 10], fF: [48, 0], fB: [-46, 0], e: 'in3' },
   { t: 11.02, same: true },
   { t: 11.14, hip: [14, 76], lean: 32, hF: [52, 30], hB: [32, 14], fF: [48, 0], fB: [-46, 0] },
-  // B throws the blade up and off — its weight drags A backwards
+  // B throws the blade up and off: its weight drags A backwards
   { t: 11.26, x: 2060, hip: [-12, 84], lean: -16, tilt: -16, hF: [10, 62], hB: [0, 46], fF: [30, 0], fB: [-40, 0], e: 'snap' },
   { t: 11.4, x: 2110, hip: [-20, 76], lean: -26, hF: [-36, 40], hB: [-40, 22], fF: [28, 0], fB: [-44, 0] },
   { t: 11.52, x: 2150, hip: [-12, 72], lean: -6, hF: [-40, 4], hB: [-36, -14], fF: [30, 0], fB: [-40, 0] },
@@ -197,7 +197,7 @@ const A_KEYS = [
   { t: 12.5, y: PR_TOP, hip: [-4, 98], lean: -4, hF: [10, 66], hB: [0, 50], fF: [24, 0], fB: [-24, 0], e: 'out' },
   { t: 12.64, y: PR_TOP, hip: [-8, 60], lean: 14, hF: [-20, 56], hB: [-28, 40], fF: [26, 0], fB: [-26, 0] },
   { t: 12.74, y: PR_TOP, hip: [8, 92], lean: 16, hF: [-10, 68], hB: [-18, 52], fF: [14, 0], fB: [-30, 0], e: 'in' },
-  // plunges — B swings up to meet him
+  // plunges: B swings up to meet him
   ...flight(12.74, 13.1, [X_PR, PR_TOP], [2500, 290], 4000, [
     [12.92, { hip: [0, 84], lean: -8, hF: [-6, 72], hB: [-14, 56], fF: [16, 16], fB: [-30, 26] }],
   ], { hip: [0, 80], lean: 28, hF: [56, 36], hB: [36, 20], fF: [30, 20], fB: [-24, 30], e: 'in3' }),
@@ -213,7 +213,7 @@ const A_KEYS = [
   { t: 14.18, hip: [-12, 78], lean: 6, tilt: -10, hF: [-40, -8], hB: [-40, -22], fF: [30, 0], fB: [-36, 0], e: 'in' },
   { t: 14.3, x: 2436, p: 'run1', hF: [-44, -6], hB: [-40, -20], hop: 8, e: 'lin' },
   { t: 14.42, x: 2352, p: 'run2', hF: [-46, -4], hB: [-42, -18], hop: 8, e: 'lin' },
-  // B leaves the ground — A drops and slides straight under him, the blade skating along the floor behind
+  // B leaves the ground: A drops and slides straight under him, the blade skating along the floor behind
   { t: 14.5, x: 2290, hip: [-6, 60], lean: -10, hF: [-44, 0], hB: [-40, -14], fF: [50, 0], fB: [-30, 0] },
   { t: 14.6, x: 2150, hip: [-8, 36], lean: -34, tilt: 26, hF: [-58, -26], hB: [-50, -40], fF: [74, 6], fB: [30, 0], slide: true, e: 'lin', er: 'lin' },
   { t: 14.7, x: 2010, hip: [-8, 32], lean: -40, tilt: 26, hF: [-58, -26], hB: [-50, -40], fF: [74, 6], fB: [30, 0], slide: true, e: 'lin', er: 'lin' },
@@ -221,7 +221,7 @@ const A_KEYS = [
   { t: 14.9, x: 1760, hip: [-8, 34], lean: -36, tilt: 26, hF: [-58, -26], hB: [-50, -40], fF: [74, 6], fB: [30, 0], slide: true, e: 'lin', er: 'lin' },
   { t: 15.0, x: 1625, hip: [-6, 38], lean: -24, tilt: 14, hF: [-54, -16], hB: [-48, -30], fF: [60, 0], fB: [20, 0], slide: true, e: 'lin', er: 'lin' },
   { t: 15.1, x: 1552, hip: [-6, 50], lean: -8, hF: [-44, 6], hB: [-40, -10], fF: [44, 0], fB: [6, 0], slide: true, e: 'out', er: 'out' },
-  // comes up turning — the blade is already pointing at B's back. Draws it in…
+  // comes up turning: the blade is already pointing at B's back. Draws it in…
   { t: 15.22, x: 1516, face: 1, hip: [-8, 80], lean: 2, hF: [30, -6], hB: [10, -18], fF: [30, 0], fB: [-34, 0] },
   { t: 15.38, x: 1504, hip: [-22, 74], lean: -10, hF: [-8, -10], hB: [-24, -18], fF: [34, 0], fB: [-40, 0] },
   // …and lunges: a straight thrust
@@ -237,7 +237,7 @@ const A_KEYS = [
   { t: 16.78, x: 1710, hip: [0, 88], lean: 6, hF: [0, 68], hB: [-10, 52], fF: [40, 0], fB: [-40, 0] },
   { t: 16.9, x: 1720, hip: [12, 80], lean: 26, hF: [52, 40], hB: [30, 24], fF: [46, 0], fB: [-44, 0], e: 'snap' },
   { t: 16.98, same: true },
-  // locked — B walks him backwards across the rubble
+  // locked: B walks him backwards across the rubble
   { t: 17.14, x: 1690, hip: [6, 72], lean: 30, hF: [48, 36], hB: [28, 20], fF: [40, 0], fB: [-50, 0], slide: true, e: 'lin', er: 'lin' },
   { t: 17.3, x: 1640, hip: [2, 66], lean: 34, hF: [44, 34], hB: [24, 18], fF: [40, 0], fB: [-52, 0], slide: true, e: 'lin', er: 'lin' },
   { t: 17.42, x: 1605, hip: [0, 62], lean: 36, hF: [42, 32], hB: [22, 16], fF: [40, 0], fB: [-54, 0], slide: true, e: 'out' },
@@ -290,11 +290,11 @@ const B_KEYS = [
   { t: 1.2, hip: [0, 74], lean: 28, bend: 10, hF: [36, -54], hB: [8, -54], fF: [52, 0], fB: [-54, 0] },
   { t: 1.5, hip: [0, 73], lean: 29, bend: 11, tilt: -14, hF: [36, -54], hB: [8, -54], fF: [52, 0], fB: [-54, 0] },
   { t: 1.88, hip: [0, 72], lean: 32, bend: 12, tilt: 16, hF: [36, -55], hB: [8, -55], fF: [52, 0], fB: [-54, 0] },
-  // lightning again — he heaves up a hammer as big as he is
+  // lightning again: he heaves up a hammer as big as he is
   { t: 1.94, hip: [-2, 74], lean: 26, hF: [36, -50], hB: [8, -52], fF: [52, 0], fB: [-54, 0] },
   { t: 2.02, hip: [-10, 82], lean: 8, hF: [26, -8], hB: [0, -26], fF: [52, 0], fB: [-54, 0], e: 'in' },
   { t: 2.12, hip: [-18, 84], lean: -8, hF: [-8, 32], hB: [-30, 12], fF: [46, 0], fB: [-50, 0], e: 'out' },
-  // lets it topple forward — the head slams down between them…
+  // lets it topple forward: the head slams down between them…
   { t: 2.28, x: 1410, hip: [-10, 84], lean: 20, bend: 8, hFw: [1345, 100], hB: [20, -50], fF: [50, 0], fB: [-50, 0], e: 'in3' },
   // …and he ploughs it across the floor at A
   { t: 2.4, x: 1372, hip: [0, 82], lean: 26, bend: 8, hFw: [1306, 100], hB: [30, -52], fF: [44, 0], fB: [-56, 0], e: 'lin' },
@@ -383,7 +383,7 @@ const B_KEYS = [
   { t: 10.58, same: true },
   { t: 10.72, hip: [12, 62], lean: 46, tilt: -24, hF: [56, -36], hB: [30, -42], fF: [56, 0], fB: [-58, 0] },
   { t: 10.84, hip: [-4, 80], lean: 10, hF: [44, 4], hB: [20, -14], fF: [54, 0], fB: [-56, 0], e: 'in' },
-  // shaft up — takes the cut on it
+  // shaft up: takes the cut on it
   { t: 10.95, hip: [-10, 86], lean: -8, hF: [30, 46], hB: [8, 28], fF: [50, 0], fB: [-54, 0], e: 'snap' },
   { t: 11.02, same: true },
   { t: 11.14, hip: [-12, 76], lean: -4, hF: [28, 40], hB: [6, 22], fF: [50, 0], fB: [-56, 0] },
@@ -411,7 +411,7 @@ const B_KEYS = [
   { t: 13.66, x: 1985, hip: [0, 52], lean: 30, bend: 14, tilt: 10, hF: [-40, -34], hB: [-20, -46], fF: [40, 0], fB: [-44, 0], slide: true, e: 'out' },
   { t: 13.86, hip: [0, 56], lean: 24, bend: 10, tilt: 2, hF: [-40, -38], hB: [-20, -50], fF: [40, 0], fB: [-44, 0] },
   { t: 14.06, hip: [0, 52], lean: 32, bend: 15, tilt: 12, hF: [-40, -32], hB: [-20, -44], fF: [40, 0], fB: [-44, 0] },
-  // up again; a huge swing at the runner — over his head
+  // up again; a huge swing at the runner: over his head
   { t: 14.22, hip: [0, 66], lean: 18, hF: [-38, -16], hB: [-30, -34], fF: [44, 0], fB: [-48, 0] },
   { t: 14.36, hip: [-12, 84], lean: -8, hF: [-14, 50], hB: [-34, 28], fF: [46, 0], fB: [-50, 0] },
   // sinks… and LEAPS, the hammer hauled up behind him
@@ -741,7 +741,7 @@ S.camera([
   // locked in the ink: tight on the two of them
   { t: 0, x: 1105, y: -175, z: 1.5 },
   { t: 0.62, x: 1105, y: -170, z: 1.72, e: 'lin' },
-  { t: 1.02, x: 1105, y: -185, z: 1.3, e: 'out' },            // they skid apart — the only wide of the opening
+  { t: 1.02, x: 1105, y: -185, z: 1.3, e: 'out' },            // they skid apart: the only wide of the opening
   // A's sword drinks the ink
   { t: 1.14, x: 950, y: -105, z: 2.1, e: 'io' },
   { t: 1.42, x: 960, y: -100, z: 2.35, r: -3, e: 'lin' },
@@ -861,7 +861,7 @@ S.cue({ t: 8.4, type: 'wind', dur: 8.6, gain: 0.9 });
 S.cue({ t: 16.8, type: 'wind', dur: 6.5, gain: 1.0 });
 S.cue({ t: 0.05, type: 'rumble', dur: 1.4, x: 1105 });
 
-// 0:00 — the ink parts; they shove apart
+// 0:00: the ink parts; they shove apart
 S.cue({ t: 0.5, type: 'inksplash', weight: 0.9, x: 1105 });
 S.hit({ t: 0.64, x: 1085, h: 180, size: 0.9, sound: 'clang', weight: 0.6 });
 S.skid({ t0: 0.68, t1: 1.02, x0: 1010, x1: 780 });
@@ -967,7 +967,7 @@ S.cue({ t: T_ARCH2 + 0.08, type: 'crumble', dur: 1.0, x: 1900 });
 S.fx({ t: T_ARCH2, type: 'dust', x: 1900, h: 150, n: 9, size: 1.3, dir: 1 });
 S.fx({ t: 8.3, type: 'dust', x: 1900, n: 8, size: 1.2 });
 S.cue({ t: 8.3, type: 'thud', weight: 0.7, x: 1900 });
-// into deep ink — and back in on the surge
+// into deep ink: and back in on the surge
 S.cue({ t: T_SPLASH, type: 'inksplash', weight: 1, x: 2400 });
 S.shake(T_SPLASH, 16, 0.3);
 S.fx({ t: T_SPLASH, type: 'splash', x: 2400, h: 10, n: 28, size: 1.9, dir: 0 });
@@ -991,7 +991,7 @@ S.fx({ t: T_SURGE + 0.06, type: 'splash', x: 1800, h: 40, n: 26, size: 1.8, dir:
 S.fx({ t: T_SURGE + 0.1, type: 'splash', x: 1680, h: 30, n: 18, size: 1.5, dir: -1 });
 S.cue({ t: 9.7, type: 'thud', weight: 0.5, x: 2060 });
 S.land({ t: 9.8, x: 1800, weight: 0.5 });
-// 0:10 — the duel
+// 0:10: the duel
 S.hit({ t: 10.0, x: 1800, h: 191, size: 0.9, sound: 'block', weight: 0.7 });
 S.skid({ t0: 10.0, t1: 10.14, x0: 1830, x1: 1930 });
 S.whoosh({ t: 10.22, x: 1700, size: 'l', heavy: true });
@@ -1095,7 +1095,7 @@ S.fx({ t: 18.42, type: 'dust', x: 2360, n: 5, size: 0.9 });
 S.musicHint(T_MEGA + 0.15, 19.3, 'aftermath');
 S.cue({ t: 18.62, type: 'heartbeat' });
 S.cue({ t: 19.1, type: 'heartbeat' });
-// 0:19 — the last clash
+// 0:19: the last clash
 S.cue({ t: 19.25, type: 'rumble', dur: 2.2, x: 1750 });
 S.cue({ t: 19.3, type: 'draw', dur: 0.7, x: 1400 });
 S.cue({ t: 19.45, type: 'draw', dur: 0.7, x: 2100 });
@@ -1317,13 +1317,13 @@ function topple(list, t, px, py, dir, T, drop = 0) {
   });
 }
 
-// — the left pillar: B's hammer knocks a drum out at T_PILLAR, the rest falls like a tree —
+//: the left pillar: B's hammer knocks a drum out at T_PILLAR, the rest falls like a tree:
 const PL = column(X_PL, { seed: 410, n: 5 });
 blast(PL.drums[1], T_PILLAR, -620, -260, -7, { front: true });
 chips(T_PILLAR, X_PL, -166, 7, -520, -300, 430);
 topple([PL.drums[2], PL.drums[3], PL.drums[4], PL.top], T_PILLAR + 0.02, X_PL - 46, -122, -1, T_PILLAR_DOWN - T_PILLAR - 0.02, 88);
 
-// — set dressing on the far left: a stump and a leaning column —
+//: set dressing on the far left: a stump and a leaning column:
 const STUMP = column(190, { seed: 450, n: 1, cap: false, broken: true });
 stone({ kind: 'drum', x: 300, y: -46, w: 92, h: 88, rot: Math.PI / 2 + 0.1, seed: 461 });
 for (let i = 0; i < 5; i++) {
@@ -1331,7 +1331,7 @@ for (let i = 0; i < 5; i++) {
   stone({ kind: i === 4 ? 'cap' : 'drum', x: -60 + Math.sin(a) * (44 + i * 88) * -1, y: -(44 + i * 88) * Math.cos(a), w: i === 4 ? 126 : 92, h: i === 4 ? 40 : 88, rot: a, seed: 470 + i, drip: i > 2 ? 3 : 0 });
 }
 
-// — the arch —
+//: the arch:
 const LEG_L = column(ARCH.xl, { seed: 500, n: 3, dh: 100, ph: 30, w: ARCH.w, cap: false });
 const LEG_R = column(ARCH.xr, { seed: 520, n: 3, dh: 100, ph: 30, w: ARCH.w, cap: false });
 const RING = [];
@@ -1362,19 +1362,19 @@ blast(LEG_R.drums[2], T_ARCH2 + 0.05, 240, -120, 3);
 chips(T_ARCH2, ARCH.xr, -180, 9, 520, -280, 580, { front: true });
 RING.forEach((p, i) => { if (i > 4) blast(p, T_ARCH2 + 0.06 + (8 - i) * 0.05, 120 + (i - 5) * 60, -40, (i - 6.5) * 1.3 + 2); });
 
-// — the tall right pillar: A lands on top of it; the aerial clash topples it —
+//: the tall right pillar: A lands on top of it; the aerial clash topples it:
 const PR = column(X_PR, { seed: 600, n: 4, w: 96, cap: false, broken: true });
 topple([PR.drums[1], PR.drums[2], PR.drums[3], PR.top], T_AIR + 0.03, X_PR + 48, -122, 1, 0.72, 0);
 chips(T_AIR + 0.03, X_PR, -150, 6, 300, -360, 620);
 chips(15.0, 2700, -70, 7, 160, -420, 680, { sx: 160, sy: 60 });   // B's leaping smash lands on the fallen pillar
 
-// — old rubble already lying around —
+//: old rubble already lying around:
 stone({ kind: 'drum', x: 2168, y: -44, w: 88, h: 96, rot: Math.PI / 2 - 0.08, seed: 640 });
 stone({ kind: 'block', x: 1228, y: -17, w: 70, h: 34, rot: 0.05, seed: 644 });
 stone({ kind: 'block', x: 446, y: -20, w: 84, h: 40, rot: -0.07, seed: 648 });
 stone({ kind: 'block', x: 2640, y: -24, w: 90, h: 48, rot: 0.1, seed: 652 });
 
-// — the distant bridge (far layer). Spans come down with the big clashes. —
+//: the distant bridge (far layer). Spans come down with the big clashes.:
 const BRIDGE = { piers: [300, 880, 1460, 2040], deckY: -452, spans: [] };
 {
   let seed = 700;
@@ -1407,7 +1407,7 @@ const BRIDGE = { piers: [300, 880, 1460, 2040], deckY: -452, spans: [] };
 for (const p of stones) finalizeStone(p);
 for (const p of farStones) finalizeStone(p);
 
-// — the drum B throws: carried, thrown, cut in two —
+//: the drum B throws: carried, thrown, cut in two:
 let boulder = null;
 function boulderInit() {
   if (boulder) return boulder;
@@ -1665,7 +1665,7 @@ function drawFloor(ctx, t, vb, px) {
 }
 
 // ── ink waves and surges ─────────────────────────────────────────────────────
-// { t0, x0, v, life, H, W }  — a crest travelling along the floor, decaying
+// { t0, x0, v, life, H, W } : a crest travelling along the floor, decaying
 const WAVES = [
   // the ink that swallowed them at the page turn parts like a curtain
   { t0: -0.6, x0: 1040, v: -560, life: 2.3, H: 760, W: 560, seed: 1, hold: 1.0 },

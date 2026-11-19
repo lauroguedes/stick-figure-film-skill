@@ -1,4 +1,4 @@
-// MINIMAL EXAMPLE — the smallest complete scene: one character, one prop, a jump, a camera move,
+// MINIMAL EXAMPLE. The smallest complete scene: one character, one prop, a jump, a camera move,
 // sound cues and a friendly score. Copy this file to start a new scene; read ref_poc.js for a full
 // two-character fight (impact frames, slow motion, a breakable wall, a weapon pulled off the page).
 //

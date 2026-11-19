@@ -30,7 +30,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-// (STICK_FILM_AUDIO_ASSETS points the library somewhere else — used for testing the mixer)
+// (STICK_FILM_AUDIO_ASSETS points the library somewhere else: used for testing the mixer)
 export const ASSET_DIR = process.env.STICK_FILM_AUDIO_ASSETS ? resolve(process.env.STICK_FILM_AUDIO_ASSETS) : resolve(HERE, '../assets/audio');
 const MANIFEST = join(ASSET_DIR, 'manifest.json');
 const API = 'https://api.elevenlabs.io';
@@ -38,7 +38,7 @@ const API = 'https://api.elevenlabs.io';
 export const SFX_MODEL = 'eleven_text_to_sound_v3';     // newest sound-effects model in the docs (there is no v4)
 export const MUSIC_MODEL = 'music_v2_5';                // newest music model in the docs
 const SFX_CREDITS_PER_SECOND = 40;                      // docs: "40 credits per second" when a duration is set
-const MUSIC_CREDITS_PER_MINUTE = 900;                   // pricing page, approximate — the real cost is measured
+const MUSIC_CREDITS_PER_MINUTE = 900;                   // pricing page, approximate: the real cost is measured
 const MUSIC_TAIL = 1;                                   // seconds generated past the end of a scene, for the crossfade
 const PROMPT_INFLUENCE = 0.5;
 // Preferred output formats, best first; the first one the account's plan accepts is used for the rest of the run.
@@ -48,7 +48,7 @@ const MUSIC_FORMATS = ['mp3_48000_320', 'mp3_48000_192', 'mp3_44100_192', 'mp3_4
 // ═════════════════════════════════════════════════════════════════════════════
 // The plan: every cue type → variants. Tags pick a variant for a cue:
 //   size: 's' | 'm' | 'l'   matches the cue's size          w: [lo, hi]   matches the cue's weight (or wallbreak size)
-// Identity of the film's sound: close, dry, tactile foley — paper, pencil, wood, ink — with
+// Identity of the film's sound: close, dry, tactile foley (paper, pencil, wood, ink) with
 // cinematic weight on the big impacts. No voices, no music inside the effects.
 // ═════════════════════════════════════════════════════════════════════════════
 const DRY = 'Close-miked, dry, tactile foley, no reverb, isolated sound effect, no music, no voices.';
@@ -271,7 +271,7 @@ export const SFX_PLAN = {
     v('1', 2, 'A revolver being reloaded, cylinder swung open, bullets pushed in, cylinder spun and snapped shut.', DRY),
     v('2', 2, 'Loading a six-shooter revolver quickly, metallic clicks, cartridges sliding in, cylinder closing with a snap.', DRY),
   ],
-  // the ending: the rifle (the shot is the film's full stop — see STOP_TYPES in tools/audio.mjs)
+  // the ending: the rifle (the shot is the film's full stop: see STOP_TYPES in tools/audio.mjs)
   rifleshot: [
     v('1', 3, 'A single bolt-action rifle shot fired outdoors very close to the microphone, a huge dry crack with a deep heavy body, followed by a long natural echo rolling away into silence.', 'One shot only, isolated sound effect, no music, no voices.'),
     v('2', 3, 'One enormous hunting rifle gunshot, close and brutally loud, sharp crack and deep boom, the echo ringing out for a long time across an open space.', 'One shot only, isolated sound effect, no music, no voices.'),
@@ -349,14 +349,14 @@ export function loadLibrary(sceneIds = []) {
     for (const variant of variants) {
       const path = sfxPath(type, variant.id);
       if (!existsSync(path)) continue;
-      try { have.push({ ...variant, ...readWav(path) }); } catch (err) { console.warn(`soundlib: ${err.message} — ignored`); }
+      try { have.push({ ...variant, ...readWav(path) }); } catch (err) { console.warn(`soundlib: ${err.message}: ignored`); }
     }
     if (have.length) sfx.set(type, have);
   }
   for (const id of sceneIds) {
     const path = musicPath(id);
     if (!existsSync(path)) continue;
-    try { music.set(id, readWav(path)); } catch (err) { console.warn(`soundlib: ${err.message} — ignored`); }
+    try { music.set(id, readWav(path)); } catch (err) { console.warn(`soundlib: ${err.message}: ignored`); }
   }
   return { sfx, music };
 }
@@ -420,12 +420,12 @@ async function balance(key) {
   }
 }
 // Can this key call an endpoint? Sends a deliberately invalid request (a length below the
-// documented minimum), which the API rejects before generating anything — it costs nothing.
+// documented minimum), which the API rejects before generating anything: it costs nothing.
 async function allowed(key, path, body) {
   try { await api(key, path, { method: 'POST', body, timeoutMs: 30000 }); return 'unexpectedly accepted'; } catch (err) {
-    if (err.status === 401) return /permission/i.test(err.message) ? 'NO — the key lacks this permission' : `NO — ${err.message}`;
+    if (err.status === 401) return /permission/i.test(err.message) ? 'NO (the key lacks this permission' : `NO) ${err.message}`;
     if (err.status === 422 || err.status === 400) return 'yes';
-    return `unclear — ${err.message}`;
+    return `unclear: ${err.message}`;
   }
 }
 
@@ -448,7 +448,7 @@ async function requestAudio(key, path, body, formats, state) {
     } catch (err) {
       const aboutFormat = err instanceof ApiError && [400, 401, 403, 422].includes(err.status) && /format|tier|subscri|plan|upgrade/i.test(err.message) && !/quota|credit/i.test(err.message);
       if (!aboutFormat || i === formats.length - 1) throw err;
-      console.log(`soundlib: output format ${formats[i]} not available on this plan — trying ${formats[i + 1]}`);
+      console.log(`soundlib: output format ${formats[i]} not available on this plan: trying ${formats[i + 1]}`);
     }
   }
   throw new Error('no usable output format');
@@ -469,7 +469,7 @@ function jobs(args, sceneList) {
     for (const sc of sceneList) {
       if (args.scene && args.scene !== sc.id) continue;
       const prompt = MUSIC_PLAN[sc.id];
-      if (!prompt) { console.warn(`soundlib: no music prompt for scene "${sc.id}" — skipped`); continue; }
+      if (!prompt) { console.warn(`soundlib: no music prompt for scene "${sc.id}": skipped`); continue; }
       // --length=<s> (with --scene) plans for a scene length that src/cues.js does not have yet
       const shape = MUSIC_SHAPE[sc.id] ?? {}, sceneLen = args.scene && args.length ? Number(args.length) : sc.end - sc.start;
       const dur = Math.max(3, sceneLen - (shape.lead ?? 0) + (shape.tail ?? MUSIC_TAIL));
@@ -509,13 +509,13 @@ async function cli() {
     const todo = jobs(args, scenes).filter((j) => args.force || !existsSync(j.path));
     const cost = (kind) => todo.filter((j) => j.kind === kind).reduce((s, j) => s + j.credits, 0);
     console.log(`\nto generate: ${todo.filter((j) => j.kind === 'sfx').length} effects (${todo.filter((j) => j.kind === 'sfx').reduce((s, j) => s + j.dur, 0).toFixed(1)} s ≈ ${n(cost('sfx'))} credits at ${SFX_CREDITS_PER_SECOND}/s)`
-      + `, ${todo.filter((j) => j.kind === 'music').length} music cues (${todo.filter((j) => j.kind === 'music').reduce((s, j) => s + j.dur, 0).toFixed(0)} s ≈ ${n(cost('music'))} credits if ${MUSIC_CREDITS_PER_MINUTE}/min — estimate)`);
+      + `, ${todo.filter((j) => j.kind === 'music').length} music cues (${todo.filter((j) => j.kind === 'music').reduce((s, j) => s + j.dur, 0).toFixed(0)} s ≈ ${n(cost('music'))} credits if ${MUSIC_CREDITS_PER_MINUTE}/min: estimate)`);
     if (command === 'status') {
       const key = loadKey();
       if (!key) { console.log('\nno API key found (ELEVEN_LABS_API_KEY in the environment or .env)'); return; }
       const b = await balance(key);
       console.log(b ? `\naccount: tier ${b.tier}, credits used ${n(b.used)} of ${n(b.limit)}, remaining ${n(b.remaining)}`
-        : '\naccount: the balance cannot be read — this API key lacks the "user_read" permission');
+        : '\naccount: the balance cannot be read: this API key lacks the "user_read" permission');
       console.log(`key may generate sound effects: ${await allowed(key, '/v1/sound-generation', { text: 'probe', duration_seconds: 0.01, model_id: SFX_MODEL })}`);
       console.log(`key may generate music: ${await allowed(key, '/v1/music', { prompt: 'probe', music_length_ms: 1, model_id: MUSIC_MODEL })}`);
     }
@@ -526,20 +526,20 @@ async function cli() {
   const key = loadKey();
   if (!key) throw new Error('no API key found (ELEVEN_LABS_API_KEY in the environment or .env)');
   const todo = jobs(args, scenes).filter((j) => args.force || !existsSync(j.path));
-  if (!todo.length) { console.log('soundlib: nothing to generate — everything requested is already on disk (use --force to regenerate)'); return; }
+  if (!todo.length) { console.log('soundlib: nothing to generate: everything requested is already on disk (use --force to regenerate)'); return; }
   const estimate = todo.reduce((s, j) => s + j.credits, 0), before = await balance(key), budget = args.budget ? Number(args.budget) : null;
   console.log(`soundlib: ${todo.length} files to generate, estimated ${n(estimate)} credits; `
     + (before ? `account has ${n(before.remaining)} of ${n(before.limit)} left (tier ${before.tier})` : 'the account balance cannot be read with this key (no "user_read" permission)'));
   // Budget discipline: never spend more than half of what is left; when the balance is not
   // readable, spend nothing unless an explicit credit budget is given.
   if (before && estimate > before.remaining * 0.5 && !args['over-half']) {
-    console.log('soundlib: STOP — this would use more than half of the remaining credits. Narrow the request, or pass --over-half to proceed anyway.');
+    console.log('soundlib: STOP: this would use more than half of the remaining credits. Narrow the request, or pass --over-half to proceed anyway.');
     process.exitCode = 2;
     return;
   }
   if (budget != null ? estimate > budget : !before) {
-    console.log(budget != null ? `soundlib: STOP — the estimate exceeds the budget of ${n(budget)} credits (--budget).`
-      : `soundlib: STOP — nothing generated. The balance is unknown, so an explicit limit is required: re-run with --budget=<credits> (this request needs about ${n(estimate)}).`);
+    console.log(budget != null ? `soundlib: STOP: the estimate exceeds the budget of ${n(budget)} credits (--budget).`
+      : `soundlib: STOP: nothing generated. The balance is unknown, so an explicit limit is required: re-run with --budget=<credits> (this request needs about ${n(estimate)}).`);
     process.exitCode = 2;
     return;
   }
@@ -560,7 +560,7 @@ async function cli() {
       spentEstimate += job.credits;
       record(job, { format: out.format, prompt_influence: PROMPT_INFLUENCE });
       report(job, `ok (${job.dur} s)`);
-    } catch (err) { failed.push(job); report(job, `FAILED — ${err.message}`); }
+    } catch (err) { failed.push(job); report(job, `FAILED: ${err.message}`); }
   });
 
   for (const job of todo.filter((j) => j.kind === 'music')) {          // one at a time; the first one measures the real price
@@ -581,11 +581,11 @@ async function cli() {
       report(job, spent != null ? `ok (${job.dur} s, ${n(spent)} credits)` : `ok (${job.dur} s)`);
       const left = todo.filter((j) => j.kind === 'music' && !existsSync(j.path) && j !== job).reduce((s, j) => s + j.dur, 0);
       if (spent > 0 && left / job.dur * spent > post.remaining * 0.5 && !args['over-half']) {
-        console.log(`soundlib: STOP — at the measured price (${n(spent / job.dur * 60)} credits/min) the remaining music would use more than half of what is left.`);
+        console.log(`soundlib: STOP: at the measured price (${n(spent / job.dur * 60)} credits/min) the remaining music would use more than half of what is left.`);
         process.exitCode = 2;
         break;
       }
-    } catch (err) { failed.push(job); report(job, `FAILED — ${err.message}`); if (err.status === 401) break; }
+    } catch (err) { failed.push(job); report(job, `FAILED: ${err.message}`); if (err.status === 401) break; }
   }
 
   const after = await balance(key);

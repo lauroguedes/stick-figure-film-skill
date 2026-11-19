@@ -1,4 +1,4 @@
-// SCENE 3b — "Ink Shots" (20 s). A firearm: the shortcut that fails.
+// SCENE 3b: "Ink Shots" (20 s). A firearm: the shortcut that fails.
 //
 // Stage: a sheet of GRAPH PAPER (40-unit grid) with a doodled shooting gallery. Left to right:
 //   x 524   the margin (double line). The doodled REVOLVER sits in it at [457, 170], pointing left.
@@ -13,7 +13,7 @@
 // 6 cut in half.   A: 7, 8 off B's spinning spear (fragments stitch the floor) · 9 the floor at B's feet.
 // The floor holes run in a line (PERF); at 17.1 cracks join them, at 18.4 B's blow lands on the line
 // and the sheet tears from hole to hole (and on to the margin and the ink), sags, rips loose at the ink
-// end and peels down, hinged on the margin, its top edge curling over — both fighters dropping with it.
+// end and peels down, hinged on the margin, its top edge curling over: both fighters dropping with it.
 //
 // Opening: both fall in (A longsword, B spear). Closing: both dropping, A (left) longsword, B (right) spear.
 
@@ -132,7 +132,7 @@ const aShot = (t, a, x) => [
   { t: t + 0.22, x: x + 8, ...AS, hB: armL(a - 2, 66) },
 ];
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 const SLIDE = { hip: [-10, 32], lean: 72, tilt: -40, hF: [52, 4], hB: [-34, -6], fF: [64, 0], fB: [-36, 0], kB: -1 };
 const A_KEYS = [
   // 0–1.5: drops out of scene 3, lands light, guard
@@ -194,7 +194,7 @@ const A_KEYS = [
   { t: 6.26, x: 1640, y: 250, p: 'run2', e: 'lin' },
   { t: 6.31, x: 1700, y: 250, hip: [6, 58], lean: 34, hF: [-20, -30], hB: [-34, -20], fF: [28, 0], fB: [-30, 0], e: 'lin' },   // gathers at the end of the plank
   { t: 6.34, x: 1740, y: 250, hip: [8, 86], lean: 20, hF: [30, 50], hB: [16, 56], fF: [8, 0], fB: [-40, 12], e: 'in' },
-  // leaps off the end — round three passes under his feet and drills the target — and flips down across it
+  // leaps off the end (round three passes under his feet and drills the target) and flips down across it
   ...flight(6.34, 6.86, [1740, 250], [2000, 0], 7000, [
     [6.44, { hip: [0, 80], lean: 24, hF: [36, 44], hB: [24, 52], fF: [-10, 10], fB: [-40, 20], spin: 40 }],
     [6.55, { p: 'aTuck', spin: 150 }],
@@ -238,7 +238,7 @@ const A_KEYS = [
   { t: 10.5, hip: [-4, 97], lean: 0, tilt: -16, hF: [22, -44], hB: [-10, -60], fF: [26, 0], fB: [-22, 0] },
   { t: 10.72, hip: [-4, 98], lean: -2, tilt: 14, hF: [22, -46], hB: [-10, -62], fF: [26, 0], fB: [-22, 0] },
   { t: 10.92, hip: [-4, 97], lean: -2, tilt: 10, hF: [22, -46], hB: [-10, -62], fF: [26, 0], fB: [-22, 0] },
-  // the gun comes at his head — caught
+  // the gun comes at his head: caught
   { t: 11.06, hip: [-8, 92], lean: -10, hF: [16, -40], hB: [30, 24], fF: [26, 0], fB: [-26, 0] },
   { t: T_CATCH, x: 1184, hip: [-14, 88], lean: -18, tilt: -8, hF: [10, -40], hB: [44, 34], fF: [26, 0], fB: [-30, 0], e: 'snap' },
   { t: 11.24, same: true },
@@ -283,7 +283,7 @@ const A_KEYS = [
   { t: 16.1, x: 1450, ...SLIDE, slide: true, e: 'lin' },
   { t: 16.22, x: 1320, ...SLIDE, hip: [-6, 36], lean: 60, slide: true, e: 'out' },
   { t: 16.34, x: 1272, face: 1, hip: [4, 74], lean: 14, hF: [10, -34], hB: [-22, -28], fF: [14, 0], fB: [-22, 0] },
-  // 16.4–17.5: cut at his back — blocked — bind. The floor starts to go
+  // 16.4–17.5: cut at his back (blocked) bind. The floor starts to go
   { t: 16.46, x: 1232, hip: [-12, 88], lean: -12, hF: [-20, 44], hB: [-30, 34], fF: [30, 0], fB: [-30, 0] },
   { t: 16.6, x: 1244, hip: [10, 76], lean: 30, hF: [58, 0], hB: [44, -10], fF: [46, 0], fB: [-42, 0], e: 'snap' },
   { t: 16.68, same: true },
@@ -313,7 +313,7 @@ const A_KEYS = [
   { t: 20.2, x: 884, y: -172, hip: [0, 84], lean: 16, hF: [20, 44], hB: [-16, 40], fF: [16, 6], fB: [-20, 18], e: 'lin', er: 'lin' },
 ];
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const BS1 = { hip: [-4, 90], lean: 6, hB: [-20, -30], fF: [46, 0], fB: [-46, 0] };
 const BS2 = { hip: [-8, 90], lean: -2, hB: [30, -4], fF: [46, 0], fB: [-46, 0] };
 const BS4 = { hip: [-2, 88], lean: 10, hB: [30, -4], fF: [46, 0], fB: [-46, 0] };
@@ -328,7 +328,7 @@ const B_KEYS = [
   { t: 0.86, hip: [8, 40], lean: 54, bend: 15, tilt: -10, hF: [34, -52], hB: [-6, -54], fF: [52, 0], fB: [-52, 0], kB: -1 },
   { t: 1.08, hip: [4, 62], lean: 36, tilt: -24, hF: [36, -40], hB: [-10, -46], fF: [52, 0], fB: [-52, 0] },
   { t: 1.3, p: 'bStance', hip: [0, 82], lean: 20, hF: [44, -26], hB: [-14, -34], fF: [50, 0], fB: [-50, 0] },
-  // thrust — parried; blocks the riposte overhead; low stab — smashed down; disarmed
+  // thrust (parried; blocks the riposte overhead; low stab) smashed down; disarmed
   { t: 1.46, hip: [-18, 76], lean: 6, hF: [12, -22], hB: [-40, -28], fF: [50, 0], fB: [-50, 0] },
   { t: 1.6, x: 860, hip: [18, 76], lean: 34, hF: [76, 10], hB: [22, -6], fF: [60, 0], fB: [-58, 0], e: 'snap' },
   { t: 1.68, same: true },
@@ -438,7 +438,7 @@ const B_KEYS = [
   { t: 14.68, hip: [14, 64], lean: 30, tilt: 30, hF: [26, 24], hB: [-30, -14], fFw: [GUN_REST[0] + 7, 0], fBw: [1380, 0], slide: true },
   { t: T_LIFT, hip: [-6, 90], lean: 0, tilt: 34, hF: [20, 22], hB: [-24, -24], fFw: [GUN_REST[0] - 6, 46], fBw: [1380, 0], e: 'out' },
   { t: 14.94, x: 1346, p: 'bStance', hip: [0, 82], lean: 18, tilt: 22, hF: [44, -26], hB: [-14, -34], fF: [50, 0], fB: [-50, 0] },
-  // 15–16.4: overhead — misses; blocks; thrust — A is gone
+  // 15–16.4: overhead (misses; blocks; thrust) A is gone
   { t: 15.06, hip: [-18, 84], lean: -12, hF: [-10, 64], hB: [-30, 46], fF: [50, 0], fB: [-50, 0], e: 'out' },
   { t: 15.28, hip: [-22, 88], lean: -16, hF: [-14, 68], hB: [-34, 50], fF: [50, 0], fB: [-50, 0] },
   { t: T_SLAM1, x: 1400, hip: [22, 56], lean: 52, bend: 10, hF: [58, -36], hB: [30, -40], fF: [58, 0], fB: [-54, 0], e: 'in3' },
@@ -643,7 +643,7 @@ S.camera([
   { t: 4.95, a: 0.5, b: 0.5, y: -165, z: 1.8 },
   { t: 5.28, a: 0.5, b: 0.5, y: -172, z: 2.05, e: 'lin' },          // creeps in on the stand-off
   { t: 5.37, a: 0.5, b: 0.5, y: -172, z: 1.7, e: 'snap' },
-  { t: 5.7, a: 0.65, b: 0.35, x: 30, y: -195, z: 1.5, r: -2, e: 'out' },       // whips after A — B keeps pace
+  { t: 5.7, a: 0.65, b: 0.35, x: 30, y: -195, z: 1.5, r: -2, e: 'out' },       // whips after A: B keeps pace
   { t: 5.94, a: 0.6, b: 0.4, x: 20, y: -268, z: 1.5, r: -4 },                   // tilts up as he gains the shelf: B low left, A high right
   { t: SH2, a: 0.6, b: 0.4, x: 20, y: -272, z: 1.52, r: -4 },
   { t: SH2 + 0.08, a: 1, x: -60, y: -335, z: 1.85, r: -6, e: 'snap' },          // punch in: the bottle goes off at his heels

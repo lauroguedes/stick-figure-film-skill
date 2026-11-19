@@ -34,12 +34,12 @@ export const POSES = {
   flyBack: { hip: [0, 56], lean: 58, bend: 16, hF: [60, 10], hB: [66, -8], fF: [72, 44], fB: [62, 22] },
   kneel: { hip: [0, 44], lean: 26, bend: 12, tilt: 14, hF: [20, -60], hB: [-6, -52], fF: [36, 0], fB: [-40, 0] },
   lying: { hip: [0, 9], lean: -86, tilt: 0, hF: [-34, -4], hB: [10, -6], fF: [102, 3], fB: [96, 3], eF: 1, eB: 1 },
-  // armed — light / one-handed (weapon in hF)
+  // armed: light / one-handed (weapon in hF)
   guard1: { hip: [-4, 90], lean: 8, bend: 4, hF: [42, -6], hB: [8, -26], fF: [32, 0], fB: [-30, 0] },
   windBack: { hip: [-12, 88], lean: -12, hF: [-26, 10], hB: [22, -20], fF: [30, 0], fB: [-30, 0] },
   slashEnd: { hip: [10, 86], lean: 22, hF: [62, 6], hB: [-20, -24], fF: [40, 0], fB: [-36, 0] },
   thrust: { hip: [16, 82], lean: 30, hF: [78, -6], hB: [-24, -20], fF: [56, 0], fB: [-56, 0] },
-  // armed — two-handed (back hand is placed on the weapon automatically when `two` > 0)
+  // armed: two-handed (back hand is placed on the weapon automatically when `two` > 0)
   guard2: { hip: [-4, 88], lean: 8, bend: 4, hF: [42, -10], hB: [16, -30], fF: [32, 0], fB: [-30, 0] },
   high: { hip: [-8, 94], lean: -10, hF: [-4, 70], hB: [-18, 60], fF: [28, 0], fB: [-30, 0] },
   chop: { hip: [10, 62], lean: 40, bend: 8, hF: [54, -30], hB: [32, -30], fF: [44, 0], fB: [-44, 0] },

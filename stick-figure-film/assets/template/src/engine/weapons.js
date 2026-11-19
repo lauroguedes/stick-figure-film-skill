@@ -5,15 +5,15 @@
 //         ang  world angle of tail→tip in degrees (0 = pointing right, 90 = up). Keep it CONTINUOUS
 //              across keys (a full twirl is +360), it is interpolated numerically.
 //         g    where the main hand grips, 0 = tail/pommel … 1 = tip (default from the spec)
-//         two  0..1 — second hand on the weapon (the rig moves the fighter's hB onto it)
+//         two  0..1: second hand on the weapon (the rig moves the fighter's hB onto it)
 //   free: { t, at: [worldX, height], ang, hop?, e? }   `at` is the weapon's CENTER. hop adds a
 //         parabolic arc between two free keys (thrown / knocked away / falling weapons).
 //   any key may also set: type (morph, e.g. pencil → staff), scale (interpolated), ink (0|1,
 //   ink-forged: solid black), gone: true (weapon disappears from this key on),
-//   flip: true|false — mirror an asymmetric weapon (axe, pistol) across its axis. By default they
+//   flip: true|false: mirror an asymmetric weapon (axe, pistol) across its axis. By default they
 //   mirror automatically when the holder faces left, so the axe blade leads and the pistol grip hangs down.
 // Between two keys with the same holder everything interpolates; when the holder changes the
-// earlier key holds until the later one starts — so make the hand and weapon meet at that key.
+// earlier key holds until the later one starts: so make the hand and weapon meet at that key.
 // The weapon is invisible before its first key.
 
 import { DEG, TAU, EASE, clamp, lerp, segIndex } from './util.js';

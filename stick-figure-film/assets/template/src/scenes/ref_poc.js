@@ -1,4 +1,4 @@
-// REFERENCE SCENE — the approved 15-second proof of concept ("The First Clash"), ported to the
+// REFERENCE SCENE: the approved 15-second proof of concept ("The First Clash"), ported to the
 // scene API. It is not part of the final film timeline; it exists as a complete worked example:
 // unarmed combat, ballistic flights, a slow-motion beat, a breakable wall, a weapon pulled out
 // of the environment (pencil → staff), two-handed grips, page damage, camera work and sound cues.
@@ -24,9 +24,9 @@ const CUT_TO_BLACK = 14.75;
 
 const S = createScene({ id: 'ref', title: 'Reference: The First Clash (POC)', duration: 15, score: 'duel' });
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 const A_KEYS = [
-  // 0:00 — drawn onto the page, standing
+  // 0:00: drawn onto the page, standing
   { t: 0.0, p: 'stand', x: 820, face: 1, reveal: 0 },
   { t: 0.15, p: 'stand', reveal: 0 },
   { t: 0.8, p: 'stand', reveal: 1, e: 'lin' },
@@ -42,7 +42,7 @@ const A_KEYS = [
   { t: 2.54, p: 'aStance', hip: [-4, 95], hF: [40, 2] },
   { t: 2.72, p: 'aStance', hip: [-4, 88] },
   { t: 2.9, p: 'aStance', hip: [-4, 94] },
-  // 0:03 — reads the dash, slips low and slides under the punch
+  // 0:03: reads the dash, slips low and slides under the punch
   { t: 3.08, p: 'aStance', hip: [-10, 90], lean: -3, hF: [34, 6], hB: [18, -6] },
   { t: 3.2, x: 832, hip: [2, 62], lean: 34, bend: 10, hF: [30, -10], hB: [8, -22], fF: [42, 0], fB: [-30, 0], e: 'in' },
   { t: 3.34, x: 905, hip: [-10, 32], lean: 72, tilt: -40, hF: [52, 4], hB: [-34, -6], fF: [64, 0], fB: [-36, 0], kB: -1, slide: true, e: 'lin' },
@@ -87,7 +87,7 @@ const A_KEYS = [
   { t: 6.72, x: 1545, hip: [0, 80], lean: 16, hF: [30, -20], hB: [10, -30], fF: [26, 0], fB: [-30, 0] },
   { t: 6.92, x: 1548, p: 'aStance', hip: [-4, 88] },
   { t: 7.1, p: 'aStance', hip: [-8, 92], lean: -4, hF: [34, 8], hB: [18, -4] },
-  // 0:07 — slow motion: the fist comes in, he drops under it
+  // 0:07: slow motion: the fist comes in, he drops under it
   { t: 7.25, p: 'aStance', hip: [-8, 92], lean: -7, hF: [32, 10], hB: [16, -2], e: 'lin' },
   { t: 7.45, hip: [-6, 64], lean: 12, bend: 8, hF: [30, -4], hB: [14, -14], fF: [32, 0], fB: [-28, 0], e: 'lin' },
   { t: 7.7, hip: [-4, 54], lean: 20, bend: 14, tilt: -10, hF: [28, -14], hB: [12, -24], fF: [34, 0], fB: [-26, 0], e: 'lin' },
@@ -104,7 +104,7 @@ const A_KEYS = [
   ], { hip: [0, 46], lean: 32, bend: 10, hF: [22, -58], hB: [-12, -56], fF: [30, 0], fB: [-30, 0] }),
   { t: 9.62, hip: [2, 62], lean: 26, tilt: -10, hF: [26, -40], hB: [-10, -46], fF: [30, 0], fB: [-30, 0], e: 'out' },
   { t: 9.9, hip: [4, 68], lean: 24, hF: [30, -30], hB: [-14, -40], fF: [30, 0], fB: [-30, 0] },
-  // 0:10 — grabs the pencil, yanks it out of the page, twirls it into a staff
+  // 0:10: grabs the pencil, yanks it out of the page, twirls it into a staff
   { t: 10.08, hip: [10, 70], lean: 26, hFw: [1247.5, 104], hB: [-20, -36], fF: [30, 0], fB: [-30, 0], e: 'out' },
   { t: 10.18, hip: [14, 64], lean: 31, hFw: [1247.5, 104], hB: [-24, -30], fF: [30, 0], fB: [-30, 0] },
   { t: 10.27, hip: [0, 90], lean: 6, hF: [24, 34], hB: [-28, -20], fF: [30, 0], fB: [-30, 0], e: 'snap' },
@@ -120,7 +120,7 @@ const A_KEYS = [
   { t: 11.09, hip: [-16, 78], lean: -16, hF: [-6, -30], hB: [-30, -30], fF: [30, 0], fB: [-30, 0] },
   { t: 11.2, x: 1290, hip: [10, 88], lean: 20, hF: [56, 20], hB: [30, 0], fF: [36, 0], fB: [-34, 0], e: 'snap' },
   { t: 11.26, same: true },
-  // leaping overhead strike — hits only the page
+  // leaping overhead strike: hits only the page
   { t: 11.32, hip: [4, 72], lean: 10, hF: [20, 50], hB: [0, 46], fF: [30, 0], fB: [-30, 0] },
   ...flight(11.32, 11.62, [1290, 0], [1350, 0], 3800, [
     [11.47, { hip: [0, 84], lean: -14, hF: [-4, 70], hB: [-20, 60], fF: [20, 24], fB: [-30, 30] }],
@@ -148,7 +148,7 @@ const A_KEYS = [
   { t: 15.0, same: true },
 ];
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const B_KEYS = [
   { t: 0.0, p: 'stand', x: 1140, face: -1, reveal: 0 },
   { t: 0.36, p: 'stand', reveal: 0 },
@@ -164,7 +164,7 @@ const B_KEYS = [
   // coils…
   { t: 2.86, p: 'bStance', hip: [-22, 74], lean: 2, hB: [-52, -8], hF: [30, -30] },
   { t: 3.02, p: 'bStance', hip: [-28, 68], lean: -4, hB: [-58, -2], hF: [32, -26] },
-  // 0:03 — explodes into a flying overhand
+  // 0:03: explodes into a flying overhand
   { t: 3.08, hip: [14, 74], lean: 40, hB: [-60, 6], hF: [46, -22], fF: [40, 18], fB: [-60, 0], e: 'in' },
   ...flight(3.08, 3.44, [1140, 0], [945, 0], 3000, [
     [3.2, { hip: [0, 78], lean: 56, hB: [-62, 12], hF: [52, -18], fF: [50, 30], fB: [-72, 22] }],
@@ -186,7 +186,7 @@ const B_KEYS = [
   { t: 4.7, p: 'bStance', hip: [8, 80], lean: 16, hF: [66, 40], hB: [4, -14], fF: [50, 0], fB: [-50, 0] },
   { t: 4.8, p: 'bStance', hip: [4, 80], lean: 16, hF: [36, -6], hB: [0, -16], fF: [50, 0], fB: [-50, 0] },
   { t: 4.84, p: 'bStance', hip: [-4, 80], lean: 10, tilt: -12, hF: [34, -2], hB: [-4, -14], fF: [50, 0], fB: [-50, 0], e: 'snap' },
-  // big hook — misses
+  // big hook: misses
   { t: 4.94, p: 'bStance', hip: [0, 80], lean: 14, hF: [30, -10], hB: [-44, 18], fF: [50, 0], fB: [-50, 0] },
   { t: 5.03, p: 'bStance', hip: [-6, 80], lean: 8, hF: [34, -10], hB: [-56, 22], fF: [50, 0], fB: [-50, 0] },
   { t: 5.12, p: 'bStance', hip: [8, 80], lean: 26, hF: [10, -20], hB: [82, 24], fF: [50, 0], fB: [-50, 0], e: 'snap' },
@@ -214,7 +214,7 @@ const B_KEYS = [
   { t: 6.88, x: 1345, p: 'bRun2', hop: 12, e: 'lin' },
   { t: 6.98, x: 1395, hip: [-10, 76], lean: 10, hB: [-66, 22], hF: [40, -10], fF: [60, 0], fB: [-58, 0], hop: 6, e: 'lin' },
   { t: 7.1, x: 1408, hip: [-4, 78], lean: 14, hB: [-66, 26], hF: [44, -6], fF: [52, 0], fB: [-58, 0] },
-  // 0:07 — the punch, in slow motion: a long lunge carries the fist past A's head
+  // 0:07: the punch, in slow motion: a long lunge carries the fist past A's head
   { t: 7.25, x: 1385, hip: [16, 78], lean: 30, hB: [44, 16], hF: [20, -30], fFw: [1491, 0], fB: [-60, 0], e: 'in' },
   { t: 7.45, x: 1396, hip: [18, 78], lean: 33, hB: [50, 14], hF: [10, -34], fFw: [1491, 0], fB: [-62, 0], e: 'lin' },
   { t: 7.6, x: 1404, hip: [18, 78], lean: 35, hB: [58, 14], hF: [4, -36], fFw: [1491, 0], fB: [-64, 0], e: 'lin' },
@@ -232,7 +232,7 @@ const B_KEYS = [
   { t: 9.72, face: -1, x: 1482, hip: [0, 82], lean: 4, hF: [14, -50], hB: [-14, -50], fF: [30, 0], fB: [-30, 0] },
   { t: 9.9, p: 'bStance', hip: [0, 85], lean: -6, tilt: -18, hF: [34, -34], hB: [-30, -36] },
   { t: 10.08, p: 'bStance', hip: [0, 87], lean: -8, tilt: -20, hF: [38, -30], hB: [-34, -32] },
-  // 0:10 — leaps in with a double hammer-fist
+  // 0:10: leaps in with a double hammer-fist
   { t: 10.24, hip: [4, 60], lean: 32, hF: [-24, -44], hB: [-44, -30], fF: [40, 0], fB: [-40, 0] },
   { t: 10.34, hip: [6, 82], lean: 16, hF: [10, 40], hB: [0, 44], fF: [30, 0], fB: [-36, 0], e: 'in' },
   ...flight(10.34, 10.82, [1482, 0], [1436, 0], 2800, [
@@ -256,13 +256,13 @@ const B_KEYS = [
   { t: 12.14, y: WALL_H, hip: [0, 45], lean: 38, bend: 10, hF: [30, -58], hB: [-12, -54], fF: [32, 0], fB: [-32, 0] },
   { t: 12.3, y: WALL_H, hip: [0, 92], lean: -6, tilt: -10, hF: [26, 66], hB: [-12, 70], fF: [30, 0], fB: [-30, 0], e: 'out' },
   { t: 12.39, y: WALL_H, hip: [4, 58], lean: 30, hF: [-20, -40], hB: [-40, -30], fF: [30, 0], fB: [-30, 0] },
-  // dives off — the wall corner collapses under him
+  // dives off: the wall corner collapses under him
   { t: 12.45, y: WALL_H, hip: [10, 86], lean: 24, hF: [20, 60], hB: [10, 64], fF: [20, 0], fB: [-36, 0], e: 'in' },
   ...flight(12.45, 13.0, [1700, WALL_H], [1340, 0], 6982, [
     [12.6, { hip: [0, 82], lean: -16, hF: [-12, 74], hB: [-22, 72], fF: [10, 30], fB: [-44, 38] }],
     [12.85, { hip: [0, 80], lean: 26, hF: [24, 66], hB: [14, 70], fF: [44, 12], fB: [10, 22] }],
   ], { hip: [10, 46], lean: 55, bend: 14, tilt: -10, hF: [22, -84], hB: [10, -84], fF: [52, 0], fB: [-52, 0], e: 'in' }),
-  // 0:13 — lands. The page cracks.
+  // 0:13: lands. The page cracks.
   { t: 13.1, hip: [10, 41], lean: 57, bend: 15, tilt: -10, hF: [22, -80], hB: [10, -80], fF: [52, 0], fB: [-52, 0] },
   { t: 13.34, hip: [10, 46], lean: 55, bend: 14, tilt: -14, hF: [22, -84], hB: [10, -84], fF: [52, 0], fB: [-52, 0] },
   { t: 13.64, hip: [4, 66], lean: 38, tilt: -24, hF: [34, -52], hB: [-10, -58], fF: [52, 0], fB: [-52, 0] },
@@ -531,7 +531,7 @@ const CUES = [
   { t: 12.74, type: 'whoosh', size: 'm', dur: 0.26, pan: 0.0 },    // A backflips clear
 
   // ── 0:13–0:15  Landing, foreshadow, cut ──────────────────────────────────
-  { t: 13.00, type: 'megaimpact', pan: 0.15 },                     // B LANDS — the page cracks (impact frame)
+  { t: 13.00, type: 'megaimpact', pan: 0.15 },                     // B LANDS: the page cracks (impact frame)
   { t: 13.02, type: 'tear', dur: 0.55, pan: 0.15 },                // paper tearing
   { t: 13.04, type: 'crack', dur: 0.50, pan: 0.2 },                // ink fractures spreading
   { t: 13.08, type: 'thud', weight: 0.35, pan: -0.2 },             // A lands
@@ -657,7 +657,7 @@ S.env({
   screen(ctx, t, { W, H }) {
     if (t >= CUT_TO_BLACK) { ctx.fillStyle = BLACK; ctx.fillRect(0, 0, W, H); }
   },
-  // B stands on top of the wall for a moment — tell the shadow where the surface is
+  // B stands on top of the wall for a moment: tell the shadow where the surface is
   surface: (x, t) => (x > WALL_X && t > 11.9 && t < 12.5 ? WALL_H : 0),
 });
 

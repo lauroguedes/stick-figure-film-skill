@@ -1,4 +1,4 @@
-// SCENE 4 — "Torn Paper Battlefield" (28 s, heavy weapons).
+// SCENE 4: "Torn Paper Battlefield" (28 s, heavy weapons).
 // A arrives with the longsword, B with the spear. Spear cut → B folds a strip of the page into
 // a battle axe → A's longsword is shattered → A evades unarmed → the axe wedges → B tears a
 // hammer loose → A pulls the greatsword out of the cracked page → greatsword vs hammer →
@@ -34,7 +34,7 @@ const T_GRAB = 17.05;       // A's hands in the fracture
 const T_C1 = 19.5;           // greatsword meets hammer
 const T_B3 = 20.55;         // hammer blow three (A vaults it)
 const T_C2 = 23.0;          // second clash
-const T_FINAL = 25.9;       // the last clash — the page rips in two
+const T_FINAL = 25.9;       // the last clash: the page rips in two
 
 const FLOOR_L = 430, FLOOR_R = 2160;
 const RAMP = { x0: 1620, x1: 1800, h: 170 };
@@ -225,7 +225,7 @@ const HOLLOW_FLAPS = [[60, -24, -10, -30, 1], [128, -19, 8, -30, 2], [206, -19, 
 function drawSwordOutline(ctx, t, impact) {
   if (t < T_H2 + 0.04) return;
   if (t >= T_GRAB) {
-    // the hollow it leaves: a ragged tear with shadow inside and curled edges — no sword outline
+    // the hollow it leaves: a ragged tear with shadow inside and curled edges: no sword outline
     const k = EASE.out(prog(t, T_GRAB, 17.74));
     fillPoly(ctx, HOLLOW, WHITE);
     hatch(ctx, HOLLOW, { angle: -32, gap: 4.6, w: 1.2, seed: 575, cross: true, crossAngle: 58 });
@@ -322,8 +322,8 @@ function drawAxeHead(ctx, tail, ang, k, spikeK = k) {
   if (Math.abs(spikeK) > 0.02) sketchPoly(ctx, [[L - 44, -3], [L - 12, -3], [L - 28, -18 * spikeK]].map((q) => F(q[0], q[1])), { w: 2.2, seed: 541, fill: WHITE, rough: 0.5 });
 }
 // The strip of page B rips up (T_RIP0…T_RIP1) and folds three times into the axe (…T_AXE).
-// It is drawn as a sheet with its own (u, v) coordinates — u along its length (0 = the end that
-// becomes the pommel, 240 = the end that becomes the head), v across — mapped through a bendable
+// It is drawn as a sheet with its own (u, v) coordinates: u along its length (0 = the end that
+// becomes the pommel, 240 = the end that becomes the head), v across: mapped through a bendable
 // centre line, so it sags while it is paper and stiffens as the creases go in. Each fold is a flap
 // mirrored across its crease (cos of the fold angle: +1 flat, 0 edge-on, −1 folded over).
 const FOLD_T = [4.38, 4.6, 4.82];
@@ -424,7 +424,7 @@ function drawFold(ctx, t, st) {
     crease([2, 8], [150, 8], prog(t, FOLD_T[1] - 0.1, FOLD_T[1]));
     if (c2 <= -1) stroke(ctx, [W(4, 1), W(146, 1)], 1.1);
   }
-  // 4. fold three: the top end turned down across a diagonal — the blade
+  // 4. fold three: the top end turned down across a diagonal: the blade
   if (c3 < 1) {
     const blade = lerpPts(FLAP3.map((q) => mirror3(q, c3)), HEAD6, s4);
     paper(M(blade), 528, c3 < 0);
@@ -568,7 +568,7 @@ S.env({
   surface: (x) => rampH(x),
 });
 
-// ── FIGHTER A — The Technician ───────────────────────────────────────────────
+// ── FIGHTER A: The Technician ───────────────────────────────────────────────
 // 0–4: drops in, rolls, parries the thrust, hops onto the low stab and cuts the spear in two
 const A1 = [
   { t: 0, x: 700, y: 620, face: 1, hip: [0, 84], lean: 16, hF: [20, 44], hB: [-16, 40], fF: [16, 6], fB: [-20, 18] },
@@ -609,7 +609,7 @@ const A2 = [
   { t: 4.45, x: 1036, p: 'guard2', hip: [-8, 90], lean: -2 },
   { t: 4.7, x: 1052, p: 'guard2', hip: [-2, 84], lean: 12 },
   { t: 4.92, hip: [-14, 82], lean: -4, hF: [10, -6], hB: [-10, -20], fF: [30, 0], fB: [-30, 0] },
-  { t: 5.06, x: 1092, p: 'thrust', e: 'snap' },                                                            // lunge — swatted down
+  { t: 5.06, x: 1092, p: 'thrust', e: 'snap' },                                                            // lunge: swatted down
   { t: 5.14, same: true },
   { t: 5.3, x: 1050, p: 'guard2', hip: [-10, 88], lean: -6, slide: true },
   { t: 5.55, p: 'guard2', hip: [-8, 90], lean: -8, hF: [36, 6] },
@@ -745,7 +745,7 @@ const A5 = [
   { t: 21.18, x: 1180, hip: [4, 90], lean: 0, hF: [-6, 72], hB: [-20, 60], fF: [36, 0], fB: [-36, 0] },
   { t: 21.3, x: 1200, hip: [14, 72], lean: 32, hF: [58, 14], hB: [40, 6], fF: [44, 0], fB: [-42, 0], e: 'in3' },          // …into an overhead cut
   { t: 21.38, same: true },
-  { t: 21.5, x: 1100, hip: [-12, 70], lean: -8, hF: [44, -34], hB: [26, -40], fF: [40, 0], fB: [-30, 0], slide: true, e: 'out' },   // B shoves him off — he lets the blade's weight take him round
+  { t: 21.5, x: 1100, hip: [-12, 70], lean: -8, hF: [44, -34], hB: [26, -40], fF: [40, 0], fB: [-30, 0], slide: true, e: 'out' },   // B shoves him off: he lets the blade's weight take him round
   { t: 21.62, x: 1015, face: -1, hip: [0, 76], lean: 10, hF: [50, -20], hB: [30, -30], fF: [30, 0], fB: [-30, 0], slide: true },
   { t: 21.75, x: 1008, hip: [-8, 86], lean: -10, hF: [-10, 64], hB: [-24, 52], fF: [28, 0], fB: [-30, 0] },
   { t: 21.88, x: 1015, face: 1, hip: [14, 74], lean: 30, hF: [66, 0], hB: [46, -6], fF: [44, 0], fB: [-42, 0], e: 'in3' },  // spinning cut
@@ -781,7 +781,7 @@ const A5 = [
 ];
 const A_KEYS = [...A1, ...A2, ...A3, ...A4, ...A5];
 
-// ── FIGHTER B — The Powerhouse ───────────────────────────────────────────────
+// ── FIGHTER B: The Powerhouse ───────────────────────────────────────────────
 const B1 = [
   { t: 0, x: 1470, y: 900, face: -1, hip: [0, 80], lean: 20, hF: [30, 30], hB: [-20, 40], fF: [30, 10], fB: [-30, 20] },
   ...flight(0, T_CRATER, [1470, 900], [1400, 0], 2400, [
@@ -851,7 +851,7 @@ const B3 = [
   { t: 8.3, x: 1175, p: 'heavyRest', hip: [0, 80], lean: 12 },
   { t: 8.5, x: 1110, hip: [-22, 78], lean: -16, hF: [-46, 18], hB: [-56, 2], fF: [46, 0], fB: [-46, 0] },
   { t: 8.66, hip: [-28, 76], lean: -20, hF: [-50, 22], hB: [-60, 6], fF: [40, 8], fB: [-48, 0] },
-  { t: 8.78, x: 1050, hip: [18, 74], lean: 30, hF: [70, -4], hB: [46, -6], fF: [54, 0], fB: [-56, 0], e: 'in3' },       // waist-high sweep — nothing there
+  { t: 8.78, x: 1050, hip: [18, 74], lean: 30, hF: [70, -4], hB: [46, -6], fF: [54, 0], fB: [-56, 0], e: 'in3' },       // waist-high sweep: nothing there
   { t: 8.9, hip: [26, 66], lean: 44, hF: [44, -40], hB: [24, -44], fF: [54, 0], fB: [-56, 0] },
   { t: 9.04, hip: [16, 68], lean: 34, hF: [40, -30], hB: [18, -36], fF: [54, 0], fB: [-56, 0] },
   { t: 9.18, x: 1060, face: 1, hip: [0, 80], lean: 6, hF: [-30, 20], hB: [-44, 4], fF: [30, 0], fB: [-34, 0] },      // dragged round after it
@@ -865,14 +865,14 @@ const B3 = [
   { t: 10.08, hip: [24, 64], lean: 44, hF: [44, -40], hB: [24, -42], fF: [54, 0], fB: [-56, 0] },
   { t: 10.26, x: 1330, p: 'heavyRest', hip: [0, 82], lean: 4, tilt: -20, hF: [26, -4], hB: [0, -28] },
   { t: 10.4, x: 1470, hip: [4, 84], lean: 10, tilt: -26, hF: [20, 30], hB: [-4, 10], fF: [50, 0], fB: [-48, 0] },
-  { t: 10.57, x: 1575, hip: [-6, 88], lean: -6, tilt: -30, hF: [-10, 62], hB: [-26, 48], fF: [48, 0], fB: [-48, 0] },   // axe going up — too late
+  { t: 10.57, x: 1575, hip: [-6, 88], lean: -6, tilt: -30, hF: [-10, 62], hB: [-26, 48], fF: [48, 0], fB: [-48, 0] },   // axe going up: too late
   { t: 10.63, x: 1560, hip: [-20, 74], lean: -30, tilt: -34, hF: [30, 50], hB: [10, 40], fF: [34, 10], fB: [-40, 0], e: 'snap' },
   { t: 10.7, same: true },
   { t: 10.9, x: 1330, p: 'stagger', hF: [20, 30], hB: [-10, 20], slide: true, e: 'out' },
   { t: 11.08, x: 1290, p: 'heavyRest', hip: [0, 74], lean: 24, tilt: -10 },
   { t: 11.28, p: 'heavyWind', hip: [-16, 80], lean: -8, hF: [-10, 56], hB: [-28, 44], fF: [48, 0], fB: [-48, 0] },
   { t: 11.47, hip: [-24, 86], lean: -20, hF: [-34, 68], hB: [-48, 54], fF: [42, 10], fB: [-50, 0] },
-  { t: T_WEDGE, x: 1295, p: 'heavyEnd', e: 'in' },                                                              // overhead — buried to the eye in the fold
+  { t: T_WEDGE, x: 1295, p: 'heavyEnd', e: 'in' },                                                              // overhead: buried to the eye in the fold
   { t: 11.67, same: true },
   { t: 11.8, hip: [-10, 70], lean: 14, hFw: [1427, 61], hB: [30, -44], fF: [52, 0], fB: [-54, 0] },                     // heaves…
   { t: 11.92, hip: [20, 58], lean: 48, hFw: [1427, 61], hB: [30, -44], fF: [52, 0], fB: [-54, 0] },
@@ -934,10 +934,10 @@ const B5 = [
   { t: T_C1, x: 1010, hip: [14, 80], lean: 24, hF: [62, 16], hB: [40, -4], fF: [52, 0], fB: [-52, 0], e: 'in3' },         // rising swing: CLASH 1
   { t: 19.64, same: true },
   { t: 19.9, x: 1180, hip: [-16, 78], lean: -10, hF: [30, 20], hB: [10, 6], fF: [44, 0], fB: [-50, 0], slide: true, e: 'out' },
-  { t: 20.05, x: 1260, p: 'heavyWind', hip: [-14, 82], lean: -8, hF: [-10, 56], hB: [-28, 44], fF: [48, 0], fB: [-48, 0], slide: true, e: 'lin' },   // still skidding — the rebound hauls the hammer up and back
+  { t: 20.05, x: 1260, p: 'heavyWind', hip: [-14, 82], lean: -8, hF: [-10, 56], hB: [-28, 44], fF: [48, 0], fB: [-48, 0], slide: true, e: 'lin' },   // still skidding: the rebound hauls the hammer up and back
   { t: 20.25, x: 1310, hip: [-22, 86], lean: -18, hF: [-32, 68], hB: [-46, 54], fF: [48, 0], fB: [-50, 0], slide: true, e: 'out' },
   { t: 20.45, x: 1318, hip: [-26, 88], lean: -22, hF: [-36, 70], hB: [-50, 56], fF: [40, 14], fB: [-50, 0] },
-  { t: T_B3, x: 1307, p: 'heavyEnd', e: 'in' },                                                                  // blow three — just past the planted blade, under A's swing
+  { t: T_B3, x: 1307, p: 'heavyEnd', e: 'in' },                                                                  // blow three: just past the planted blade, under A's swing
   { t: 20.74, same: true },
   { t: 20.82, x: 1325, hip: [-22, 70], lean: -32, tilt: -34, hF: [50, -20], hB: [40, -30], fF: [34, 10], fB: [-40, 0], e: 'snap' },
   { t: 20.9, same: true },

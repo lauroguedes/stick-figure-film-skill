@@ -1,4 +1,4 @@
-// Contact sheet / still renderer — the fastest way to review animation.
+// Contact sheet / still renderer: the fastest way to review animation.
 //   node tools/sheet.mjs --scene s2 --from 3 --to 4.3 --n 12 --out out/sheet.png   (scene-local time)
 //   node tools/sheet.mjs --scene s2 --times 3.2,3.33,3.4 --cols 3 --cw 660         (explicit times)
 //   node tools/sheet.mjs --scene s2 --from 3 --to 5 --n 12 --stage 1000,-200,1.6   (fixed debug camera x,y,zoom)

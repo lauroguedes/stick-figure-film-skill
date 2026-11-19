@@ -1,7 +1,7 @@
-// Print solved world positions at given scene times — use it to line up contacts
+// Print solved world positions at given scene times: use it to line up contacts
 // (fist ↔ chin, blade ↔ blade, hand ↔ pickup) instead of guessing.
 //   node tools/probe.mjs --scene s2 --times 3.4,3.46
-// Output is [worldX, height] (height: 0 = floor, up is positive) — the same units pose keys,
+// Output is [worldX, height] (height: 0 = floor, up is positive): the same units pose keys,
 // weapon `at`, S.hit({x, h}) and hFw/fFw overrides use.
 import { arg, source } from './_common.mjs';
 const src = await source();

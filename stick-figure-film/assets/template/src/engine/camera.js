@@ -4,7 +4,7 @@
 //   y  world y of the frame centre (NEGATIVE = up; fighters' chests are around -150)
 //   z  zoom (1 = 1920 world units across; 0.5 = whole notebook page; 2.5 = close-up)
 //   r  roll in degrees          e  ease INTO this key (lin, in, out, io, io3, snap, …)
-//   x  absolute world x — or — a / b = tracking weights on fighter A / B (x then is an offset)
+//   x  absolute world x (or) a / b = tracking weights on fighter A / B (x then is an offset)
 // Tracked keys follow the fighters automatically, so retiming a fight keeps its framing.
 
 import { EASE, clamp, lerp, segIndex, noise1, DEG } from './util.js';
@@ -55,7 +55,7 @@ export function viewBounds(cam, W, H) {
  * depth: how far in front of (+) or behind (−) the fighters' plane a layer sits, in world units.
  * It only matters while the camera ORBITS (cam.orbit, degrees, about the vertical axis through
  * world x = cam.opx): the fighters' plane foreshortens by cos θ and every layer slides sideways
- * by depth·sin θ — the 2D stand-in for a camera arcing around the action.
+ * by depth·sin θ: the 2D stand-in for a camera arcing around the action.
  */
 export function applyCamera(ctx, cam, W, H, parallax = 1, anchor = [1100, -265], depth = 0) {
   const cx = anchor[0] + (cam.x - anchor[0]) * parallax;
