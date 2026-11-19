@@ -1,0 +1,20 @@
+{
+  "name": "my-stick-figure-film",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A procedural 2D stick-figure film: every frame is drawn in code",
+  "scripts": {
+    "build": "node tools/audio.mjs && node tools/render.mjs",
+    "render": "node tools/render.mjs",
+    "audio": "node tools/audio.mjs",
+    "sheet": "node tools/sheet.mjs",
+    "lint": "node tools/lint.mjs",
+    "probe": "node tools/probe.mjs",
+    "preview": "node tools/serve.mjs",
+    "social": "node tools/social.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.60"
+  }
+}

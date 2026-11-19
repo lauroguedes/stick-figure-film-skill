@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stick figure film — live preview</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #000; color: #fff; font: 14px/1.4 ui-monospace, "SF Mono", Menlo, monospace; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+  main { width: min(100vw, calc((100vh - 96px) * 16 / 9)); padding: 12px 16px 0; }
+  canvas { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; outline: 1px solid #fff; }
+  .bar { display: grid; grid-template-columns: auto auto 1fr auto; gap: 12px; align-items: center; padding: 12px 0; }
+  button { font: inherit; color: #000; background: #fff; border: 0; padding: 6px 14px; cursor: pointer; min-width: 72px; }
+  button:focus-visible, input:focus-visible { outline: 2px dashed #fff; outline-offset: 3px; }
+  input[type=range] { width: 100%; accent-color: #fff; }
+  .time { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .hint { opacity: .7; padding-bottom: 12px; }
+  @media (max-width: 600px) { .bar { grid-template-columns: auto 1fr; } .time { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<main>
+  <canvas id="c" width="1920" height="1080"></canvas>
+  <div class="bar">
+    <button id="play" type="button">Play</button>
+    <button id="step" type="button" title="Advance one frame">+1 f</button>
+    <input id="scrub" type="range" min="0" max="15" step="0.0333333" value="0" aria-label="Timeline">
+    <span class="time" id="time">0.000 s · f0</span>
+  </div>
+  <div class="bar" id="scenes" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); padding-top: 0"></div>
+  <div class="hint">Space = play/pause · ← → = step one frame · edits to src/*.js show up on reload · scene buttons jump to each scene · sound needs out/soundtrack.wav (npm run audio)</div>
+</main>
+<audio id="a" src="out/soundtrack.wav" preload="auto"></audio>
+<script type="module">
+  import { renderFrame, FPS, DURATION, TIMELINE } from './src/film.js';
+  const ctx = document.getElementById('c').getContext('2d');
+  const play = document.getElementById('play'), scrub = document.getElementById('scrub');
+  const label = document.getElementById('time'), audio = document.getElementById('a');
+  let t = 0, playing = false, t0 = 0, w0 = 0, hasAudio = false;
+  audio.addEventListener('canplaythrough', () => (hasAudio = true), { once: true });
+  const draw = () => {
+    const f = Math.min(Math.round(t * FPS), DURATION * FPS - 1);
+    renderFrame(ctx, f / FPS);
+    scrub.value = t;
+    label.textContent = `${t.toFixed(3)} s · f${f}`;
+  };
+  const stop = () => { playing = false; play.textContent = 'Play'; audio.pause(); };
+  const tick = (now) => {
+    if (!playing) return;
+    t = hasAudio && !audio.paused ? audio.currentTime : t0 + (now - w0) / 1000;
+    if (t >= DURATION) { t = DURATION - 1 / FPS; stop(); }
+    draw();
+    requestAnimationFrame(tick);
+  };
+  const start = () => {
+    if (t >= DURATION - 2 / FPS) t = 0;
+    playing = true; play.textContent = 'Pause'; t0 = t; w0 = performance.now();
+    if (hasAudio) { audio.currentTime = t; audio.play().catch(() => {}); }
+    requestAnimationFrame(tick);
+  };
+  const seek = (v) => { stop(); t = Math.max(0, Math.min(DURATION - 1 / FPS, v)); draw(); };
+  play.onclick = () => (playing ? stop() : start());
+  document.getElementById('step').onclick = () => seek(t + 1 / FPS);
+  scrub.oninput = () => seek(Number(scrub.value));
+  addEventListener('keydown', (e) => {
+    if (e.code === 'Space') { e.preventDefault(); playing ? stop() : start(); }
+    if (e.code === 'ArrowRight') seek(t + 1 / FPS);
+    if (e.code === 'ArrowLeft') seek(t - 1 / FPS);
+  });
+  scrub.max = DURATION;
+  const bar = document.getElementById('scenes');
+  for (const e of TIMELINE) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = `${e.id} · ${e.title}`;
+    b.title = `Jump to ${e.start.toFixed(1)} s`;
+    b.onclick = () => seek(e.start);
+    bar.appendChild(b);
+  }
+  window.__pf = { seek, get t() { return t; } };
+  draw();
+</script>
+</body>
+</html>

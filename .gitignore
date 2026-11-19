@@ -1,0 +1,7 @@
+node_modules/
+out/
+.env
+*.skill
+.DS_Store
+stick-figure-film-workspace/
+evals/results/
