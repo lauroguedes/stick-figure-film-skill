@@ -1,6 +1,14 @@
 ---
 name: stick-figure-film
-description: Make a complete 2D animated short film where every frame is drawn in code: minimalist stick-figure (or other simple line-art) characters, hand-drawn ink/hatching look, choreographed action, cinematic camera, synced sound effects and music, rendered to MP4 with Node canvas and ffmpeg, no video-generation model. Use this skill whenever the user wants an animated short, fight scene, action sequence, music-less cartoon, "stick figure" or "stickman" animation, notebook/doodle/ink-style animation, a procedural or code-drawn video, a storyboard brought to life, or asks to extend, re-cut, polish, add a scene to, or make social clips from a film made this way, even if they only describe the story and never mention code.
+description: >-
+  Make a complete 2D animated short film where every frame is drawn in code: minimalist
+  stick-figure (or other simple line-art) characters, hand-drawn ink/hatching look, choreographed
+  action, cinematic camera, synced sound effects and music, rendered to MP4 with Node canvas and
+  ffmpeg, no video-generation model. Use this skill whenever the user wants an animated short,
+  fight scene, action sequence, music-less cartoon, "stick figure" or "stickman" animation,
+  notebook/doodle/ink-style animation, a procedural or code-drawn video, a storyboard brought to
+  life, or asks to extend, re-cut, polish, add a scene to, or make social clips from a film made
+  this way, even if they only describe the story and never mention code.
 ---
 
 # Stick-figure film

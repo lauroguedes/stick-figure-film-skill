@@ -69,21 +69,37 @@ that got it there, including the mistakes, written down so they are not repeated
 
 ## Install
 
-The skill is the `stick-figure-film/` folder. Copy it into a skills directory Claude reads:
+```bash
+npx skills add lauroguedes/stick-figure-film-skill
+```
+
+This uses the [`skills`](https://github.com/vercel-labs/skills) CLI (Node.js 22.20 or later). It
+installs the skill into the current project for the coding agents it detects; add `-g` to make it
+available in every project, or `-a claude-code` to choose the agent:
+
+```bash
+npx skills add lauroguedes/stick-figure-film-skill -g -a claude-code
+```
+
+The skill was written and tested with Claude Code. Other agents the CLI supports can load it,
+but its review workflow assumes an agent that can read images and run shell commands.
+
+<details>
+<summary>Manual install</summary>
+
+Copy the `skills/stick-figure-film/` folder into a skills directory Claude reads:
 
 ```bash
 git clone https://github.com/lauroguedes/stick-figure-film-skill.git
 ```
 
 ```bash
-cp -R stick-figure-film-skill/stick-figure-film ~/.claude/skills/      # every Claude Code project
+cp -R stick-figure-film-skill/skills/stick-figure-film ~/.claude/skills/
 ```
 
-```bash
-cp -R stick-figure-film-skill/stick-figure-film .claude/skills/        # only the current project
-```
+For the Claude apps, zip the `skills/stick-figure-film/` folder and upload it as a custom skill.
 
-For the Claude apps, zip the `stick-figure-film/` folder and upload it as a custom skill.
+</details>
 
 ## Usage
 
@@ -132,7 +148,7 @@ cannot drift. Every frame is a pure function of time, so any frame can be render
 ## What's in this repository
 
 ```
-stick-figure-film/            the skill
+skills/stick-figure-film/     the skill
 ├── SKILL.md                  workflow and the craft rules learned the hard way
 ├── references/
 │   ├── engine.md             scene authoring API: poses, weapons, camera, effects, set kit
@@ -159,7 +175,7 @@ docs/                         images for this README
 ## Try the engine without Claude
 
 ```bash
-cp -R stick-figure-film/assets/template my-film && cd my-film && npm install
+cp -R skills/stick-figure-film/assets/template my-film && cd my-film && npm install
 ```
 
 ```bash
